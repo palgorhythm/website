@@ -26,9 +26,15 @@ const Body = () => (
     </div>
     <BodyTextArea>
       <h1>🐥 hi 🐥</h1>
-      <p>welcome to my website !</p>
+      <p>i'm a software engineer and professional musician.<br/>
+        i've played and toured all over the world playing with great people, 
+        like Steve Lehman, Myra Melford, Drew Gress, David Binney, and Oliver Tree.<br/> 
+        i like to combine my love of music and code to build things, 
+        like <Link to='https://batterydrums.bandcamp.com/'>BATTERY</Link>. <br/>
+        i'm currently a senior software engineer at  
+        <Link to='https://batterydrums.bandcamp.com/'> mothership</Link>, where i work on logistics optimization.
+      </p>
       <Link to='/work/'></Link>
-      <Link to='https://batterydrums.bandcamp.com/'>BATTERY</Link>
       <Link to='https://open.spotify.com/playlist/0IeUXYZUUB9vz172ouSQ0p?si=3IfQywgjSCyOWKFYHvxojQ'>spotify discography</Link>
       <Link to='https://github.com/palgorhythm'>github</Link>
       <Link to='https://linkedin.com/in/palgorhythm'>linkedin</Link>
