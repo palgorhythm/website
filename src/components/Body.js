@@ -27,7 +27,14 @@ const Body = () => (
     <BodyTextArea>
       <h1>🐥 hi 🐥</h1>
       <p>welcome to my website !</p>
-      <Link to='/work/'>view work</Link>
+      <Link to='/work/'></Link>
+      <Link to='https://batterydrums.bandcamp.com/'>BATTERY</Link>
+      <Link to='https://open.spotify.com/playlist/0IeUXYZUUB9vz172ouSQ0p?si=3IfQywgjSCyOWKFYHvxojQ'>spotify discography</Link>
+      <Link to='https://github.com/palgorhythm'>github</Link>
+      <Link to='https://linkedin.com/in/palgorhythm'>linkedin</Link>
+      <Link to='https://www.youtube.com/channel/UCO6KYK2RJU7ARxsLhutzeng'>youtube</Link>
+      <Link to='https://www.tiktok.com/@__battery'>tiktok</Link>
+
     </BodyTextArea>
   </BodyStyle>
 );
