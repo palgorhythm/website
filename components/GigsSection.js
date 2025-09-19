@@ -14,11 +14,16 @@ export default function GigsSection() {
     try {
       setLoading(true)
       
-      // TODO: Implement secure server-side API route for Google Calendar integration
-      // For now, using mock data to prevent exposing sensitive credentials
-      setGigs(getMockGigs())
+      // Fetch gigs from secure serverless function
+      const response = await fetch('/.netlify/functions/gigs');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const gigs = await response.json();
+      setGigs(gigs);
       
     } catch (err) {
+      console.error('Error fetching gigs:', err);
       setGigs(getMockGigs())
     } finally {
       setLoading(false)
