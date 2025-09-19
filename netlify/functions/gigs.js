@@ -31,7 +31,6 @@ exports.handler = async (event, context) => {
     const calendarId = process.env.GOOGLE_CALENDAR_ID;
 
     if (!clientEmail || !privateKey || !calendarId) {
-      console.log('Google Calendar credentials not configured, returning mock data');
       return {
         statusCode: 200,
         headers,
@@ -40,12 +39,17 @@ exports.handler = async (event, context) => {
     }
 
     // Initialize Google Calendar API
-    const auth = new google.auth.JWT(
-      clientEmail,
-      null,
-      privateKey,
-      ['https://www.googleapis.com/auth/calendar.readonly']
-    );
+    const credentials = {
+      type: 'service_account',
+      client_email: clientEmail,
+      private_key: privateKey,
+      private_key_id: 'dummy-key-id',
+      project_id: 'dummy-project-id',
+    };
+
+    const auth = google.auth.fromJSON(credentials);
+    auth.scopes = ['https://www.googleapis.com/auth/calendar.readonly'];
+    await auth.authorize();
 
     const calendar = google.calendar({ version: 'v3', auth });
 
