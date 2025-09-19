@@ -14,17 +14,26 @@ export default function GigsSection() {
     try {
       setLoading(true)
       
-      // Fetch gigs from secure serverless function
-      const response = await fetch('/.netlify/functions/gigs');
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      // Check if we're in production (Netlify) or development
+      const isProduction = process.env.NODE_ENV === 'production' || window.location.hostname !== 'localhost'
+      
+      if (isProduction) {
+        // Fetch gigs from secure serverless function (production only)
+        const response = await fetch('/.netlify/functions/gigs');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const gigs = await response.json();
+        setGigs(gigs);
+      } else {
+        // Use empty array for local development
+        console.log('Local development: using empty gigs array');
+        setGigs([]);
       }
-      const gigs = await response.json();
-      setGigs(gigs);
       
     } catch (err) {
       console.error('Error fetching gigs:', err);
-      setGigs(getMockGigs())
+      setGigs([])
     } finally {
       setLoading(false)
     }
