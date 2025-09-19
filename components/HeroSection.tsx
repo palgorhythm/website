@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion'
-import { Play, Headphones, Sparkles } from 'lucide-react'
+import { motion } from "framer-motion";
+import { Play, Headphones, Sparkles } from "lucide-react";
 
 export default function HeroSection() {
   return (
@@ -78,7 +78,9 @@ export default function HeroSection() {
                 <div className="text-sm">Yellowjackets</div>
               </div>
               <div className="flex flex-col items-center">
-                <div className="text-xl font-bold text-neon-yellow">101+ TRACKS</div>
+                <div className="text-xl font-bold text-neon-yellow">
+                  101+ TRACKS
+                </div>
                 <div className="text-sm">Professional Sessions</div>
               </div>
             </div>
@@ -100,7 +102,7 @@ export default function HeroSection() {
             <Play className="w-5 h-5 group-hover:animate-pulse" />
             <span>LISTEN TO MY MUSIC</span>
           </motion.a>
-          
+
           <motion.a
             href="https://batterydrums.bandcamp.com/"
             target="_blank"
@@ -125,5 +127,5 @@ export default function HeroSection() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

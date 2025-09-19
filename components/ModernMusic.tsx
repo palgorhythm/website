@@ -1,9 +1,27 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Play, ExternalLink, Music, Headphones, Disc, Radio } from 'lucide-react'
+import { ReactNode } from 'react'
 
-export default function ModernMusic() {
-  const [activeProject, setActiveProject] = useState(null)
+interface Project {
+  id: number
+  title: string
+  subtitle: string
+  description: string | ReactNode
+  year: string
+  type: string
+  link?: string
+  color: string
+  icon: ReactNode
+}
+
+interface Stat {
+  label: string
+  value: string
+}
+
+export default function ModernMusic(): React.JSX.Element {
+  const [activeProject, setActiveProject] = useState<number | null>(null)
 
   const projects = [
     {
@@ -47,9 +65,9 @@ export default function ModernMusic() {
     },
     {
       id: 4,
-      title: "Jazz Collaborations",
-      subtitle: "Contemporary & Experimental",
-      description: "Performances with established artists including Myra Melford, Drew Gress, David Binney, Steve Lehman, and Tia Fuller. Work spans modern jazz to experimental compositions.",
+      title: "Artist Collaborations",
+      subtitle: "Jazz & Contemporary Music",
+      description: "Performances with established artists including Oliver Tree, SPELLLING, David Binney, Steve Lehman, Myra Melford, Drew Gress, and Tia Fuller. Works span jazz, electronic, pop, and experimental music.",
       year: "2015 - Present",
       type: "Live Performance",
       color: "from-accent-secondary to-accent-tertiary",

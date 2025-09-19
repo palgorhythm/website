@@ -1,30 +1,30 @@
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { Music, User, Mail, Menu, X, Calendar } from 'lucide-react'
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Music, User, Mail, Menu, X, Calendar } from "lucide-react";
 
 export default function Navigation() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navItems = [
-    { icon: Music, label: 'Music', href: '#music' },
-    { icon: Calendar, label: 'Gigs', href: '#gigs' },
-    { icon: User, label: 'About', href: '#about' },
-    { icon: Mail, label: 'Contact', href: '#contact' },
-  ]
+    { icon: Music, label: "Music", href: "#music" },
+    { icon: Calendar, label: "Gigs", href: "#gigs" },
+    { icon: User, label: "About", href: "#about" },
+    { icon: Mail, label: "Contact", href: "#contact" },
+  ];
 
   return (
     <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'glass backdrop-blur-xl' : ''
+        isScrolled ? "glass backdrop-blur-xl" : ""
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -46,7 +46,7 @@ export default function Navigation() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => {
-              const Icon = item.icon
+              const Icon = item.icon;
               return (
                 <motion.a
                   key={item.label}
@@ -58,7 +58,7 @@ export default function Navigation() {
                   <Icon className="w-4 h-4" />
                   <span>{item.label}</span>
                 </motion.a>
-              )
+              );
             })}
           </div>
 
@@ -69,7 +69,11 @@ export default function Navigation() {
               className="text-gray-300 hover:text-neon-cyan transition-colors duration-300"
               whileTap={{ scale: 0.95 }}
             >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </motion.button>
           </div>
         </div>
@@ -77,13 +81,13 @@ export default function Navigation() {
         {/* Mobile Navigation */}
         <motion.div
           className={`md:hidden overflow-hidden ${
-            isMobileMenuOpen ? 'max-h-64' : 'max-h-0'
+            isMobileMenuOpen ? "max-h-64" : "max-h-0"
           } transition-all duration-300`}
           initial={false}
         >
           <div className="py-4 space-y-4">
             {navItems.map((item) => {
-              const Icon = item.icon
+              const Icon = item.icon;
               return (
                 <motion.a
                   key={item.label}
@@ -95,11 +99,11 @@ export default function Navigation() {
                   <Icon className="w-5 h-5" />
                   <span>{item.label}</span>
                 </motion.a>
-              )
+              );
             })}
           </div>
         </motion.div>
       </div>
     </motion.nav>
-  )
+  );
 }

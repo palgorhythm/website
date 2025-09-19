@@ -1,36 +1,42 @@
-import { motion } from 'framer-motion'
-import { Code, Briefcase, GraduationCap, Award } from 'lucide-react'
+import { motion } from "framer-motion";
+import { Code, Briefcase, GraduationCap, Award } from "lucide-react";
 
 export default function AboutSection() {
   const experience = [
     {
       id: 1,
-      title: 'Senior Software Engineer',
-      company: 'Discord',
-      period: 'Sep 2022 - Present',
-      location: 'Los Angeles, CA',
-      description: 'Scaling ads business and building self-expression tools for millions of users'
+      title: "Senior Software Engineer",
+      company: "Discord",
+      period: "Sep 2022 - Present",
+      location: "Los Angeles, CA",
+      description:
+        "Scaling ads business and building self-expression tools for millions of users",
     },
     {
       id: 2,
-      title: 'Staff Software Engineer',
-      company: 'Mothership',
-      period: 'Jan 2021 - Jul 2022',
-      location: 'Los Angeles, CA',
-      description: 'Led engineering teams and executed full-stack projects in freight logistics'
+      title: "Staff Software Engineer",
+      company: "Mothership",
+      period: "Jan 2021 - Jul 2022",
+      location: "Los Angeles, CA",
+      description:
+        "Led engineering teams and executed full-stack projects in freight logistics",
     },
     {
       id: 3,
-      title: 'Software Engineer',
-      company: 'Bird',
-      period: 'Sep 2019 - Apr 2020',
-      location: 'Los Angeles, CA',
-      description: 'Built core features for millions of users including speed control and coupons'
-    }
-  ]
+      title: "Software Engineer",
+      company: "Bird",
+      period: "Sep 2019 - Apr 2020",
+      location: "Los Angeles, CA",
+      description:
+        "Built core features for millions of users including speed control and coupons",
+    },
+  ];
 
   return (
-    <section id="about" className="py-20 px-4 bg-gradient-to-b from-transparent to-dark-purple/20">
+    <section
+      id="about"
+      className="py-20 px-4 bg-gradient-to-b from-transparent to-dark-purple/20"
+    >
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -45,12 +51,15 @@ export default function AboutSection() {
           </h2>
           <div className="max-w-4xl mx-auto">
             <p className="text-xl text-gray-300 mb-6">
-              I'm a software engineer and professional drummer who bridges the worlds of technology and music. 
-              With over 10 years of experience in both fields, I create innovative solutions and compelling soundscapes.
+              I'm a software engineer and professional drummer who bridges the
+              worlds of technology and music. With over 10 years of experience
+              in both fields, I create innovative solutions and compelling
+              soundscapes.
             </p>
             <p className="text-lg text-gray-400">
-              From scaling Discord's ads platform to performing on Emmy-nominated TV shows, 
-              I bring the same creative problem-solving approach to every project.
+              From scaling Discord's ads platform to performing on
+              Emmy-nominated TV shows, I bring the same creative problem-solving
+              approach to every project.
             </p>
           </div>
         </motion.div>
@@ -63,9 +72,11 @@ export default function AboutSection() {
           >
             <div className="flex items-center mb-8">
               <Briefcase className="w-8 h-8 text-neon-cyan mr-4" />
-              <h3 className="text-3xl font-bold text-white">PROFESSIONAL EXPERIENCE</h3>
+              <h3 className="text-3xl font-bold text-white">
+                PROFESSIONAL EXPERIENCE
+              </h3>
             </div>
-            
+
             <div className="space-y-8">
               {experience.map((job, index) => (
                 <motion.div
@@ -80,7 +91,9 @@ export default function AboutSection() {
                       <h4 className="text-xl font-bold text-white group-hover:text-neon-cyan transition-colors duration-300">
                         {job.title}
                       </h4>
-                      <div className="text-neon-pink font-semibold">{job.company}</div>
+                      <div className="text-neon-pink font-semibold">
+                        {job.company}
+                      </div>
                     </div>
                     <div className="text-right text-sm text-gray-400">
                       <div>{job.period}</div>
@@ -102,11 +115,13 @@ export default function AboutSection() {
               <GraduationCap className="w-8 h-8 text-neon-yellow mr-4" />
               <h3 className="text-3xl font-bold text-white">EDUCATION</h3>
             </div>
-            
+
             <div className="glass rounded-lg p-6">
               <div className="flex items-center mb-2">
                 <Award className="w-5 h-5 text-neon-yellow mr-2" />
-                <span className="text-neon-yellow font-semibold">Summa Cum Laude</span>
+                <span className="text-neon-yellow font-semibold">
+                  Summa Cum Laude
+                </span>
               </div>
               <h4 className="text-xl font-bold text-white mb-1">
                 University of California, Berkeley
@@ -122,7 +137,7 @@ export default function AboutSection() {
                 <Code className="w-8 h-8 text-neon-green mr-4" />
                 <h3 className="text-3xl font-bold text-white">SKILLS</h3>
               </div>
-              
+
               <div className="glass rounded-lg p-4">
                 <div className="grid grid-cols-2 gap-4 text-gray-300">
                   <div>TypeScript</div>
@@ -151,15 +166,17 @@ export default function AboutSection() {
         >
           <div className="glass rounded-2xl p-8 bg-gradient-to-br from-neon-cyan/10 to-neon-pink/10">
             <Award className="w-12 h-12 text-neon-yellow mx-auto mb-4" />
-            <h3 className="text-2xl font-bold text-white mb-4">INNOVATION & RECOGNITION</h3>
+            <h3 className="text-2xl font-bold text-white mb-4">
+              INNOVATION & RECOGNITION
+            </h3>
             <p className="text-gray-300 text-lg">
-              Filed patent for financial platform tooling at Discord • 
-              Triplebyte Certified Front End Engineer • 
-              6,130+ LinkedIn connections in tech and music communities
+              Filed patent for financial platform tooling at Discord •
+              Triplebyte Certified Front End Engineer • 6,130+ LinkedIn
+              connections in tech and music communities
             </p>
           </div>
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

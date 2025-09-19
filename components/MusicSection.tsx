@@ -1,57 +1,71 @@
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { Play, Pause, ExternalLink, Music, Headphones, Radio, Disc3 } from 'lucide-react'
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  Play,
+  Pause,
+  ExternalLink,
+  Music,
+  Headphones,
+  Radio,
+  Disc3,
+} from "lucide-react";
 
-export default function MusicSection({ isPlaying, setIsPlaying }) {
-  const [activeTrack, setActiveTrack] = useState(null)
+interface MusicSectionProps {
+  isPlaying: boolean;
+  setIsPlaying: (playing: boolean) => void;
+}
+
+export default function MusicSection({ isPlaying, setIsPlaying }: MusicSectionProps): React.JSX.Element {
+  const [activeTrack, setActiveTrack] = useState<number | null>(null);
 
   const featuredWork = [
     {
       id: 1,
-      title: 'NBC New Amsterdam',
-      description: 'Original drum performances for hit medical drama series',
-      type: 'TV Score',
+      title: "NBC New Amsterdam",
+      description: "Original drum performances for hit medical drama series",
+      type: "TV Score",
       icon: <Radio className="w-6 h-6" />,
-      color: 'from-red-500 to-pink-500'
+      color: "from-red-500 to-pink-500",
     },
     {
       id: 2,
-      title: 'Showtime Yellowjackets',
-      description: 'Percussion work for Emmy-nominated thriller series',
-      type: 'TV Score',
+      title: "Showtime Yellowjackets",
+      description: "Percussion work for Emmy-nominated thriller series",
+      type: "TV Score",
       icon: <Disc3 className="w-6 h-6" />,
-      color: 'from-yellow-500 to-orange-500'
+      color: "from-yellow-500 to-orange-500",
     },
     {
       id: 3,
-      title: 'BATTERY',
-      description: 'Electronic music project using complex drum triggers and software',
-      type: 'Electronic/Experimental',
+      title: "BATTERY",
+      description:
+        "Electronic music project using complex drum triggers and software",
+      type: "Electronic/Experimental",
       icon: <Music className="w-6 h-6" />,
-      color: 'from-neon-cyan to-neon-pink',
-      link: 'https://batterydrums.bandcamp.com/'
-    }
-  ]
+      color: "from-neon-cyan to-neon-pink",
+      link: "https://batterydrums.bandcamp.com/",
+    },
+  ];
 
   const collaborations = [
-    { name: 'Steve Lehman', style: 'Jazz/Contemporary' },
-    { name: 'Myra Melford', style: 'Avant-garde Jazz' },
-    { name: 'Drew Gress', style: 'Modern Jazz' },
-    { name: 'David Binney', style: 'Contemporary Jazz' },
-    { name: 'Oliver Tree', style: 'Alternative/Electronic' },
-    { name: 'SPELLLING', style: 'Art Pop/Electronic' },
-    { name: 'Logan Kane', style: 'Indie/Alternative' },
-    { name: 'Standards', style: 'Jazz Fusion' }
-  ]
+    { name: "Steve Lehman", style: "Jazz/Contemporary" },
+    { name: "Myra Melford", style: "Avant-garde Jazz" },
+    { name: "Drew Gress", style: "Modern Jazz" },
+    { name: "David Binney", style: "Contemporary Jazz" },
+    { name: "Oliver Tree", style: "Alternative/Electronic" },
+    { name: "SPELLLING", style: "Art Pop/Electronic" },
+    { name: "Logan Kane", style: "Indie/Alternative" },
+    { name: "Standards", style: "Jazz Fusion" },
+  ];
 
-  const playTrack = (trackId) => {
-    setActiveTrack(trackId)
-    setIsPlaying(true)
+  const playTrack = (trackId: number) => {
+    setActiveTrack(trackId);
+    setIsPlaying(true);
     setTimeout(() => {
-      setIsPlaying(false)
-      setActiveTrack(null)
-    }, 3000)
-  }
+      setIsPlaying(false);
+      setActiveTrack(null);
+    }, 3000);
+  };
 
   return (
     <section id="music" className="py-20 px-4">
@@ -68,8 +82,9 @@ export default function MusicSection({ isPlaying, setIsPlaying }) {
             </span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Over 10 years of professional drumming across genres, from jazz fusion to electronic music,
-            with featured work on major television productions and acclaimed records.
+            Over 10 years of professional drumming across genres, from jazz
+            fusion to electronic music, with featured work on major television
+            productions and acclaimed records.
           </p>
         </motion.div>
 
@@ -82,26 +97,34 @@ export default function MusicSection({ isPlaying, setIsPlaying }) {
               transition={{ duration: 0.6, delay: index * 0.2 }}
               className="group glass rounded-xl p-6 hover:scale-105 transition-all duration-300 relative overflow-hidden"
             >
-              <div className={`absolute inset-0 bg-gradient-to-br ${work.color} opacity-10 group-hover:opacity-20 transition-opacity duration-300`} />
-              
+              <div
+                className={`absolute inset-0 bg-gradient-to-br ${work.color} opacity-10 group-hover:opacity-20 transition-opacity duration-300`}
+              />
+
               <div className="relative z-10">
                 <div className="flex items-center justify-between mb-4">
-                  <div className={`p-3 rounded-lg bg-gradient-to-br ${work.color}`}>
+                  <div
+                    className={`p-3 rounded-lg bg-gradient-to-br ${work.color}`}
+                  >
                     {work.icon}
                   </div>
-                  <span className="text-sm text-gray-400 font-mono">{work.type}</span>
+                  <span className="text-sm text-gray-400 font-mono">
+                    {work.type}
+                  </span>
                 </div>
-                
-                <h3 className="text-xl font-bold text-white mb-2">{work.title}</h3>
+
+                <h3 className="text-xl font-bold text-white mb-2">
+                  {work.title}
+                </h3>
                 <p className="text-gray-300 mb-4">{work.description}</p>
-                
+
                 <div className="flex items-center justify-between">
                   <motion.button
                     onClick={() => playTrack(work.id)}
                     className={`flex items-center space-x-2 px-4 py-2 rounded-full transition-all duration-300 ${
                       activeTrack === work.id && isPlaying
-                        ? 'bg-neon-cyan text-black'
-                        : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                        ? "bg-neon-cyan text-black"
+                        : "bg-gray-700 text-gray-300 hover:bg-gray-600"
                     }`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -113,7 +136,7 @@ export default function MusicSection({ isPlaying, setIsPlaying }) {
                     )}
                     <span className="text-sm font-medium">Preview</span>
                   </motion.button>
-                  
+
                   {work.link && (
                     <motion.a
                       href={work.link}
@@ -139,7 +162,9 @@ export default function MusicSection({ isPlaying, setIsPlaying }) {
         >
           <div className="flex items-center justify-center mb-6">
             <Headphones className="w-8 h-8 text-neon-green mr-4" />
-            <h3 className="text-3xl font-bold text-neon-green">COMPLETE DISCOGRAPHY</h3>
+            <h3 className="text-3xl font-bold text-neon-green">
+              COMPLETE DISCOGRAPHY
+            </h3>
           </div>
           <p className="text-gray-300 mb-6 text-lg">
             101 tracks spanning jazz, electronic, indie, and experimental music
@@ -164,7 +189,9 @@ export default function MusicSection({ isPlaying, setIsPlaying }) {
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          <h3 className="text-3xl font-bold text-white mb-8">FEATURED COLLABORATIONS</h3>
+          <h3 className="text-3xl font-bold text-white mb-8">
+            FEATURED COLLABORATIONS
+          </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {collaborations.map((artist, index) => (
               <motion.div
@@ -184,5 +211,5 @@ export default function MusicSection({ isPlaying, setIsPlaying }) {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

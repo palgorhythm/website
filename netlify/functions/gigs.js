@@ -1,62 +1,64 @@
-const { google } = require('googleapis');
+const { google } = require("googleapis");
 
 exports.handler = async (event, context) => {
   // Enable CORS
   const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
   };
 
-  if (event.httpMethod === 'OPTIONS') {
+  if (event.httpMethod === "OPTIONS") {
     return {
       statusCode: 200,
       headers,
-      body: ''
+      body: "",
     };
   }
 
-  if (event.httpMethod !== 'GET') {
+  if (event.httpMethod !== "GET") {
     return {
       statusCode: 405,
       headers,
-      body: JSON.stringify({ error: 'Method not allowed' })
+      body: JSON.stringify({ error: "Method not allowed" }),
     };
   }
 
   try {
     // Get Google service account credentials from environment
     const clientEmail = process.env.GOOGLE_CLIENT_EMAIL;
-    const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
+    const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n");
     const calendarId = process.env.GOOGLE_CALENDAR_ID;
 
     if (!clientEmail || !privateKey || !calendarId) {
       return {
         statusCode: 200,
         headers,
-        body: JSON.stringify([])
+        body: JSON.stringify([]),
       };
     }
 
     // Initialize Google Calendar API
     const credentials = {
-      type: 'service_account',
+      type: "service_account",
       client_email: clientEmail,
       private_key: privateKey,
-      private_key_id: 'dummy-key-id',
-      project_id: 'dummy-project-id',
+      private_key_id: "dummy-key-id",
+      project_id: "dummy-project-id",
     };
 
     const auth = google.auth.fromJSON(credentials);
-    auth.scopes = ['https://www.googleapis.com/auth/calendar.readonly'];
+    auth.scopes = ["https://www.googleapis.com/auth/calendar.readonly"];
     await auth.authorize();
 
-    const calendar = google.calendar({ version: 'v3', auth });
+    const calendar = google.calendar({ version: "v3", auth });
 
     // Calculate date range (6 months back to 6 months forward)
     const now = new Date();
     const sixMonthsAgo = new Date(now.getTime() - 6 * 30 * 24 * 60 * 60 * 1000);
-    const sixMonthsFromNow = new Date(now.getTime() + 6 * 30 * 24 * 60 * 60 * 1000);
+    const sixMonthsFromNow = new Date(
+      now.getTime() + 6 * 30 * 24 * 60 * 60 * 1000,
+    );
 
     // Fetch calendar events
     const response = await calendar.events.list({
@@ -64,31 +66,31 @@ exports.handler = async (event, context) => {
       timeMin: sixMonthsAgo.toISOString(),
       timeMax: sixMonthsFromNow.toISOString(),
       singleEvents: true,
-      orderBy: 'startTime',
-      q: 'GIG:', // Search for events containing "GIG:"
+      orderBy: "startTime",
+      q: "GIG:", // Search for events containing "GIG:"
     });
 
     const events = response.data.items || [];
 
     // Transform calendar events to gig format
-    const gigs = events.map(event => {
-      const originalTitle = event.summary || 'GIG: Untitled';
-      
+    const gigs = events.map((event) => {
+      const originalTitle = event.summary || "GIG: Untitled";
+
       // Parse title and location from "GIG: BAND @ LOCATION" format
       let displayTitle = originalTitle;
-      let parsedLocation = '';
-      
-      if (originalTitle.includes('@')) {
-        const parts = originalTitle.split('@');
+      let parsedLocation = "";
+
+      if (originalTitle.includes("@")) {
+        const parts = originalTitle.split("@");
         displayTitle = parts[0].trim(); // Everything before @ (including "GIG: BAND")
         if (parts.length > 1) {
           parsedLocation = parts[1].trim(); // Everything after @
         }
       }
-      
+
       // Use parsed location from title, fallback to Google Calendar location field, or empty
-      const finalLocation = parsedLocation || event.location || '';
-      
+      const finalLocation = parsedLocation || event.location || "";
+
       return {
         id: event.id,
         title: displayTitle, // Will be "GIG: BAND" (no @)
@@ -96,25 +98,24 @@ exports.handler = async (event, context) => {
         endDate: event.end?.dateTime || event.end?.date,
         date: event.start.dateTime || event.start.date, // Keep for compatibility
         location: finalLocation,
-        description: event.description || '',
-        status: 'confirmed'
+        description: event.description || "",
+        status: "confirmed",
       };
     });
 
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify(gigs)
+      body: JSON.stringify(gigs),
     };
-
   } catch (error) {
-    console.error('Error fetching calendar events:', error);
-    
+    console.error("Error fetching calendar events:", error);
+
     // Return empty array on error to prevent site breaking
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify([])
+      body: JSON.stringify([]),
     };
   }
 };

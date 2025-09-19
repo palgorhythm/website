@@ -1,10 +1,19 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Calendar, MapPin, Clock, Music2 } from 'lucide-react'
 
-export default function GigsSection() {
-  const [gigs, setGigs] = useState([])
-  const [loading, setLoading] = useState(true)
+interface Gig {
+  id: string
+  title: string
+  date: string
+  startDate: string
+  endDate?: string
+  location?: string
+}
+
+export default function GigsSection(): React.JSX.Element {
+  const [gigs, setGigs] = useState<Gig[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     fetchGigs()
@@ -36,7 +45,7 @@ export default function GigsSection() {
     return []
   }
 
-  const formatDate = (date) => {
+  const formatDate = (date: Date) => {
     const formatted = new Intl.DateTimeFormat('en-US', {
       weekday: 'short',
       month: 'short',
@@ -48,7 +57,7 @@ export default function GigsSection() {
     return formatted.replace(/,/g, '')
   }
 
-  const formatTime = (date) => {
+  const formatTime = (date: Date) => {
     return new Intl.DateTimeFormat('en-US', {
       hour: 'numeric',
       minute: '2-digit',
@@ -56,7 +65,7 @@ export default function GigsSection() {
     }).format(date)
   }
 
-  const formatTimeRange = (startDate, endDate) => {
+  const formatTimeRange = (startDate: string | undefined, endDate?: string) => {
     if (!startDate) return ''
     
     const start = new Date(startDate)
@@ -75,7 +84,7 @@ export default function GigsSection() {
     return `${formatTime(start)} - ${formatTime(end)}`
   }
 
-  const isUpcoming = (date) => new Date(date) > new Date()
+  const isUpcoming = (date: string) => new Date(date) > new Date()
   const upcomingGigs = gigs.filter(gig => isUpcoming(gig.date))
   const pastGigs = gigs.filter(gig => !isUpcoming(gig.date)).reverse()
 
@@ -113,7 +122,7 @@ export default function GigsSection() {
             <span className="gradient-text font-semibold">Shows</span>
           </h2>
           <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
-            My work spans jazz, electronic music, and world percussion. I perform and record with artists including Oliver Tree, SPELLLING, David Binney, and Steve Lehman.
+            Drummer, software engineer, and music producer.
           </p>
         </motion.div>
 

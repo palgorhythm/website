@@ -1,15 +1,30 @@
-import { useState, useEffect, useRef } from 'react'
-import { Play, Pause, SkipForward, Volume2, VolumeX, Music } from 'lucide-react'
+import React, { useState, useEffect, useRef } from "react";
 
-export default function SpotifyPlayer() {
-  const [player, setPlayer] = useState(null)
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [currentTrack, setCurrentTrack] = useState(null)
-  const [deviceId, setDeviceId] = useState(null)
-  const [volume, setVolume] = useState(0.5)
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState(null)
-  const [isMuted, setIsMuted] = useState(false)
+// Declare global types
+declare global {
+  interface Window {
+    Spotify: any;
+    onSpotifyWebPlaybackSDKReady: () => void;
+  }
+}
+import {
+  Play,
+  Pause,
+  SkipForward,
+  Volume2,
+  VolumeX,
+  Music,
+} from "lucide-react";
+
+export default function SpotifyPlayer(): React.JSX.Element | null {
+  const [player, setPlayer] = useState<any>(null);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [currentTrack, setCurrentTrack] = useState<any>(null);
+  const [deviceId, setDeviceId] = useState<string | null>(null);
+  const [volume, setVolume] = useState<number>(0.5);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const [isMuted, setIsMuted] = useState<boolean>(false);
 
   // Your Spotify playlist tracks (fallback data)
   const playlistTracks = [
@@ -17,93 +32,94 @@ export default function SpotifyPlayer() {
       name: "Little Deer",
       artist: "SPELLLING",
       preview_url: null, // Most tracks don't have preview URLs
-      id: "track1"
+      id: "track1",
     },
     {
       name: "Tiger Cubs",
       artist: "Various Artists ft. Jacob Richards",
       preview_url: null,
-      id: "track2"
+      id: "track2",
     },
     // Add more tracks from your discography
-  ]
+  ];
 
   useEffect(() => {
     // Load Spotify Web Playback SDK
     if (!window.Spotify) {
-      const script = document.createElement('script')
-      script.src = 'https://sdk.scdn.co/spotify-player.js'
-      script.async = true
-      document.body.appendChild(script)
+      const script = document.createElement("script");
+      script.src = "https://sdk.scdn.co/spotify-player.js";
+      script.async = true;
+      document.body.appendChild(script);
 
       window.onSpotifyWebPlaybackSDKReady = () => {
-        initializePlayer()
-      }
+        initializePlayer();
+      };
     } else {
-      initializePlayer()
+      initializePlayer();
     }
 
     return () => {
       if (player) {
-        player.disconnect()
+        player.disconnect();
       }
-    }
-  }, [])
+    };
+  }, []);
 
   const initializePlayer = () => {
     // Note: This requires a Spotify Premium account and access token
     // For demo purposes, we'll use a mock player
-    setIsLoading(false)
-    setError("Spotify Premium required for full playback. Demo mode active.")
-    
+    setIsLoading(false);
+    setError("Spotify Premium required for full playback. Demo mode active.");
+
     // Mock current track
     setCurrentTrack({
       name: "BATTERY - Electronic Set",
       artists: [{ name: "Jacob Richards" }],
-      album: { 
+      album: {
         name: "Live Sessions",
-        images: [{ url: '/api/placeholder-album-art' }]
-      }
-    })
-  }
+        images: [{ url: "/api/placeholder-album-art" }],
+      },
+    });
+  };
 
   const togglePlay = () => {
     if (player) {
       if (isPlaying) {
-        player.pause()
+        player.pause();
       } else {
-        player.resume()
+        player.resume();
       }
     } else {
       // Demo mode toggle
-      setIsPlaying(!isPlaying)
+      setIsPlaying(!isPlaying);
     }
-  }
+  };
 
   const nextTrack = () => {
     if (player) {
-      player.nextTrack()
+      player.nextTrack();
     } else {
       // Demo mode - cycle through tracks
-      const currentIndex = playlistTracks.findIndex(t => t.name === currentTrack?.name) || 0
-      const nextIndex = (currentIndex + 1) % playlistTracks.length
+      const currentIndex =
+        playlistTracks.findIndex((t) => t.name === currentTrack?.name) || 0;
+      const nextIndex = (currentIndex + 1) % playlistTracks.length;
       setCurrentTrack({
         name: playlistTracks[nextIndex].name,
         artists: [{ name: playlistTracks[nextIndex].artist }],
-        album: { 
+        album: {
           name: "Discography",
-          images: [{ url: '/api/placeholder-album-art' }]
-        }
-      })
+          images: [{ url: "/api/placeholder-album-art" }],
+        },
+      });
     }
-  }
+  };
 
   const toggleMute = () => {
     if (player) {
-      player.setVolume(isMuted ? volume : 0)
+      player.setVolume(isMuted ? volume : 0);
     }
-    setIsMuted(!isMuted)
-  }
+    setIsMuted(!isMuted);
+  };
 
   if (isLoading) {
     return (
@@ -114,14 +130,16 @@ export default function SpotifyPlayer() {
             <div className="loading-dot"></div>
             <div className="loading-dot"></div>
           </div>
-          <span className="text-text-secondary text-sm">Loading Spotify...</span>
+          <span className="text-text-secondary text-sm">
+            Loading Spotify...
+          </span>
         </div>
       </div>
-    )
+    );
   }
 
   if (!currentTrack) {
-    return null
+    return null;
   }
 
   return (
@@ -131,23 +149,26 @@ export default function SpotifyPlayer() {
           {error}
         </div>
       )}
-      
+
       <div className="flex items-center space-x-3">
         {/* Album Art */}
-        <div className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0" style={{
-          background: 'linear-gradient(135deg, #d1477a, #3ba49a)',
-          border: '1px solid rgba(255, 255, 255, 0.2)',
-          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
-        }}>
-          <svg 
-            width="24" 
-            height="24" 
-            viewBox="0 0 24 24" 
-            fill="white" 
-            stroke="white" 
+        <div
+          className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
+          style={{
+            background: "linear-gradient(135deg, #d1477a, #3ba49a)",
+            border: "1px solid rgba(255, 255, 255, 0.2)",
+            boxShadow: "0 2px 8px rgba(0, 0, 0, 0.3)",
+          }}
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="white"
+            stroke="white"
             strokeWidth="2"
-            style={{ 
-              filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5))'
+            style={{
+              filter: "drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5))",
             }}
           >
             <path d="M9 18V5l12-2v13"></path>
@@ -162,7 +183,7 @@ export default function SpotifyPlayer() {
             {currentTrack.name}
           </div>
           <div className="text-text-secondary text-xs truncate">
-            {currentTrack.artists.map(artist => artist.name).join(', ')}
+            {currentTrack.artists.map((artist: any) => artist.name).join(", ")}
           </div>
         </div>
 
@@ -172,36 +193,52 @@ export default function SpotifyPlayer() {
             onClick={togglePlay}
             className="cursor-pointer flex items-center justify-center transition-all duration-200"
             style={{
-              width: '36px',
-              height: '36px',
-              borderRadius: '50%',
-              background: 'linear-gradient(135deg, #d1477a, #3ba49a)',
-              color: 'white',
-              border: 'none',
-              boxShadow: '0 3px 12px rgba(255, 107, 157, 0.4)',
-              flexShrink: 0
+              width: "36px",
+              height: "36px",
+              borderRadius: "50%",
+              background: "linear-gradient(135deg, #d1477a, #3ba49a)",
+              color: "white",
+              border: "none",
+              boxShadow: "0 3px 12px rgba(255, 107, 157, 0.4)",
+              flexShrink: 0,
             }}
             onMouseEnter={(e) => {
-              e.target.style.background = 'linear-gradient(135deg, #b93d6e, #328b82)'
-              e.target.style.transform = 'scale(1.1)'
-              e.target.style.boxShadow = '0 6px 16px rgba(255, 107, 157, 0.5)'
+              const target = e.target as HTMLElement;
+              target.style.background =
+                "linear-gradient(135deg, #b93d6e, #328b82)";
+              target.style.transform = "scale(1.1)";
+              target.style.boxShadow = "0 6px 16px rgba(255, 107, 157, 0.5)";
             }}
             onMouseLeave={(e) => {
-              e.target.style.background = 'linear-gradient(135deg, #d1477a, #3ba49a)'
-              e.target.style.transform = 'scale(1)'
-              e.target.style.boxShadow = '0 3px 12px rgba(255, 107, 157, 0.4)'
+              const target = e.target as HTMLElement;
+              target.style.background =
+                "linear-gradient(135deg, #d1477a, #3ba49a)";
+              target.style.transform = "scale(1)";
+              target.style.boxShadow = "0 3px 12px rgba(255, 107, 157, 0.4)";
             }}
             role="button"
             tabIndex={0}
-            aria-label={isPlaying ? 'Pause' : 'Play'}
+            aria-label={isPlaying ? "Pause" : "Play"}
           >
             {isPlaying ? (
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="white" style={{ strokeWidth: 0 }}>
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="white"
+                style={{ strokeWidth: 0 }}
+              >
                 <rect x="6" y="4" width="4" height="16"></rect>
                 <rect x="14" y="4" width="4" height="16"></rect>
               </svg>
             ) : (
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="white" style={{ marginLeft: '2px' }}>
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="white"
+                style={{ marginLeft: "2px" }}
+              >
                 <polygon points="5,3 19,12 5,21"></polygon>
               </svg>
             )}
@@ -210,7 +247,7 @@ export default function SpotifyPlayer() {
           <button
             onClick={nextTrack}
             className="w-6 h-6 flex items-center justify-center text-text-secondary hover:text-accent-primary transition-all duration-200 hover:scale-110"
-            style={{ border: 'none', background: 'none' }}
+            style={{ border: "none", background: "none" }}
             aria-label="Next track"
           >
             <SkipForward className="w-4 h-4" />
@@ -219,8 +256,8 @@ export default function SpotifyPlayer() {
           <button
             onClick={toggleMute}
             className="w-6 h-6 flex items-center justify-center text-text-secondary hover:text-accent-secondary transition-all duration-200 hover:scale-110"
-            style={{ border: 'none', background: 'none' }}
-            aria-label={isMuted ? 'Unmute' : 'Mute'}
+            style={{ border: "none", background: "none" }}
+            aria-label={isMuted ? "Unmute" : "Mute"}
           >
             {isMuted ? (
               <VolumeX className="w-4 h-4" />
@@ -240,12 +277,12 @@ export default function SpotifyPlayer() {
               className="visualizer-bar h-full"
               style={{
                 animationDelay: `${i * 0.1}s`,
-                height: `${Math.random() * 60 + 20}%`
+                height: `${Math.random() * 60 + 20}%`,
               }}
             />
           ))}
         </div>
       )}
     </div>
-  )
+  );
 }

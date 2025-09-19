@@ -1,26 +1,27 @@
-import { motion } from 'framer-motion'
-import { ArrowDown, Play, ExternalLink } from 'lucide-react'
+import React from "react";
+import { motion } from "framer-motion";
+import { ArrowDown, Play, ExternalLink } from "lucide-react";
 
-export default function ModernHero() {
+export default function ModernHero(): React.JSX.Element {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
         staggerChildren: 0.2,
-        delayChildren: 0.3
-      }
-    }
-  }
+        delayChildren: 0.3,
+      },
+    },
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }
-    }
-  }
+      transition: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] as any },
+    },
+  };
 
   return (
     <section className="min-h-screen flex items-center justify-center px-6 relative">
@@ -32,19 +33,14 @@ export default function ModernHero() {
       >
         {/* Main Heading */}
         <motion.div variants={itemVariants} className="mb-8">
-
           <h1 className="text-6xl md:text-8xl font-light mb-6 tracking-tight">
             Jacob
             <br />
             <span className="gradient-text font-semibold">Richards</span>
           </h1>
-          
+
           <div className="text-xl md:text-2xl text-text-secondary max-w-2xl mx-auto leading-relaxed">
-            Drummer, producer, and software engineer. 
-            I perform and record with artists including Oliver Tree, SPELLLING, David Binney, and Steve Lehman. 
-            My work spans{' '}
-            <span className="text-accent-secondary">jazz</span>,{' '}
-            <span className="text-accent-tertiary">electronic music</span>, and world percussion.
+            Drummer, producer, and software engineer.
           </div>
         </motion.div>
 
@@ -56,23 +52,31 @@ export default function ModernHero() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center">
-                <div className="text-2xl font-bold text-accent-primary mb-1">NBC</div>
+                <div className="text-2xl font-bold text-accent-primary mb-1">
+                  NBC
+                </div>
                 <div className="text-text-secondary text-sm">New Amsterdam</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-accent-secondary mb-1">SHOWTIME</div>
+                <div className="text-2xl font-bold text-accent-secondary mb-1">
+                  SHOWTIME
+                </div>
                 <div className="text-text-secondary text-sm">Yellowjackets</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-accent-tertiary mb-1">101+</div>
-                <div className="text-text-secondary text-sm">Songs Recorded</div>
+                <div className="text-2xl font-bold text-accent-tertiary mb-1">
+                  101+
+                </div>
+                <div className="text-text-secondary text-sm">
+                  Songs Recorded
+                </div>
               </div>
             </div>
           </div>
         </motion.div>
 
         {/* Call to Action */}
-        <motion.div 
+        <motion.div
           variants={itemVariants}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
@@ -85,7 +89,7 @@ export default function ModernHero() {
             <Play className="w-5 h-5" />
             <span>Explore My Music</span>
           </motion.a>
-          
+
           <motion.a
             href="https://open.spotify.com/playlist/0IeUXYZUUB9vz172ouSQ0p?si=7702f61a363f4a69"
             target="_blank"
@@ -107,7 +111,11 @@ export default function ModernHero() {
         >
           <motion.div
             className="flex flex-col items-center text-text-muted hover:text-text-secondary transition-colors duration-300 cursor-pointer"
-            onClick={() => document.querySelector('#music')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() =>
+              document
+                .querySelector("#music")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
             whileHover={{ y: -2 }}
           >
             <div className="text-sm font-mono mb-2">Scroll</div>
@@ -116,5 +124,5 @@ export default function ModernHero() {
         </motion.div>
       </motion.div>
     </section>
-  )
+  );
 }

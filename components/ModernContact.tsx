@@ -1,5 +1,15 @@
-import { motion } from 'framer-motion'
-import { Mail, Github, Linkedin, Instagram, Youtube, ExternalLink, Music, MapPin, Calendar } from 'lucide-react'
+import { motion } from "framer-motion";
+import {
+  Mail,
+  Github,
+  Linkedin,
+  Instagram,
+  Youtube,
+  ExternalLink,
+  Music,
+  MapPin,
+  Calendar,
+} from "lucide-react";
 
 export default function ModernContact() {
   const contactMethods = [
@@ -9,7 +19,7 @@ export default function ModernContact() {
       icon: <Linkedin className="w-6 h-6" />,
       action: "Connect on LinkedIn",
       href: "https://www.linkedin.com/in/palgorhythm/",
-      color: "from-blue-500 to-blue-600"
+      color: "from-blue-500 to-blue-600",
     },
     {
       title: "Music",
@@ -17,7 +27,7 @@ export default function ModernContact() {
       icon: <Instagram className="w-6 h-6" />,
       action: "Follow @_battery",
       href: "https://www.instagram.com/_battery/",
-      color: "from-accent-primary to-accent-secondary"
+      color: "from-accent-primary to-accent-secondary",
     },
     {
       title: "Code",
@@ -25,48 +35,48 @@ export default function ModernContact() {
       icon: <Github className="w-6 h-6" />,
       action: "Check out my GitHub",
       href: "https://github.com/palgorhythm",
-      color: "from-gray-600 to-gray-800"
-    }
-  ]
+      color: "from-gray-600 to-gray-800",
+    },
+  ];
 
   const socialLinks = [
     {
-      name: 'LinkedIn',
-      href: 'https://www.linkedin.com/in/palgorhythm/',
+      name: "LinkedIn",
+      href: "https://www.linkedin.com/in/palgorhythm/",
       icon: <Linkedin className="w-5 h-5" />,
-      description: '6,130+ connections'
+      description: "6,130+ connections",
     },
     {
-      name: 'GitHub',
-      href: 'https://github.com/palgorhythm',
+      name: "GitHub",
+      href: "https://github.com/palgorhythm",
       icon: <Github className="w-5 h-5" />,
-      description: 'Open source projects'
+      description: "Open source projects",
     },
     {
-      name: 'Instagram',
-      href: 'https://www.instagram.com/_battery/',
+      name: "Instagram",
+      href: "https://www.instagram.com/_battery/",
       icon: <Instagram className="w-5 h-5" />,
-      description: '@_battery updates'
+      description: "@_battery updates",
     },
     {
-      name: 'YouTube',
-      href: 'https://www.youtube.com/channel/UCO6KYK2RJU7ARxsLhutzeng',
+      name: "YouTube",
+      href: "https://www.youtube.com/channel/UCO6KYK2RJU7ARxsLhutzeng",
       icon: <Youtube className="w-5 h-5" />,
-      description: 'Music videos'
+      description: "Music videos",
     },
     {
-      name: 'Bandcamp',
-      href: 'https://batterydrums.bandcamp.com/',
+      name: "Bandcamp",
+      href: "https://batterydrums.bandcamp.com/",
       icon: <Music className="w-5 h-5" />,
-      description: 'BATTERY releases'
+      description: "BATTERY releases",
     },
     {
-      name: 'Spotify',
-      href: 'https://open.spotify.com/playlist/0IeUXYZUUB9vz172ouSQ0p?si=7702f61a363f4a69',
+      name: "Spotify",
+      href: "https://open.spotify.com/playlist/0IeUXYZUUB9vz172ouSQ0p?si=7702f61a363f4a69",
       icon: <Music className="w-5 h-5" />,
-      description: 'Full discography'
-    }
-  ]
+      description: "Full discography",
+    },
+  ];
 
   return (
     <section id="contact" className="py-32 px-6">
@@ -79,12 +89,15 @@ export default function ModernContact() {
           className="text-center mb-20"
         >
           <h2 className="text-5xl md:text-6xl font-light mb-6 flex items-baseline justify-center">
-            <Mail className="w-10 h-10 text-accent-primary mr-3" style={{marginTop: '0.25rem'}} />
+            <Mail
+              className="w-10 h-10 text-accent-primary mr-3"
+              style={{ marginTop: "0.25rem" }}
+            />
             <span className="gradient-text font-semibold">Contact</span>
           </h2>
           <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
-            Whether you want to collaborate on music, work on something technical, 
-            or just say hi - I'd love to hear from you!
+            Whether you want to collaborate on music, work on something
+            technical, or just say hi - I'd love to hear from you!
           </p>
         </motion.div>
 
@@ -99,14 +112,18 @@ export default function ModernContact() {
               className="group glass rounded-xl p-6 hover-lift relative overflow-hidden"
             >
               {/* Background Gradient */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${method.color} opacity-5 group-hover:opacity-10 transition-opacity duration-500`} />
-              
+              <div
+                className={`absolute inset-0 bg-gradient-to-br ${method.color} opacity-5 group-hover:opacity-10 transition-opacity duration-500`}
+              />
+
               <div className="relative z-10">
                 {/* Icon */}
-                <div className={`inline-flex p-4 rounded-xl bg-gradient-to-br ${method.color} mb-4`}>
+                <div
+                  className={`inline-flex p-4 rounded-xl bg-gradient-to-br ${method.color} mb-4`}
+                >
                   {method.icon}
                 </div>
-                
+
                 {/* Content */}
                 <h3 className="text-xl font-semibold text-text-primary mb-2 group-hover:text-accent-primary transition-colors duration-300">
                   {method.title}
@@ -114,7 +131,7 @@ export default function ModernContact() {
                 <p className="text-text-secondary text-sm leading-relaxed mb-6">
                   {method.description}
                 </p>
-                
+
                 {/* Action */}
                 <motion.a
                   href={method.href}
@@ -160,7 +177,9 @@ export default function ModernContact() {
                 <div className="text-text-primary font-medium text-sm mb-1 group-hover:text-accent-primary transition-colors duration-300">
                   {link.name}
                 </div>
-                <div className="text-text-muted text-xs">{link.description}</div>
+                <div className="text-text-muted text-xs">
+                  {link.description}
+                </div>
               </motion.a>
             ))}
           </div>
@@ -176,16 +195,19 @@ export default function ModernContact() {
           <div className="glass rounded-xl p-8">
             <div className="flex items-center justify-center mb-6 text-text-muted">
               <Calendar className="w-4 h-4 mr-2" />
-              <span>Available for gigs, collaborations, and interesting projects</span>
+              <span>
+                Available for gigs, collaborations, and interesting projects
+              </span>
             </div>
             <div className="border-t border-border-subtle pt-6">
               <p className="text-text-muted text-sm">
-                © {new Date().getFullYear()} Jacob Richards. Making music and code.
+                © {new Date().getFullYear()} Jacob Richards. Making music and
+                code.
               </p>
             </div>
           </div>
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

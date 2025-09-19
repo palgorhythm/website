@@ -1,21 +1,30 @@
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Menu, X } from "lucide-react";
 
-export default function ModernNavigation({ scrollY }) {
-  const [isOpen, setIsOpen] = useState(false)
+interface NavigationProps {
+  scrollY: number;
+}
+
+interface NavItem {
+  label: string;
+  href: string;
+}
+
+export default function ModernNavigation({ scrollY }: NavigationProps): React.JSX.Element {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const navItems = [
-    { label: 'Music', href: '#music' },
-    { label: 'Shows', href: '#gigs' },
-    { label: 'About', href: '#about' },
-    { label: 'Contact', href: '#contact' },
-  ]
+    { label: "Music", href: "#music" },
+    { label: "Shows", href: "#gigs" },
+    { label: "About", href: "#about" },
+    { label: "Contact", href: "#contact" },
+  ];
 
   return (
     <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrollY > 100 ? 'glass-strong' : ''
+        scrollY > 100 ? "glass-strong" : ""
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -52,7 +61,7 @@ export default function ModernNavigation({ scrollY }) {
                 <span className="absolute -bottom-1 left-0 w-0 h-px bg-accent-primary group-hover:w-full transition-all duration-300" />
               </motion.a>
             ))}
-            
+
             <motion.a
               href="https://batterydrums.bandcamp.com/"
               target="_blank"
@@ -74,7 +83,11 @@ export default function ModernNavigation({ scrollY }) {
               onClick={() => setIsOpen(!isOpen)}
               className="text-text-secondary hover:text-text-primary transition-colors duration-200"
             >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </button>
           </div>
         </div>
@@ -82,7 +95,7 @@ export default function ModernNavigation({ scrollY }) {
         {/* Mobile Navigation */}
         <motion.div
           initial={false}
-          animate={{ height: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
+          animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
           transition={{ duration: 0.3 }}
           className="md:hidden overflow-hidden"
         >
@@ -110,5 +123,5 @@ export default function ModernNavigation({ scrollY }) {
         </motion.div>
       </div>
     </motion.nav>
-  )
+  );
 }
