@@ -108,19 +108,12 @@ export default function GigsSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <div className="flex items-center justify-center mb-6">
-            <Calendar className="w-8 h-8 text-accent-primary mr-3" />
-            <span className="text-text-muted font-mono text-sm uppercase tracking-wider">
-              Live Shows
-            </span>
-          </div>
-          <h2 className="text-5xl md:text-6xl font-light mb-6">
-            Upcoming
-            <br />
+          <h2 className="text-5xl md:text-6xl font-light mb-6 flex items-baseline justify-center">
+            <Calendar className="w-10 h-10 text-accent-primary mr-3" style={{marginTop: '0.25rem'}} />
             <span className="gradient-text font-semibold">Shows</span>
           </h2>
           <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
-            Catch me live - jazz, electronic sets, and everything in between.
+            My work spans jazz, electronic music, and world percussion. I perform and record with artists including Oliver Tree, SPELLLING, David Binney, and Steve Lehman.
           </p>
         </motion.div>
 

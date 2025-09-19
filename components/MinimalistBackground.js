@@ -30,9 +30,9 @@ export default function MinimalistBackground() {
     nodesRef.current = Array.from({ length: nodeCount }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.2,
-      vy: (Math.random() - 0.5) * 0.2,
-      baseVx: (Math.random() - 0.5) * 0.005, // Minimal continuous movement to prevent stopping
+      vx: (Math.random() - 0.5) * 0.01,
+      vy: (Math.random() - 0.5) * 0.01,
+      baseVx: (Math.random() - 0.5) * 0.005, // Very slow but continuous movement
       baseVy: (Math.random() - 0.5) * 0.005,
       size: Math.random() * 2 + 1,
       opacity: Math.random() * 0.4 + 0.2,
@@ -55,7 +55,7 @@ export default function MinimalistBackground() {
       const mouse = mouseRef.current
 
       nodes.forEach((node, i) => {
-        // Apply damping but maintain minimal base movement to prevent stopping
+        // Apply damping but maintain stronger base movement to prevent stopping
         node.vx = node.vx * 0.98 + node.baseVx
         node.vy = node.vy * 0.98 + node.baseVy
         

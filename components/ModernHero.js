@@ -65,7 +65,7 @@ export default function ModernHero() {
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-accent-tertiary mb-1">101+</div>
-                <div className="text-text-secondary text-sm">Professional Tracks</div>
+                <div className="text-text-secondary text-sm">Songs Recorded</div>
               </div>
             </div>
           </div>
@@ -78,7 +78,7 @@ export default function ModernHero() {
         >
           <motion.a
             href="#music"
-            className="group flex items-center space-x-3 bg-accent-primary hover:bg-accent-secondary px-8 py-4 rounded-xl font-semibold text-white transition-all duration-300"
+            className="btn-primary group flex items-center space-x-3 px-8 py-4 rounded-xl font-semibold"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -90,7 +90,7 @@ export default function ModernHero() {
             href="https://open.spotify.com/playlist/0IeUXYZUUB9vz172ouSQ0p?si=7702f61a363f4a69"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center space-x-3 glass hover:glass-strong px-8 py-4 rounded-xl font-medium text-text-primary transition-all duration-300"
+            className="btn-secondary group flex items-center space-x-3 px-8 py-4 rounded-xl font-medium"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
           >

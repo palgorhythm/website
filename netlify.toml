@@ -10,9 +10,9 @@
   command = "npm run dev:next"
   targetPort = 3000
   port = 8888
-  publish = "out"
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# Redirect for static export only
+# [[redirects]]
+#   from = "/*" 
+#   to = "/index.html"
+#   status = 200

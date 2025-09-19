@@ -78,16 +78,9 @@ export default function ModernContact() {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <div className="flex items-center justify-center mb-6">
-            <Mail className="w-8 h-8 text-accent-primary mr-3" />
-            <span className="text-text-muted font-mono text-sm uppercase tracking-wider">
-              Get In Touch
-            </span>
-          </div>
-          <h2 className="text-5xl md:text-6xl font-light mb-6">
-            Let's
-            <br />
-            <span className="gradient-text font-semibold">Connect</span>
+          <h2 className="text-5xl md:text-6xl font-light mb-6 flex items-baseline justify-center">
+            <Mail className="w-10 h-10 text-accent-primary mr-3" style={{marginTop: '0.25rem'}} />
+            <span className="gradient-text font-semibold">Contact</span>
           </h2>
           <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
             Whether you want to collaborate on music, work on something technical, 
@@ -127,8 +120,9 @@ export default function ModernContact() {
                   href={method.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2 text-accent-primary hover:text-accent-secondary transition-colors duration-300 font-medium"
-                  whileHover={{ x: 5 }}
+                  className="inline-flex items-center space-x-2 btn-secondary px-4 py-2 rounded-lg font-medium"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   <span>{method.action}</span>
                   <ExternalLink className="w-4 h-4" />
@@ -180,10 +174,6 @@ export default function ModernContact() {
           className="text-center"
         >
           <div className="glass rounded-xl p-8">
-            <div className="flex items-center justify-center mb-4 text-text-secondary">
-              <MapPin className="w-4 h-4 mr-2" />
-              <span>Currently based in <span className="text-accent-primary font-semibold">Salt Lake City, Utah</span></span>
-            </div>
             <div className="flex items-center justify-center mb-6 text-text-muted">
               <Calendar className="w-4 h-4 mr-2" />
               <span>Available for gigs, collaborations, and interesting projects</span>

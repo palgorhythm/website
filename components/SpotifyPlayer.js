@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { Play, Pause, SkipForward, Volume2, VolumeX } from 'lucide-react'
+import { Play, Pause, SkipForward, Volume2, VolumeX, Music } from 'lucide-react'
 
 export default function SpotifyPlayer() {
   const [player, setPlayer] = useState(null)
@@ -134,8 +134,26 @@ export default function SpotifyPlayer() {
       
       <div className="flex items-center space-x-3">
         {/* Album Art */}
-        <div className="w-12 h-12 bg-bg-tertiary rounded-lg flex items-center justify-center flex-shrink-0">
-          <Volume2 className="w-6 h-6 text-accent-primary" />
+        <div className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0" style={{
+          background: 'linear-gradient(135deg, #d1477a, #3ba49a)',
+          border: '1px solid rgba(255, 255, 255, 0.2)',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
+        }}>
+          <svg 
+            width="24" 
+            height="24" 
+            viewBox="0 0 24 24" 
+            fill="white" 
+            stroke="white" 
+            strokeWidth="2"
+            style={{ 
+              filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5))'
+            }}
+          >
+            <path d="M9 18V5l12-2v13"></path>
+            <circle cx="6" cy="18" r="3"></circle>
+            <circle cx="18" cy="16" r="3"></circle>
+          </svg>
         </div>
 
         {/* Track Info */}
@@ -149,22 +167,50 @@ export default function SpotifyPlayer() {
         </div>
 
         {/* Controls */}
-        <div className="flex items-center space-x-2">
-          <button
+        <div className="flex items-center space-x-3">
+          <div
             onClick={togglePlay}
-            className="w-8 h-8 bg-accent-primary hover:bg-accent-secondary rounded-full flex items-center justify-center transition-colors duration-200"
+            className="cursor-pointer flex items-center justify-center transition-all duration-200"
+            style={{
+              width: '36px',
+              height: '36px',
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, #d1477a, #3ba49a)',
+              color: 'white',
+              border: 'none',
+              boxShadow: '0 3px 12px rgba(255, 107, 157, 0.4)',
+              flexShrink: 0
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.background = 'linear-gradient(135deg, #b93d6e, #328b82)'
+              e.target.style.transform = 'scale(1.1)'
+              e.target.style.boxShadow = '0 6px 16px rgba(255, 107, 157, 0.5)'
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.background = 'linear-gradient(135deg, #d1477a, #3ba49a)'
+              e.target.style.transform = 'scale(1)'
+              e.target.style.boxShadow = '0 3px 12px rgba(255, 107, 157, 0.4)'
+            }}
+            role="button"
+            tabIndex={0}
             aria-label={isPlaying ? 'Pause' : 'Play'}
           >
             {isPlaying ? (
-              <Pause className="w-4 h-4 text-white" />
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="white" style={{ strokeWidth: 0 }}>
+                <rect x="6" y="4" width="4" height="16"></rect>
+                <rect x="14" y="4" width="4" height="16"></rect>
+              </svg>
             ) : (
-              <Play className="w-4 h-4 text-white ml-0.5" />
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="white" style={{ marginLeft: '2px' }}>
+                <polygon points="5,3 19,12 5,21"></polygon>
+              </svg>
             )}
-          </button>
+          </div>
 
           <button
             onClick={nextTrack}
-            className="w-6 h-6 text-text-secondary hover:text-text-primary transition-colors duration-200"
+            className="w-6 h-6 flex items-center justify-center text-text-secondary hover:text-accent-primary transition-all duration-200 hover:scale-110"
+            style={{ border: 'none', background: 'none' }}
             aria-label="Next track"
           >
             <SkipForward className="w-4 h-4" />
@@ -172,7 +218,8 @@ export default function SpotifyPlayer() {
 
           <button
             onClick={toggleMute}
-            className="w-6 h-6 text-text-secondary hover:text-text-primary transition-colors duration-200"
+            className="w-6 h-6 flex items-center justify-center text-text-secondary hover:text-accent-secondary transition-all duration-200 hover:scale-110"
+            style={{ border: 'none', background: 'none' }}
             aria-label={isMuted ? 'Unmute' : 'Mute'}
           >
             {isMuted ? (

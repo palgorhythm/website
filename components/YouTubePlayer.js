@@ -93,7 +93,7 @@ export default function YouTubePlayer() {
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center space-x-3">
               <div className="w-12 h-12 bg-gradient-to-br from-accent-primary to-accent-secondary rounded-lg flex items-center justify-center">
-                <Music className="w-6 h-6 text-black" />
+                <Music className="w-5 h-5" style={{ fill: 'none', stroke: 'white', color: 'white' }} />
               </div>
               <div>
                 <div className="text-sm font-semibold text-text-primary">BATTERY</div>
@@ -119,9 +119,21 @@ export default function YouTubePlayer() {
               
               <button
                 onClick={togglePlayback}
-                className="bg-accent-primary hover:bg-accent-secondary text-black p-2 rounded-full transition-colors"
+                className="bg-accent-primary hover:bg-accent-secondary text-white p-2 rounded-full transition-colors"
+                style={{ 
+                  width: '40px', 
+                  height: '40px',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  border: 'none'
+                }}
               >
-                {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                {isPlaying ? 
+                  <Pause className="w-4 h-4" style={{ fill: 'white', stroke: 'white' }} /> : 
+                  <Play className="w-4 h-4" style={{ fill: 'white', stroke: 'white' }} />
+                }
               </button>
               
               <button
@@ -142,7 +154,7 @@ export default function YouTubePlayer() {
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-gradient-to-br from-accent-primary to-accent-secondary rounded-lg flex items-center justify-center">
-                <Music className="w-5 h-5 text-black" />
+                <Music className="w-4 h-4" style={{ fill: 'none', stroke: 'white', color: 'white' }} />
               </div>
               <div>
                 <div className="text-sm font-semibold text-text-primary">{currentTrackData.title}</div>
@@ -181,9 +193,21 @@ export default function YouTubePlayer() {
               
               <button
                 onClick={() => setIsPlaying(!isPlaying)}
-                className="bg-accent-primary hover:bg-accent-secondary text-black p-2 rounded-full transition-colors"
+                className="bg-accent-primary hover:bg-accent-secondary text-white p-2 rounded-full transition-colors"
+                style={{ 
+                  width: '40px', 
+                  height: '40px',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  border: 'none'
+                }}
               >
-                {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                {isPlaying ? 
+                  <Pause className="w-4 h-4" style={{ fill: 'white', stroke: 'white' }} /> : 
+                  <Play className="w-4 h-4" style={{ fill: 'white', stroke: 'white' }} />
+                }
               </button>
               
               <button

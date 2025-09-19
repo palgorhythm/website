@@ -19,11 +19,11 @@ export default function ModernMusic() {
     },
     {
       id: 2,
-      title: "Television",
-      subtitle: "NBC & Showtime",
-      description: "Drum performances for Emmy-nominated series including New Amsterdam and Yellowjackets.",
-      year: "2020 - Present",
-      type: "TV Scoring",
+      title: "TV & Film",
+      subtitle: "NBC, Showtime & HBO Max",
+      description: "Drum performances for Emmy-nominated series and productions including New Amsterdam, Yellowjackets, Zoey's Extraordinary Christmas, and Harley Quinn.",
+      year: "2019 - Present",
+      type: "TV & Film Scoring",
       color: "from-accent-secondary to-accent-tertiary",
       icon: <Radio className="w-6 h-6" />
     },
@@ -32,12 +32,13 @@ export default function ModernMusic() {
       title: "Tours",
       subtitle: "National & International",
       description: (
-        <ul className="text-sm space-y-1">
-          <li>• Angelica Garcia 2021 US tour</li>
-          <li>• Standards 2018 US tour</li>
-          <li>• Sélébéyone 2017</li>
-          <li>• BATTERY 2016 US tour</li>
-        </ul>
+        <div className="text-sm space-y-1">
+          <div>• Angelica Garcia US tour, 2021</div>
+          <div>• Oliver Tree US tour, 2018</div>
+          <div>• Standards US tour, 2018</div>
+          <div>• Sélébéyone EU tour, 2017</div>
+          <div>• BATTERY US tour, 2016</div>
+        </div>
       ),
       year: "2016 - Present",
       type: "Live Performance",
@@ -48,7 +49,7 @@ export default function ModernMusic() {
       id: 4,
       title: "Jazz Collaborations",
       subtitle: "Contemporary & Experimental",
-      description: "Performances with established artists including Myra Melford, Drew Gress, David Binney, and Tia Fuller. Work spans modern jazz to experimental compositions.",
+      description: "Performances with established artists including Myra Melford, Drew Gress, David Binney, Steve Lehman, and Tia Fuller. Work spans modern jazz to experimental compositions.",
       year: "2015 - Present",
       type: "Live Performance",
       color: "from-accent-secondary to-accent-tertiary",
@@ -57,9 +58,9 @@ export default function ModernMusic() {
   ]
 
   const stats = [
-    { label: "Professional Tracks", value: "101+" },
-    { label: "TV Productions", value: "2" },
-    { label: "Live Collaborations", value: "25+" },
+    { label: "Songs Recorded", value: "101+" },
+    { label: "TV & Film Credits", value: "4" },
+    { label: "Major Tours", value: "5" },
     { label: "Years Active", value: "10+" }
   ]
 
@@ -73,16 +74,9 @@ export default function ModernMusic() {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <div className="flex items-center justify-center mb-6">
-            <Headphones className="w-8 h-8 text-accent-primary mr-3" />
-            <span className="text-text-muted font-mono text-sm uppercase tracking-wider">
-              Musical Work
-            </span>
-          </div>
-          <h2 className="text-5xl md:text-6xl font-light mb-6">
-            Creative
-            <br />
-            <span className="gradient-text font-semibold">Expression</span>
+          <h2 className="text-5xl md:text-6xl font-light mb-6 flex items-baseline justify-center">
+            <Headphones className="w-10 h-10 text-accent-primary mr-3" style={{marginTop: '0.25rem'}} />
+            <span className="gradient-text font-semibold">Music</span>
           </h2>
           <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
             Over a decade of professional work across genres, from jazz performance 
@@ -132,12 +126,9 @@ export default function ModernMusic() {
                 </div>
 
                 {/* Project Meta */}
-                <div className="flex items-center justify-between mb-4">
+                <div className="mb-4">
                   <span className="text-text-muted text-xs font-mono uppercase tracking-wider">
                     {project.type}
-                  </span>
-                  <span className="text-text-muted text-xs font-mono">
-                    {project.year}
                   </span>
                 </div>
 
@@ -162,8 +153,9 @@ export default function ModernMusic() {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center space-x-2 text-accent-primary hover:text-accent-secondary transition-colors duration-300 text-sm font-medium"
-                    whileHover={{ x: 5 }}
+                    className="inline-flex items-center space-x-2 btn-secondary text-sm px-4 py-2 rounded-lg"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     <span>Explore Project</span>
                     <ExternalLink className="w-4 h-4" />
@@ -186,8 +178,7 @@ export default function ModernMusic() {
               Complete Discography
             </h3>
             <p className="text-text-secondary mb-6 leading-relaxed">
-              Experience the full range of my musical journey. From electronic experiments 
-              to jazz collaborations, all 101+ tracks are available on Spotify.
+              From electronic experiments to jazz collaborations, all 101+ tracks are available on Spotify.
             </p>
             <motion.a
               href="https://open.spotify.com/playlist/0IeUXYZUUB9vz172ouSQ0p?si=7702f61a363f4a69"
@@ -198,8 +189,7 @@ export default function ModernMusic() {
               whileTap={{ scale: 0.95 }}
             >
               <Play className="w-5 h-5" />
-              <span>Listen on Spotify</span>
-              <ExternalLink className="w-4 h-4" />
+              <span>Discography</span>
             </motion.a>
           </div>
         </motion.div>

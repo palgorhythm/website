@@ -45,13 +45,8 @@ export default function ModernAbout() {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <div className="flex items-center justify-center mb-6">
-            <Code2 className="w-8 h-8 text-accent-tertiary mr-3" />
-            <span className="text-text-muted font-mono text-sm uppercase tracking-wider">
-              Professional Background
-            </span>
-          </div>
-          <h2 className="text-5xl md:text-6xl font-light mb-6">
+          <h2 className="text-5xl md:text-6xl font-light mb-6 flex items-baseline justify-center">
+            <Code2 className="w-10 h-10 text-accent-tertiary mr-3" style={{marginTop: '0.25rem'}} />
             <span className="gradient-text font-semibold">Expertise</span>
           </h2>
           <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
@@ -88,10 +83,8 @@ export default function ModernAbout() {
                       <div className="text-text-muted text-sm">{job.focus}</div>
                     </div>
                     <div className="text-right text-text-muted text-sm">
-                      <div>{job.period}</div>
-                      <div className="flex items-center mt-1">
-                        <MapPin className="w-3 h-3 mr-1" />
-                        {job.location}
+                      <div className="inline-block glass px-3 py-2 rounded-lg mb-2 text-accent-primary font-medium text-xs">
+                        {job.period}
                       </div>
                     </div>
                   </div>
@@ -108,7 +101,7 @@ export default function ModernAbout() {
           >
             {/* Education */}
             <div className="mb-12">
-              <div className="flex items-center mb-6">
+              <div className="flex items-center mb-8">
                 <GraduationCap className="w-6 h-6 text-accent-secondary mr-3" />
                 <h3 className="text-2xl font-semibold">Education</h3>
               </div>
@@ -150,7 +143,7 @@ export default function ModernAbout() {
 
             {/* Skills */}
             <div>
-              <div className="flex items-center mb-6">
+              <div className="flex items-center mb-8">
                 <Code2 className="w-6 h-6 text-accent-tertiary mr-3" />
                 <h3 className="text-2xl font-semibold">Skills</h3>
               </div>
