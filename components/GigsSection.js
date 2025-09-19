@@ -14,100 +14,9 @@ export default function GigsSection() {
     try {
       setLoading(true)
       
-      // Get Google service account credentials from environment
-      const clientEmail = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_EMAIL || process.env.GOOGLE_CLIENT_EMAIL
-      const privateKey = (process.env.NEXT_PUBLIC_GOOGLE_PRIVATE_KEY || process.env.GOOGLE_PRIVATE_KEY)?.replace(/\\n/g, '\n')
-      const calendarId = process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_ID || process.env.GOOGLE_CALENDAR_ID
-      
-      if (!clientEmail || !privateKey || !calendarId) {
-        setGigs(getMockGigs())
-        return
-      }
-
-      // Create JWT token for service account authentication
-      const now = Math.floor(Date.now() / 1000)
-      const header = {
-        alg: 'RS256',
-        typ: 'JWT'
-      }
-      
-      const payload = {
-        iss: clientEmail,
-        scope: 'https://www.googleapis.com/auth/calendar.readonly',
-        aud: 'https://oauth2.googleapis.com/token',
-        exp: now + 3600,
-        iat: now
-      }
-
-      // Simple JWT creation (in production, use a proper JWT library)
-      const token = await createJWT(header, payload, privateKey)
-      
-      // Get access token
-      const tokenResponse = await fetch('https://oauth2.googleapis.com/token', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: `grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion=${token}`
-      })
-      
-      if (!tokenResponse.ok) {
-        throw new Error('Failed to get access token')
-      }
-      
-      const tokenData = await tokenResponse.json()
-      const accessToken = tokenData.access_token
-      
-      // Fetch calendar events (both past and future)
-      const sixMonthsAgo = new Date(Date.now() - 6 * 30 * 24 * 60 * 60 * 1000).toISOString()
-      const sixMonthsFromNow = new Date(Date.now() + 6 * 30 * 24 * 60 * 60 * 1000).toISOString()
-      
-      const calendarResponse = await fetch(
-        `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events?` +
-        `timeMin=${sixMonthsAgo}&timeMax=${sixMonthsFromNow}&singleEvents=true&orderBy=startTime&q=GIG:`,
-        {
-          headers: {
-            'Authorization': `Bearer ${accessToken}`
-          }
-        }
-      )
-      
-      if (!calendarResponse.ok) {
-        throw new Error('Failed to fetch calendar events')
-      }
-      
-      const calendarData = await calendarResponse.json()
-      const events = calendarData.items?.map(event => {
-        const originalTitle = event.summary || 'GIG: Untitled'
-        
-        // Parse title and location from "GIG: BAND @ LOCATION" format
-        let displayTitle = originalTitle
-        let parsedLocation = ''
-        
-        if (originalTitle.includes('@')) {
-          const parts = originalTitle.split('@')
-          displayTitle = parts[0].trim() // Everything before @ (including "GIG: BAND")
-          if (parts.length > 1) {
-            parsedLocation = parts[1].trim() // Everything after @
-          }
-        }
-        
-        // Use parsed location from title, fallback to Google Calendar location field, or empty
-        const finalLocation = parsedLocation || event.location || ''
-        
-        return {
-          id: event.id,
-          title: displayTitle, // Will be "GIG: BAND" (no @)
-          startDate: event.start.dateTime || event.start.date,
-          endDate: event.end?.dateTime || event.end?.date,
-          date: event.start.dateTime || event.start.date, // Keep for compatibility
-          location: finalLocation,
-          description: event.description || '',
-          status: 'confirmed'
-        }
-      }) || []
-      
-      setGigs(events)
+      // TODO: Implement secure server-side API route for Google Calendar integration
+      // For now, using mock data to prevent exposing sensitive credentials
+      setGigs(getMockGigs())
       
     } catch (err) {
       setGigs(getMockGigs())
@@ -116,62 +25,10 @@ export default function GigsSection() {
     }
   }
 
-  // Simple JWT creation for browser (not cryptographically secure for production)
-  const createJWT = async (header, payload, privateKey) => {
-    const encoder = new TextEncoder()
-    
-    // Base64url encode header and payload
-    const encodedHeader = btoa(JSON.stringify(header)).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_')
-    const encodedPayload = btoa(JSON.stringify(payload)).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_')
-    
-    const message = `${encodedHeader}.${encodedPayload}`
-    
-    // Import private key
-    const keyData = privateKey.replace(/-----BEGIN PRIVATE KEY-----/, '').replace(/-----END PRIVATE KEY-----/, '').replace(/\n/g, '')
-    const keyBuffer = Uint8Array.from(atob(keyData), c => c.charCodeAt(0))
-    
-    const cryptoKey = await window.crypto.subtle.importKey(
-      'pkcs8',
-      keyBuffer,
-      {
-        name: 'RSASSA-PKCS1-v1_5',
-        hash: 'SHA-256'
-      },
-      false,
-      ['sign']
-    )
-    
-    // Sign the message
-    const signature = await window.crypto.subtle.sign(
-      'RSASSA-PKCS1-v1_5',
-      cryptoKey,
-      encoder.encode(message)
-    )
-    
-    // Base64url encode signature
-    const encodedSignature = btoa(String.fromCharCode(...new Uint8Array(signature)))
-      .replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_')
-    
-    return `${message}.${encodedSignature}`
-  }
 
   const getMockGigs = () => {
-    // Temporary mock data for debugging
-    const now = new Date()
-    const nextWeek = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000)
-    
-    return [
-      {
-        id: 'debug-1',
-        title: 'GIG: Debug Show @ Test Venue',
-        startDate: nextWeek.toISOString(),
-        endDate: new Date(nextWeek.getTime() + 2 * 60 * 60 * 1000).toISOString(), // 2 hours later
-        date: nextWeek.toISOString(),
-        location: 'Debug Venue, Salt Lake City',
-        description: 'This is mock data - check console for Google Calendar API errors',
-        status: 'confirmed'
-      }
-    ]
+    // Mock data - replace with server-side API integration
+    return []
   }
 
   const formatDate = (date) => {
