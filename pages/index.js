@@ -1,63 +1,62 @@
 import { useState, useEffect } from 'react'
 import Head from 'next/head'
-import { motion } from 'framer-motion'
-import { Play, Pause, Music, Code, ExternalLink, MapPin, Calendar, Award } from 'lucide-react'
-import HeroSection from '../components/HeroSection'
-import MusicSection from '../components/MusicSection'
+import MinimalistBackground from '../components/MinimalistBackground'
+import YouTubePlayer from '../components/YouTubePlayer'
+import ModernHero from '../components/ModernHero'
+import ModernMusic from '../components/ModernMusic'
+import ModernAbout from '../components/ModernAbout'
+import ModernContact from '../components/ModernContact'
+import ModernNavigation from '../components/ModernNavigation'
 import GigsSection from '../components/GigsSection'
-import AboutSection from '../components/AboutSection'
-import ContactSection from '../components/ContactSection'
-import Navigation from '../components/Navigation'
 
 export default function Home() {
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [currentTrack, setCurrentTrack] = useState(null)
+  const [scrollY, setScrollY] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY)
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
     <>
       <Head>
         <title>Jacob Richards - Musician & Software Engineer</title>
-        <meta name="description" content="Professional drummer and software engineer. Featured on NBC New Amsterdam, Showtime Yellowjackets. Creator of BATTERY electronic music project." />
+        <meta name="description" content="Professional drummer, producer, and software engineer. Featured on NBC, Showtime. Creator of BATTERY." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <meta property="og:title" content="Jacob Richards - Musician & Software Engineer" />
+        <meta property="og:description" content="Professional drummer, producer, and software engineer creating innovative music and technology" />
+        <meta property="og:type" content="website" />
       </Head>
 
-      <div className="min-h-screen text-white relative overflow-x-hidden">
-        <Navigation />
-        
-        {/* Floating particles background */}
-        <div className="fixed inset-0 pointer-events-none">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-2 h-2 bg-neon-cyan rounded-full opacity-30"
-              animate={{
-                y: [-20, -100],
-                opacity: [0, 0.6, 0],
-              }}
-              transition={{
-                duration: Math.random() * 3 + 2,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-              }}
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: '100%',
-              }}
-            />
-          ))}
-        </div>
+      <div className="min-h-screen bg-bg-primary text-text-primary relative">
+        {/* Minimalist Background */}
+        <MinimalistBackground />
 
-        <main>
-          <HeroSection />
-          <MusicSection isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
+        {/* Navigation */}
+        <ModernNavigation scrollY={scrollY} />
+        
+        {/* YouTube Player */}
+        <YouTubePlayer />
+
+        {/* Main Content */}
+        <main className="relative">
+          <ModernHero />
+          <ModernMusic />
           <GigsSection />
-          <AboutSection />
-          <ContactSection />
+          <ModernAbout />
+          <ModernContact />
         </main>
 
-        {/* Audio visualizer overlay */}
-        <div className="fixed bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-neon-cyan via-neon-pink to-neon-yellow opacity-20" />
+        {/* Subtle grain overlay */}
+        <div 
+          className="fixed inset-0 pointer-events-none opacity-[0.015]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+            zIndex: 100
+          }}
+        />
       </div>
     </>
   )
