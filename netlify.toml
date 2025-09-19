@@ -5,6 +5,12 @@
 [build.environment]
   NODE_VERSION = "18"
 
+# Development settings
+[dev]
+  command = "npm run dev:next"
+  port = 3000
+  publish = "out"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
