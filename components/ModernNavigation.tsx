@@ -1,17 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 interface NavigationProps {
   scrollY: number;
 }
-
-interface NavItem {
-  label: string;
-  href: string;
-}
-
-export default function ModernNavigation({ scrollY }: NavigationProps): React.JSX.Element {
+export default function ModernNavigation({
+  scrollY,
+}: NavigationProps): React.JSX.Element {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const navItems = [
@@ -37,8 +33,7 @@ export default function ModernNavigation({ scrollY }: NavigationProps): React.JS
             className="flex items-center space-x-3"
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.2 }}
-          >
-          </motion.div>
+          ></motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">

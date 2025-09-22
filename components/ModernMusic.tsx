@@ -1,59 +1,62 @@
-import React, { useState } from 'react'
-import { motion } from 'framer-motion'
-import { Play, ExternalLink, Music, Headphones, Disc, Radio } from 'lucide-react'
-import { ReactNode } from 'react'
+import React from "react";
+import { motion } from "framer-motion";
+import {
+  Play,
+  ExternalLink,
+  Music,
+  Headphones,
+  Disc,
+  Radio,
+} from "lucide-react";
+import { ReactNode } from "react";
 
 interface Project {
-  id: number
-  title: string
-  subtitle: string
-  description: string | ReactNode
-  year: string
-  type: string
-  link?: string
-  color: string
-  icon: ReactNode
-}
-
-interface Stat {
-  label: string
-  value: string
+  id: number;
+  title: string;
+  subtitle: string;
+  description: string | ReactNode;
+  year: string;
+  type: string;
+  link?: string;
+  color: string;
+  icon: ReactNode;
 }
 
 export default function ModernMusic(): React.JSX.Element {
-  const [activeProject, setActiveProject] = useState<number | null>(null)
-
-  const projects = [
+  const projects: Array<Project> = [
     {
       id: 4,
       title: "Artist Collaborations",
       subtitle: "Jazz & Contemporary Music",
-      description: "Performances with established artists including Oliver Tree, SPELLLING, David Binney, Steve Lehman, Myra Melford, Drew Gress, and Tia Fuller. Works span jazz, electronic, pop, and experimental music.",
+      description:
+        "Performances with established artists including Oliver Tree, SPELLLING, David Binney, Steve Lehman, Myra Melford, Drew Gress, and Tia Fuller. Works span jazz, electronic, pop, and experimental music.",
       year: "2015 - Present",
       type: "Live Performance",
       color: "from-accent-secondary to-accent-tertiary",
-      icon: <Music className="w-6 h-6" />
+      icon: <Music className="w-6 h-6" />,
     },
     {
       id: 1,
       title: "BATTERY",
       subtitle: "Solo Electronic Project",
-      description: "Drums and electronics combining jazz, electronic music, and West African percussion. Features improvised drum & bass, 8-bit jazz standards, and complex polyrhythms.",
+      description:
+        "Drums and electronics combining jazz, electronic music, and West African percussion. Features improvised drum & bass, 8-bit jazz standards, and complex polyrhythms.",
       year: "2019 - Present",
       type: "Solo Project",
       link: "https://batterydrums.bandcamp.com/",
       color: "from-accent-primary to-accent-secondary",
-      icon: <Disc className="w-6 h-6" />
+      icon: <Disc className="w-6 h-6" />,
     },
     {
       id: 2,
       title: "TV & Film",
       subtitle: "NBC, Showtime & HBO Max",
-      description: "Drum performances for Emmy-nominated series and productions including New Amsterdam, Yellowjackets, Zoey's Extraordinary Christmas, and Harley Quinn.",
+      description:
+        "Drum performances for Emmy-nominated series and productions including New Amsterdam, Yellowjackets, Zoey's Extraordinary Christmas, and Harley Quinn.",
       year: "2019 - Present",
       type: "TV & Film Scoring",
       color: "from-accent-secondary to-accent-tertiary",
-      icon: <Radio className="w-6 h-6" />
+      icon: <Radio className="w-6 h-6" />,
     },
     {
       id: 3,
@@ -71,16 +74,16 @@ export default function ModernMusic(): React.JSX.Element {
       year: "2016 - Present",
       type: "Live Performance",
       color: "from-accent-tertiary to-accent-primary",
-      icon: <Music className="w-6 h-6" />
-    }
-  ]
+      icon: <Music className="w-6 h-6" />,
+    },
+  ];
 
   const stats = [
     { label: "Songs Recorded", value: "101+" },
     { label: "TV & Film Credits", value: "4" },
     { label: "Major Tours", value: "5" },
-    { label: "Years Active", value: "10+" }
-  ]
+    { label: "Years Active", value: "10+" },
+  ];
 
   return (
     <section id="music" className="py-16 sm:py-24 md:py-32 px-4 sm:px-6">
@@ -97,8 +100,8 @@ export default function ModernMusic(): React.JSX.Element {
             <span className="gradient-text font-semibold">Music</span>
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed px-4">
-            Over a decade of professional work across genres, from jazz performance 
-            to television production and electronic composition.
+            Over a decade of professional work across genres, from jazz
+            performance to television production and electronic composition.
           </p>
         </motion.div>
 
@@ -116,8 +119,12 @@ export default function ModernMusic(): React.JSX.Element {
               whileHover={{ y: -5, scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="text-2xl sm:text-3xl font-bold gradient-text mb-2">{stat.value}</div>
-              <div className="text-text-secondary text-xs sm:text-sm">{stat.label}</div>
+              <div className="text-2xl sm:text-3xl font-bold gradient-text mb-2">
+                {stat.value}
+              </div>
+              <div className="text-text-secondary text-xs sm:text-sm">
+                {stat.label}
+              </div>
             </motion.div>
           ))}
         </motion.div>
@@ -131,15 +138,17 @@ export default function ModernMusic(): React.JSX.Element {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.2 }}
               className="group glass rounded-2xl p-4 sm:p-6 hover-lift cursor-pointer relative overflow-hidden"
-              onHoverStart={() => setActiveProject(project.id)}
-              onHoverEnd={() => setActiveProject(null)}
             >
               {/* Background Gradient */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-5 group-hover:opacity-10 transition-opacity duration-500`} />
-              
+              <div
+                className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-5 group-hover:opacity-10 transition-opacity duration-500`}
+              />
+
               <div className="relative z-10">
                 {/* Project Icon */}
-                <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${project.color} mb-4`}>
+                <div
+                  className={`flex items-center justify-center p-3 rounded-xl bg-gradient-to-br ${project.color} mb-4 w-fit`}
+                >
                   {project.icon}
                 </div>
 
@@ -158,7 +167,7 @@ export default function ModernMusic(): React.JSX.Element {
                   {project.subtitle}
                 </div>
                 <div className="text-text-secondary text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">
-                  {typeof project.description === 'string' ? (
+                  {typeof project.description === "string" ? (
                     <p>{project.description}</p>
                   ) : (
                     project.description
@@ -196,7 +205,8 @@ export default function ModernMusic(): React.JSX.Element {
               Complete Discography
             </h3>
             <p className="text-sm sm:text-base text-text-secondary mb-6 leading-relaxed px-4">
-              From electronic experiments to jazz collaborations, all 101+ tracks are available on Spotify.
+              From electronic experiments to jazz collaborations, all 101+
+              tracks are available on Spotify.
             </p>
             <motion.a
               href="https://open.spotify.com/playlist/0IeUXYZUUB9vz172ouSQ0p?si=7702f61a363f4a69"
@@ -213,5 +223,5 @@ export default function ModernMusic(): React.JSX.Element {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

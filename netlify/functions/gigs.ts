@@ -1,20 +1,6 @@
 import { google } from "googleapis";
 import { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
 
-interface CalendarEvent {
-  id: string;
-  summary: string;
-  start: {
-    dateTime?: string;
-    date?: string;
-  };
-  end?: {
-    dateTime?: string;
-    date?: string;
-  };
-  location?: string;
-}
-
 export const handler: Handler = async (
   event: HandlerEvent,
   context: HandlerContext,

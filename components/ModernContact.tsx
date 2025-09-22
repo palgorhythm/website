@@ -1,30 +1,46 @@
 import { motion } from "framer-motion";
 import {
   Mail,
-  Github,
-  Linkedin,
-  Instagram,
-  Youtube,
+  Code2,
+  Briefcase,
+  Camera,
+  Play,
   ExternalLink,
   Music,
-  MapPin,
   Calendar,
 } from "lucide-react";
+import { ReactNode } from "react";
 
-export default function ModernContact() {
-  const contactMethods = [
+interface ContactMethod {
+  title: string;
+  description: string;
+  icon: ReactNode;
+  action: string;
+  href: string;
+  color: string;
+}
+
+interface SocialLink {
+  name: string;
+  href: string;
+  icon: ReactNode;
+  description: string;
+}
+
+export default function ModernContact(): React.JSX.Element {
+  const contactMethods: ContactMethod[] = [
     {
       title: "Music",
       description: "Recording, live shows, collaborations, BATTERY bookings",
-      icon: <Instagram className="w-6 h-6" />,
+      icon: <Music className="w-6 h-6" />,
       action: "Follow @_battery",
       href: "https://www.instagram.com/_battery/",
-      color: "from-accent-primary to-accent-secondary",
+      color: "from-orange-500 to-red-600",
     },
     {
       title: "Work",
       description: "Software engineering, teaching, technical consulting",
-      icon: <Linkedin className="w-6 h-6" />,
+      icon: <Briefcase className="w-6 h-6" />,
       action: "Connect on LinkedIn",
       href: "https://www.linkedin.com/in/palgorhythm/",
       color: "from-blue-500 to-blue-600",
@@ -32,36 +48,36 @@ export default function ModernContact() {
     {
       title: "Code",
       description: "Open source projects, creative coding, random experiments",
-      icon: <Github className="w-6 h-6" />,
+      icon: <Code2 className="w-6 h-6" />,
       action: "Check out my GitHub",
       href: "https://github.com/palgorhythm",
       color: "from-gray-600 to-gray-800",
     },
   ];
 
-  const socialLinks = [
+  const socialLinks: SocialLink[] = [
     {
       name: "LinkedIn",
       href: "https://www.linkedin.com/in/palgorhythm/",
-      icon: <Linkedin className="w-5 h-5" />,
+      icon: <Briefcase className="w-5 h-5" />,
       description: "6,130+ connections",
     },
     {
       name: "GitHub",
       href: "https://github.com/palgorhythm",
-      icon: <Github className="w-5 h-5" />,
+      icon: <Code2 className="w-5 h-5" />,
       description: "Open source projects",
     },
     {
       name: "Instagram",
       href: "https://www.instagram.com/_battery/",
-      icon: <Instagram className="w-5 h-5" />,
+      icon: <Camera className="w-5 h-5" />,
       description: "@_battery updates",
     },
     {
       name: "YouTube",
       href: "https://www.youtube.com/channel/UCO6KYK2RJU7ARxsLhutzeng",
-      icon: <Youtube className="w-5 h-5" />,
+      icon: <Play className="w-5 h-5" />,
       description: "Music videos",
     },
     {
@@ -89,9 +105,7 @@ export default function ModernContact() {
           className="text-center mb-12 sm:mb-16 md:mb-20"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-4 sm:mb-6 flex items-center justify-center">
-            <Mail
-              className="w-8 h-8 sm:w-10 sm:h-10 text-accent-primary mr-2 sm:mr-3"
-            />
+            <Mail className="w-8 h-8 sm:w-10 sm:h-10 text-accent-primary mr-2 sm:mr-3" />
             <span className="gradient-text font-semibold">Contact</span>
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed px-4">

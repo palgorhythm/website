@@ -1,15 +1,16 @@
 import { motion } from "framer-motion";
-import {
-  Code2,
-  Briefcase,
-  GraduationCap,
-  Award,
-  MapPin,
-  ExternalLink,
-} from "lucide-react";
+import { Code2, Briefcase, GraduationCap, Award } from "lucide-react";
 
-export default function ModernAbout() {
-  const experience = [
+interface Experience {
+  company: string;
+  role: string;
+  period: string;
+  location: string;
+  focus: string;
+}
+
+export default function ModernAbout(): React.JSX.Element {
+  const experience: Experience[] = [
     {
       company: "Westminster University",
       role: "Adjunct Professor",
@@ -40,7 +41,7 @@ export default function ModernAbout() {
     },
   ];
 
-  const skills = [
+  const skills: string[] = [
     "TypeScript",
     "Python",
     "React",
@@ -62,9 +63,7 @@ export default function ModernAbout() {
           className="text-center mb-12 sm:mb-16 md:mb-20"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-4 sm:mb-6 flex items-center justify-center">
-            <Code2
-              className="w-8 h-8 sm:w-10 sm:h-10 text-accent-tertiary mr-2 sm:mr-3"
-            />
+            <Code2 className="w-8 h-8 sm:w-10 sm:h-10 text-accent-tertiary mr-2 sm:mr-3" />
             <span className="gradient-text font-semibold">Expertise</span>
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed px-4">

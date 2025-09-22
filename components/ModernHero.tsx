@@ -19,7 +19,10 @@ export default function ModernHero(): React.JSX.Element {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] as any },
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number],
+      },
     },
   };
 
@@ -118,7 +121,9 @@ export default function ModernHero(): React.JSX.Element {
             }
             whileHover={{ y: -2 }}
           >
-            <div className="text-xs sm:text-sm font-mono mb-1 sm:mb-2">Scroll</div>
+            <div className="text-xs sm:text-sm font-mono mb-1 sm:mb-2">
+              Scroll
+            </div>
             <ArrowDown className="w-4 h-4" />
           </motion.div>
         </motion.div>
