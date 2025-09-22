@@ -21,14 +21,14 @@ export default function Home(): React.JSX.Element {
   return (
     <>
       <Head>
-        <title>Jacob Richards - BATTERY</title>
+        <title>Jacob Richards</title>
         <meta
           name="description"
           content="Professional drummer, producer, and software engineer. Featured on NBC, Showtime. Creator of BATTERY."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔋</text></svg>" />
-        <meta property="og:title" content="Jacob Richards - BATTERY" />
+        <meta property="og:title" content="Jacob Richards" />
         <meta
           property="og:description"
           content="Professional drummer, producer, and software engineer. Featured on NBC, Showtime. Creator of BATTERY."
@@ -39,7 +39,7 @@ export default function Home(): React.JSX.Element {
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Jacob Richards - BATTERY" />
+        <meta name="twitter:title" content="Jacob Richards" />
         <meta name="twitter:description" content="Professional drummer, producer, and software engineer. Featured on NBC, Showtime. Creator of BATTERY." />
         <meta name="twitter:image" content="https://jacobrichards.dev/inEurope.jpeg" />
       </Head>
