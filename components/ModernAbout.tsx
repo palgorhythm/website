@@ -94,18 +94,18 @@ export default function ModernAbout(): React.JSX.Element {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   className="glass rounded-xl p-6 hover-lift"
                 >
-                  <div className="flex justify-between items-start mb-3">
-                    <div>
-                      <h4 className="text-lg font-semibold text-accent-primary">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-3">
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-lg font-semibold text-accent-primary break-words">
                         {job.role}
                       </h4>
-                      <div className="text-accent-secondary font-medium">
+                      <div className="text-accent-secondary font-medium break-words">
                         {job.company}
                       </div>
-                      <div className="text-text-muted text-sm">{job.focus}</div>
+                      <div className="text-text-muted text-sm break-words">{job.focus}</div>
                     </div>
-                    <div className="text-right text-text-muted text-sm">
-                      <div className="inline-block glass px-3 py-2 rounded-lg mb-2 text-accent-primary font-medium text-xs">
+                    <div className="shrink-0">
+                      <div className="inline-block glass px-2 py-1 rounded-md text-accent-primary font-medium text-xs w-fit">
                         {job.period}
                       </div>
                     </div>
