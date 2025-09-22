@@ -21,7 +21,7 @@ export default function Home(): React.JSX.Element {
   return (
     <>
       <Head>
-        <title>Jacob Richards - Musician & Software Engineer</title>
+        <title>Jacob Richards - BATTERY</title>
         <meta
           name="description"
           content="Professional drummer, producer, and software engineer. Featured on NBC, Showtime. Creator of BATTERY."
