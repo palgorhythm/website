@@ -3,3 +3,10 @@ node_modules
 public
 # Local Netlify folder
 .netlify
+
+# Next.js build output
+/out/
+/.next/
+
+# Production builds
+/build/
