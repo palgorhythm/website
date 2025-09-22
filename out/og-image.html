@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            margin: 0;
+            width: 1200px;
+            height: 630px;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e  100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .background-pattern {
+            position: absolute;
+            inset: 0;
+            opacity: 0.1;
+            background-image: radial-gradient(circle at 25% 25%, #ff6b9d 0%, transparent 50%),
+                            radial-gradient(circle at 75% 75%, #4ecdc4 0%, transparent 50%);
+        }
+        
+        .content {
+            text-align: center;
+            z-index: 10;
+        }
+        
+        .title {
+            font-size: 72px;
+            font-weight: 300;
+            color: #ffffff;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+        
+        .battery {
+            background: linear-gradient(135deg, #ff6b9d, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+            font-size: 84px;
+        }
+        
+        .subtitle {
+            font-size: 28px;
+            color: #a8a8b3;
+            margin-bottom: 30px;
+        }
+        
+        .features {
+            font-size: 24px;
+            color: #4ecdc4;
+            font-weight: 500;
+        }
+        
+        .emoji {
+            position: absolute;
+            top: 50px;
+            right: 80px;
+            font-size: 80px;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-pattern"></div>
+    <div class="emoji">🔋</div>
+    <div class="content">
+        <div class="title">
+            Jacob Richards
+        </div>
+        <div class="title battery">
+            BATTERY
+        </div>
+        <div class="subtitle">
+            Professional drummer, producer, and software engineer
+        </div>
+        <div class="features">
+            Featured on NBC • Showtime • 101+ Songs Recorded
+        </div>
+    </div>
+</body>
+</html>
