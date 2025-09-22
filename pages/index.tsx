@@ -34,14 +34,14 @@ export default function Home(): React.JSX.Element {
           content="Professional drummer, producer, and software engineer. Featured on NBC, Showtime. Creator of BATTERY."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://jacobrichards.dev" />
-        <meta property="og:image" content="https://jacobrichards.dev/inEurope.jpeg" />
+        <meta property="og:url" content="https://jacobrichards.net" />
+        <meta property="og:image" content="https://jacobrichards.net/inEurope.jpeg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Jacob Richards" />
         <meta name="twitter:description" content="Professional drummer, producer, and software engineer. Featured on NBC, Showtime. Creator of BATTERY." />
-        <meta name="twitter:image" content="https://jacobrichards.dev/inEurope.jpeg" />
+        <meta name="twitter:image" content="https://jacobrichards.net/inEurope.jpeg" />
       </Head>
 
       <div className="min-h-screen bg-bg-primary text-text-primary relative overflow-x-hidden">
