@@ -30,7 +30,7 @@ export default function Home() {
         <meta property="og:type" content="website" />
       </Head>
 
-      <div className="min-h-screen bg-bg-primary text-text-primary relative">
+      <div className="min-h-screen bg-bg-primary text-text-primary relative overflow-x-hidden">
         {/* Minimalist Background */}
         <MinimalistBackground />
 

@@ -52,30 +52,29 @@ export default function ModernAbout() {
   ];
 
   return (
-    <section id="about" className="py-32 px-6">
+    <section id="about" className="py-16 sm:py-24 md:py-32 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-12 sm:mb-16 md:mb-20"
         >
-          <h2 className="text-5xl md:text-6xl font-light mb-6 flex items-baseline justify-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-4 sm:mb-6 flex items-center justify-center">
             <Code2
-              className="w-10 h-10 text-accent-tertiary mr-3"
-              style={{ marginTop: "0.25rem" }}
+              className="w-8 h-8 sm:w-10 sm:h-10 text-accent-tertiary mr-2 sm:mr-3"
             />
             <span className="gradient-text font-semibold">Expertise</span>
           </h2>
-          <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed px-4">
             I've been building software systems for over a decade while keeping
             busy as a musician. Currently working at Discord on ads and creator
             tools.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
           {/* Experience */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -131,7 +130,7 @@ export default function ModernAbout() {
               </div>
 
               <div className="space-y-4">
-                <div className="glass rounded-xl p-6">
+                <div className="glass rounded-xl p-4 sm:p-6">
                   <div className="flex items-center mb-3">
                     <Award className="w-5 h-5 text-accent-secondary mr-2" />
                     <span className="text-accent-secondary font-semibold">
@@ -145,7 +144,7 @@ export default function ModernAbout() {
                   <div className="text-text-muted text-sm">2016-2017</div>
                 </div>
 
-                <div className="glass rounded-xl p-6">
+                <div className="glass rounded-xl p-4 sm:p-6">
                   <h4 className="text-lg font-semibold mb-2">
                     New England Conservatory
                   </h4>
@@ -155,7 +154,7 @@ export default function ModernAbout() {
                   <div className="text-text-muted text-sm">2015-2016</div>
                 </div>
 
-                <div className="glass rounded-xl p-6">
+                <div className="glass rounded-xl p-4 sm:p-6">
                   <div className="flex items-center mb-3">
                     <Award className="w-5 h-5 text-accent-secondary mr-2" />
                     <span className="text-accent-secondary font-semibold">
@@ -203,12 +202,12 @@ export default function ModernAbout() {
           transition={{ duration: 0.8 }}
           className="mt-16"
         >
-          <div className="glass rounded-2xl p-8 text-center">
+          <div className="glass rounded-2xl p-6 sm:p-8 text-center">
             <Award className="w-12 h-12 text-accent-secondary mx-auto mb-4" />
-            <h3 className="text-2xl font-semibold mb-4 gradient-text">
+            <h3 className="text-xl sm:text-2xl font-semibold mb-4 gradient-text">
               Recognition
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-text-secondary">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 text-text-secondary">
               <div>
                 <div className="text-accent-primary font-semibold mb-1">
                   Patent Filed

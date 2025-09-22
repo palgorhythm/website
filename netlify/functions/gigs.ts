@@ -1,6 +1,24 @@
-const { google } = require("googleapis");
+import { google } from "googleapis";
+import { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
 
-exports.handler = async (event, context) => {
+interface CalendarEvent {
+  id: string;
+  summary: string;
+  start: {
+    dateTime?: string;
+    date?: string;
+  };
+  end?: {
+    dateTime?: string;
+    date?: string;
+  };
+  location?: string;
+}
+
+export const handler: Handler = async (
+  event: HandlerEvent,
+  context: HandlerContext,
+) => {
   // Enable CORS
   const headers = {
     "Access-Control-Allow-Origin": "*",
@@ -47,9 +65,10 @@ exports.handler = async (event, context) => {
       project_id: "dummy-project-id",
     };
 
-    const auth = google.auth.fromJSON(credentials);
-    auth.scopes = ["https://www.googleapis.com/auth/calendar.readonly"];
-    await auth.authorize();
+    const auth = new google.auth.GoogleAuth({
+      credentials,
+      scopes: ["https://www.googleapis.com/auth/calendar.readonly"],
+    });
 
     const calendar = google.calendar({ version: "v3", auth });
 
@@ -94,9 +113,9 @@ exports.handler = async (event, context) => {
       return {
         id: event.id,
         title: displayTitle, // Will be "GIG: BAND" (no @)
-        startDate: event.start.dateTime || event.start.date,
+        startDate: event.start?.dateTime || event.start?.date,
         endDate: event.end?.dateTime || event.end?.date,
-        date: event.start.dateTime || event.start.date, // Keep for compatibility
+        date: event.start?.dateTime || event.start?.date, // Keep for compatibility
         location: finalLocation,
         description: event.description || "",
         status: "confirmed",

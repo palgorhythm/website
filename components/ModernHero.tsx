@@ -24,7 +24,7 @@ export default function ModernHero(): React.JSX.Element {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 relative">
+    <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 relative">
       <motion.div
         className="max-w-4xl mx-auto text-center"
         variants={containerVariants}
@@ -33,24 +33,24 @@ export default function ModernHero(): React.JSX.Element {
       >
         {/* Main Heading */}
         <motion.div variants={itemVariants} className="mb-8">
-          <h1 className="text-6xl md:text-8xl font-light mb-6 tracking-tight">
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-light mb-4 sm:mb-6 tracking-tight">
             Jacob
             <br />
             <span className="gradient-text font-semibold">Richards</span>
           </h1>
 
-          <div className="text-xl md:text-2xl text-text-secondary max-w-2xl mx-auto leading-relaxed">
+          <div className="text-lg sm:text-xl md:text-2xl text-text-secondary max-w-2xl mx-auto leading-relaxed px-4">
             Drummer, producer, and software engineer.
           </div>
         </motion.div>
 
         {/* Featured Credits */}
         <motion.div variants={itemVariants} className="mb-12">
-          <div className="glass rounded-2xl p-6 max-w-3xl mx-auto">
+          <div className="glass rounded-2xl p-4 sm:p-6 max-w-3xl mx-auto">
             <div className="text-sm text-text-muted mb-4 font-mono uppercase tracking-wider">
               Featured On
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
               <div className="text-center">
                 <div className="text-2xl font-bold text-accent-primary mb-1">
                   NBC
@@ -78,11 +78,11 @@ export default function ModernHero(): React.JSX.Element {
         {/* Call to Action */}
         <motion.div
           variants={itemVariants}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          className="flex flex-col gap-4 justify-center items-center px-4"
         >
           <motion.a
             href="#music"
-            className="btn-primary group flex items-center space-x-3 px-8 py-4 rounded-xl font-semibold"
+            className="btn-primary group flex items-center space-x-3 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-sm sm:text-base w-full sm:w-auto justify-center"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -94,7 +94,7 @@ export default function ModernHero(): React.JSX.Element {
             href="https://open.spotify.com/playlist/0IeUXYZUUB9vz172ouSQ0p?si=7702f61a363f4a69"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-secondary group flex items-center space-x-3 px-8 py-4 rounded-xl font-medium"
+            className="btn-secondary group flex items-center space-x-3 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-medium text-sm sm:text-base w-full sm:w-auto justify-center"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -105,7 +105,7 @@ export default function ModernHero(): React.JSX.Element {
 
         {/* Scroll Indicator */}
         <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2"
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
@@ -118,7 +118,7 @@ export default function ModernHero(): React.JSX.Element {
             }
             whileHover={{ y: -2 }}
           >
-            <div className="text-sm font-mono mb-2">Scroll</div>
+            <div className="text-xs sm:text-sm font-mono mb-1 sm:mb-2">Scroll</div>
             <ArrowDown className="w-4 h-4" />
           </motion.div>
         </motion.div>

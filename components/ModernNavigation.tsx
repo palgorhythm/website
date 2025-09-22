@@ -38,12 +38,6 @@ export default function ModernNavigation({ scrollY }: NavigationProps): React.JS
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.2 }}
           >
-            <div className="w-8 h-8 bg-gradient-to-br from-accent-primary via-accent-secondary to-accent-quaternary rounded-lg flex items-center justify-center shadow-lg">
-              <span className="text-white font-bold text-sm">JR</span>
-            </div>
-            <div className="text-text-primary font-semibold text-lg tracking-wide">
-              Jacob Richards
-            </div>
           </motion.div>
 
           {/* Desktop Navigation */}

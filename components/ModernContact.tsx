@@ -14,20 +14,20 @@ import {
 export default function ModernContact() {
   const contactMethods = [
     {
-      title: "Work",
-      description: "Software engineering, teaching, technical consulting",
-      icon: <Linkedin className="w-6 h-6" />,
-      action: "Connect on LinkedIn",
-      href: "https://www.linkedin.com/in/palgorhythm/",
-      color: "from-blue-500 to-blue-600",
-    },
-    {
       title: "Music",
       description: "Recording, live shows, collaborations, BATTERY bookings",
       icon: <Instagram className="w-6 h-6" />,
       action: "Follow @_battery",
       href: "https://www.instagram.com/_battery/",
       color: "from-accent-primary to-accent-secondary",
+    },
+    {
+      title: "Work",
+      description: "Software engineering, teaching, technical consulting",
+      icon: <Linkedin className="w-6 h-6" />,
+      action: "Connect on LinkedIn",
+      href: "https://www.linkedin.com/in/palgorhythm/",
+      color: "from-blue-500 to-blue-600",
     },
     {
       title: "Code",
@@ -79,30 +79,29 @@ export default function ModernContact() {
   ];
 
   return (
-    <section id="contact" className="py-32 px-6">
+    <section id="contact" className="py-16 sm:py-24 md:py-32 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-12 sm:mb-16 md:mb-20"
         >
-          <h2 className="text-5xl md:text-6xl font-light mb-6 flex items-baseline justify-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-4 sm:mb-6 flex items-center justify-center">
             <Mail
-              className="w-10 h-10 text-accent-primary mr-3"
-              style={{ marginTop: "0.25rem" }}
+              className="w-8 h-8 sm:w-10 sm:h-10 text-accent-primary mr-2 sm:mr-3"
             />
             <span className="gradient-text font-semibold">Contact</span>
           </h2>
-          <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed px-4">
             Whether you want to collaborate on music, work on something
             technical, or just say hi - I'd love to hear from you!
           </p>
         </motion.div>
 
         {/* Contact Methods */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-12 sm:mb-16">
           {contactMethods.map((method, index) => (
             <motion.div
               key={method.title}
@@ -159,7 +158,7 @@ export default function ModernContact() {
           <h3 className="text-2xl font-semibold text-center mb-8 text-text-primary">
             Follow the Journey
           </h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
             {socialLinks.map((link, index) => (
               <motion.a
                 key={link.name}
