@@ -28,15 +28,20 @@ export default function Home(): React.JSX.Element {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔋</text></svg>" />
-        <meta
-          property="og:title"
-          content="Jacob Richards - Musician & Software Engineer"
-        />
+        <meta property="og:title" content="Jacob Richards - BATTERY" />
         <meta
           property="og:description"
-          content="Professional drummer, producer, and software engineer creating innovative music and technology"
+          content="Professional drummer, producer, and software engineer. Featured on NBC, Showtime. Creator of BATTERY."
         />
         <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://jacobrichards.dev" />
+        <meta property="og:image" content="https://jacobrichards.dev/inEurope.jpeg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Jacob Richards - BATTERY" />
+        <meta name="twitter:description" content="Professional drummer, producer, and software engineer. Featured on NBC, Showtime. Creator of BATTERY." />
+        <meta name="twitter:image" content="https://jacobrichards.dev/inEurope.jpeg" />
       </Head>
 
       <div className="min-h-screen bg-bg-primary text-text-primary relative overflow-x-hidden">
