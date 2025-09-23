@@ -30,6 +30,14 @@ interface SocialLink {
 export default function ModernContact(): React.JSX.Element {
   const contactMethods: ContactMethod[] = [
     {
+      title: "Email",
+      description: "Direct contact for all inquiries and collaborations",
+      icon: <Mail className="w-6 h-6" />,
+      action: "Send me an email",
+      href: "mailto:jacob.richards33@gmail.com",
+      color: "from-green-500 to-green-600",
+    },
+    {
       title: "Music",
       description: "Recording, live shows, collaborations, BATTERY bookings",
       icon: <Music className="w-6 h-6" />,
@@ -115,7 +123,7 @@ export default function ModernContact(): React.JSX.Element {
         </motion.div>
 
         {/* Contact Methods */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-12 sm:mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12 sm:mb-16">
           {contactMethods.map((method, index) => (
             <motion.div
               key={method.title}
@@ -170,7 +178,7 @@ export default function ModernContact(): React.JSX.Element {
           className="mb-16"
         >
           <h3 className="text-2xl font-semibold text-center mb-8 text-text-primary">
-            Follow the Journey
+            Find me online
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
             {socialLinks.map((link, index) => (
@@ -212,10 +220,13 @@ export default function ModernContact(): React.JSX.Element {
                 Available for gigs, collaborations, and interesting projects
               </span>
             </div>
-            <div className="border-t border-border-subtle pt-6">
-              <p className="text-text-muted text-sm">
+            <div className="border-t border-border-subtle pt-6 flex flex-col sm:flex-row items-center justify-between gap-2">
+              <p className="text-text-muted text-sm text-center sm:text-left">
                 © {new Date().getFullYear()} Jacob Richards. Making music and
                 code.
+              </p>
+              <p className="text-text-muted text-xs text-center sm:text-right">
+                jacob.richards33 [at] gmail.com
               </p>
             </div>
           </div>

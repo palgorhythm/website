@@ -8,6 +8,7 @@ import ModernAbout from "../components/ModernAbout";
 import ModernContact from "../components/ModernContact";
 import ModernNavigation from "../components/ModernNavigation";
 import GigsSection from "../components/GigsSection";
+import BackToTop from "../components/BackToTop";
 
 export default function Home(): React.JSX.Element {
   const [scrollY, setScrollY] = useState<number>(0);
@@ -27,7 +28,19 @@ export default function Home(): React.JSX.Element {
           content="Professional drummer, producer, and software engineer. Featured on NBC, Showtime. Creator of BATTERY."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔋</text></svg>" />
+
+        <meta
+          name="keywords"
+          content="Jacob Richards, drummer, producer, software engineer, BATTERY, music, programming, creative coding, NBC, Showtime"
+        />
+        <meta name="author" content="Jacob Richards" />
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
+        <link rel="canonical" href="https://www.jacobrichards.net" />
+        <link
+          rel="icon"
+          href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔋</text></svg>"
+        />
         <meta property="og:title" content="Jacob Richards" />
         <meta
           property="og:description"
@@ -35,16 +48,95 @@ export default function Home(): React.JSX.Element {
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.jacobrichards.net" />
-        <meta property="og:image" content="https://www.jacobrichards.net/inEurope.jpeg" />
+        <meta
+          property="og:image"
+          content="https://www.jacobrichards.net/inEurope.jpeg"
+        />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Jacob Richards" />
-        <meta name="twitter:description" content="Professional drummer, producer, and software engineer. Featured on NBC, Showtime. Creator of BATTERY." />
-        <meta name="twitter:image" content="https://www.jacobrichards.net/inEurope.jpeg" />
+        <meta
+          name="twitter:description"
+          content="Professional drummer, producer, and software engineer. Featured on NBC, Showtime. Creator of BATTERY."
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.jacobrichards.net/inEurope.jpeg"
+        />
+
+        {/* JSON-LD Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Jacob Richards",
+              jobTitle: ["Drummer", "Music Producer", "Software Engineer"],
+              description:
+                "Professional drummer, producer, and software engineer. Featured on NBC, Showtime. Creator of BATTERY.",
+              url: "https://www.jacobrichards.net",
+              image: "https://www.jacobrichards.net/inEurope.jpeg",
+              email: "jacob.richards33@gmail.com",
+              sameAs: [
+                "https://www.linkedin.com/in/palgorhythm/",
+                "https://github.com/palgorhythm",
+                "https://www.instagram.com/_battery/",
+                "https://www.youtube.com/channel/UCO6KYK2RJU7ARxsLhutzeng",
+                "https://batterydrums.bandcamp.com/",
+                "https://open.spotify.com/playlist/0IeUXYZUUB9vz172ouSQ0p?si=7702f61a363f4a69",
+              ],
+              knowsAbout: [
+                "Music Production",
+                "Drumming",
+                "Software Engineering",
+                "Creative Coding",
+                "Audio Engineering",
+              ],
+              alumniOf: {
+                "@type": "Organization",
+                name: "Professional Music and Software Development",
+              },
+              hasCredential: [
+                {
+                  "@type": "EducationalOccupationalCredential",
+                  credentialCategory: "Professional Experience",
+                  about: "Featured on NBC and Showtime",
+                },
+              ],
+            }),
+          }}
+        />
+
+        {/* Music Work Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "MusicGroup",
+              name: "BATTERY",
+              member: {
+                "@type": "Person",
+                name: "Jacob Richards",
+              },
+              genre: "Electronic Music",
+              url: "https://batterydrums.bandcamp.com/",
+              sameAs: [
+                "https://www.instagram.com/_battery/",
+                "https://www.youtube.com/channel/UCO6KYK2RJU7ARxsLhutzeng",
+                "https://open.spotify.com/playlist/0IeUXYZUUB9vz172ouSQ0p?si=7702f61a363f4a69",
+              ],
+            }),
+          }}
+        />
       </Head>
 
-      <div className="min-h-screen bg-bg-primary text-text-primary relative overflow-x-hidden">
+      <div
+        className="min-h-screen bg-bg-primary text-text-primary relative overflow-x-hidden"
+        id="top"
+      >
         {/* Minimalist Background */}
         <MinimalistBackground />
 
@@ -53,6 +145,9 @@ export default function Home(): React.JSX.Element {
 
         {/* YouTube Player */}
         <YouTubePlayer />
+
+        {/* Back to Top Button */}
+        <BackToTop />
 
         {/* Main Content */}
         <main className="relative">
