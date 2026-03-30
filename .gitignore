@@ -14,3 +14,21 @@ npm-debug.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Gatsby leftover artifacts
+.cache/
+public/page-data/
+public/chunk-map.json
+public/render-page.js
+public/render-page.js.map
+public/webpack.stats.json
+public/manifest.webmanifest
+public/icons/
+public/static/
+public/favicon-32x32.png
+
+# Claude worktrees
+.claude/
+
+# macOS
+.DS_Store
