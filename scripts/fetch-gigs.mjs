@@ -16,6 +16,16 @@ if (!GOOGLE_CLIENT_EMAIL || !GOOGLE_PRIVATE_KEY || !GOOGLE_CALENDAR_ID) {
 const privateKey = GOOGLE_PRIVATE_KEY
   .replace(/^["']|["']$/g, '')   // strip surrounding quotes if any
   .replace(/\\n/g, '\n')          // convert escaped newlines
+  .trim()
+
+// Diagnostic (no key content exposed)
+console.log('Key diagnostic:', {
+  length: privateKey.length,
+  startsCorrectly: privateKey.startsWith('-----BEGIN PRIVATE KEY-----'),
+  endsCorrectly: privateKey.trimEnd().endsWith('-----END PRIVATE KEY-----'),
+  lineCount: privateKey.split('\n').length,
+  hasRealNewlines: privateKey.includes('\n'),
+})
 
 const auth = new google.auth.JWT({
   email: GOOGLE_CLIENT_EMAIL,
