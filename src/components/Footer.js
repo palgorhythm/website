@@ -8,7 +8,7 @@ const FooterStyle = styled.footer`
 `;
 
 const Footer = () => (
-  <FooterStyle>© {new Date().getFullYear()}, jacob richards</FooterStyle>
+  <FooterStyle>© {new Date().getFullYear()}, jacob porter</FooterStyle>
 );
 
 export default Footer;

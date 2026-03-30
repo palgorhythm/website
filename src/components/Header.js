@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import StyledLink from './StyledLink';
 const HeaderStyle = styled.header`
-  background: ${(props) => props.theme.red};
+  background: ${(props) => props.theme.black};
   font-weight: 100;
   margin: 0;
   display: flex;

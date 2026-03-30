@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: `jacob richards`,
-    description: `jacob richards' personal website`,
+    title: `jacob porter`,
+    description: `jacob porter's personal website`,
     author: `@palgorhythm`,
   },
   plugins: [
