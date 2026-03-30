@@ -271,11 +271,10 @@ function MusicPlayer() {
 
 interface GigEvent {
   id: string
-  summary: string
-  start: { dateTime?: string; date?: string }
-  end?: { dateTime?: string; date?: string }
-  location?: string
-  description?: string
+  title: string
+  date: string
+  location?: string | null
+  description?: string | null
 }
 
 function GigsSection() {
@@ -285,25 +284,12 @@ function GigsSection() {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_API_KEY
-    const calId = process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_ID
-
-    if (!apiKey || !calId) {
-      setError('Calendar not configured')
-      setLoading(false)
-      return
-    }
-
-    const now = new Date().toISOString()
-    const base = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calId)}/events`
-
-    Promise.all([
-      fetch(`${base}?key=${apiKey}&timeMin=${now}&orderBy=startTime&singleEvents=true&maxResults=20`).then(r => r.json()),
-      fetch(`${base}?key=${apiKey}&timeMax=${now}&orderBy=startTime&singleEvents=true&maxResults=20`).then(r => r.json()),
-    ])
-      .then(([upRes, pastRes]) => {
-        setUpcoming(upRes.items || [])
-        setPast((pastRes.items || []).reverse())
+    fetch('/gigs.json')
+      .then(r => r.json())
+      .then((all: GigEvent[]) => {
+        const now = new Date()
+        setUpcoming(all.filter(g => new Date(g.date) >= now))
+        setPast(all.filter(g => new Date(g.date) < now).reverse())
         setLoading(false)
       })
       .catch(() => {
@@ -313,9 +299,8 @@ function GigsSection() {
   }, [])
 
   const formatDate = (ev: GigEvent) => {
-    const raw = ev.start.dateTime || ev.start.date || ''
-    if (!raw) return ''
-    return new Date(raw).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    if (!ev.date) return ''
+    return new Date(ev.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
   }
 
   const GigCard = ({ ev }: { ev: GigEvent }) => (
@@ -324,7 +309,7 @@ function GigsSection() {
         {formatDate(ev)}
       </div>
       <div style={{ fontWeight: 700, color: '#fff', fontSize: 15, marginBottom: 4, lineHeight: 1.3 }}>
-        {ev.summary}
+        {ev.title}
       </div>
       {ev.location && (
         <div style={{ display: 'flex', alignItems: 'center', gap: 4, color: '#b0b0d0', fontSize: 12 }}>
