@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
-import { Comfortaa } from 'next/font/google'
+import { Space_Grotesk } from 'next/font/google'
 import './globals.css'
 
-const comfortaa = Comfortaa({
+const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
-  weight: ['300', '400', '700'],
-  variable: '--font-comfortaa',
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-space-grotesk',
 })
 
 export const metadata: Metadata = {
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={comfortaa.variable}>
+    <html lang="en" className={spaceGrotesk.variable}>
       <body>{children}</body>
     </html>
   )
