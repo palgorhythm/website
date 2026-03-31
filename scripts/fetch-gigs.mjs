@@ -35,16 +35,12 @@ try {
     calendarId: GOOGLE_CALENDAR_ID,
     timeMin,
     timeMax,
-    maxResults: 200,
+    maxResults: 2500,
     singleEvents: true,
     orderBy: 'startTime',
   })
 
-  const allItems = res.data.items ?? []
-  console.log(`API returned ${allItems.length} total events:`)
-  allItems.forEach(e => console.log(`  [${e.start?.dateTime ?? e.start?.date}] ${e.summary}`))
-
-  const events = allItems
+  const events = (res.data.items ?? [])
     .filter(e => e.summary?.startsWith('GIG:'))
     .map(e => ({
       id: e.id,
