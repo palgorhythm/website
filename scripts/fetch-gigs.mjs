@@ -40,7 +40,11 @@ try {
     orderBy: 'startTime',
   })
 
-  const events = (res.data.items ?? [])
+  const allItems = res.data.items ?? []
+  console.log(`API returned ${allItems.length} total events:`)
+  allItems.forEach(e => console.log(`  [${e.start?.dateTime ?? e.start?.date}] ${e.summary}`))
+
+  const events = allItems
     .filter(e => e.summary?.startsWith('GIG:'))
     .map(e => ({
       id: e.id,
