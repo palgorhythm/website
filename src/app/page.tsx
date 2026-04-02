@@ -305,7 +305,7 @@ function GigsSection() {
 
   const GigCard = ({ ev }: { ev: GigEvent }) => (
     <div className="glass rounded-xl p-5 flex-shrink-0" style={{ width: 260 }}>
-      <div style={{ display: 'inline-block', fontSize: 10, color: '#0a0a1a', background: '#ff6b9d', fontWeight: 700, letterSpacing: '0.1em', padding: '2px 6px', borderRadius: 3, marginBottom: 8 }}>
+      <div style={{ fontSize: 11, color: '#ff6b9d', fontWeight: 600, letterSpacing: '0.06em', marginBottom: 6 }}>
         {formatDate(ev)}
       </div>
       <div style={{ fontWeight: 700, color: '#fff', fontSize: 15, marginBottom: 4, lineHeight: 1.3 }}>
@@ -331,9 +331,8 @@ function GigsSection() {
     >
       <div style={{ maxWidth: 1152, margin: '0 auto', padding: '0 24px' }}>
         <div style={{ textAlign: 'center', marginBottom: 48 }}>
-          <div style={{ display: 'inline-block', width: 32, height: 4, background: '#4ecdc4', borderRadius: 2, marginBottom: 16 }} />
           <h2 style={{ fontSize: 'clamp(2rem,5vw,3rem)', fontWeight: 800, color: '#fff', margin: '0 0 8px' }}>Shows &amp; Gigs</h2>
-          <p style={{ color: '#9090b8' }}>Live performances, tours, and appearances</p>
+          <p style={{ color: '#555570', fontSize: 15 }}>Live performances, tours, and appearances</p>
         </div>
 
         {loading && (
@@ -358,10 +357,7 @@ function GigsSection() {
 
         {!loading && !error && upcoming.length > 0 && (
           <div style={{ marginBottom: 40 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-              <span style={{ display: 'inline-block', width: 12, height: 12, background: '#4ecdc4', borderRadius: 2 }} />
-              <h3 style={{ color: '#fff', fontWeight: 700, fontSize: 14, letterSpacing: '0.04em', textTransform: 'uppercase', margin: 0 }}>Upcoming Shows</h3>
-            </div>
+            <h3 style={{ color: '#4ecdc4', fontWeight: 600, fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 16 }}>Upcoming</h3>
             <div style={{ display: 'flex', gap: 16, overflowX: 'auto', paddingBottom: 12 }}>
               {upcoming.map(ev => <GigCard key={ev.id} ev={ev} />)}
             </div>
@@ -370,10 +366,7 @@ function GigsSection() {
 
         {!loading && !error && past.length > 0 && (
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-              <span style={{ display: 'inline-block', width: 12, height: 12, background: '#9090b8', borderRadius: 2 }} />
-              <h3 style={{ color: '#9090b8', fontWeight: 700, fontSize: 14, letterSpacing: '0.04em', textTransform: 'uppercase', margin: 0 }}>Past Shows</h3>
-            </div>
+            <h3 style={{ color: '#444460', fontWeight: 600, fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 16 }}>Past</h3>
             <div style={{ display: 'flex', gap: 16, overflowX: 'auto', paddingBottom: 12 }}>
               {past.map(ev => <GigCard key={ev.id} ev={ev} />)}
             </div>
@@ -428,11 +421,12 @@ const MUSIC_CARDS = [
     tag: 'National & International',
     title: 'Tours',
     tours: [
-      ['Angelica Garcia US tour', '2021'],
-      ['Oliver Tree US tour', '2018'],
-      ['Standards US tour', '2018'],
-      ['Sélébéyone EU tour', '2017'],
-      ['BATTERY US tour', '2016'],
+      { name: 'Button Masher US + Canada', year: '2023', href: 'https://buttonmashermusic.com/' },
+      { name: 'Angelica Garcia US', year: '2021', href: 'https://www.setlist.fm/setlists/angelica-garcia-43c11f63.html' },
+      { name: 'Oliver Tree US', year: '2018', href: 'https://www.setlist.fm/stats/average-setlist/oliver-tree-2bcfc89e.html?tour=6bdcdef6' },
+      { name: 'Standards US', year: '2018', href: '' },
+      { name: 'Sélébéyone EU', year: '2017', href: 'https://stevelehman.bandcamp.com/album/s-l-b-yone' },
+      { name: 'BATTERY US', year: '2016', href: 'https://batterydrums.bandcamp.com/' },
     ],
     icon: <Globe size={20} />,
   },
@@ -497,7 +491,7 @@ export default function Home() {
     : 'rgba(10,10,26,0.5)'
 
   return (
-    <div style={{ minHeight: '100vh', background: '#0a0a1a', overflowX: 'hidden' }}>
+    <div style={{ minHeight: '100vh', background: '#080810', overflowX: 'hidden' }}>
       {/* Particle canvas */}
       <ParticleCanvas />
 
@@ -687,23 +681,10 @@ export default function Home() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35, duration: 0.6 }}
-          style={{ fontSize: 'clamp(1rem,3vw,1.4rem)', color: '#e0e0ff', marginBottom: 16 }}
+          style={{ fontSize: 'clamp(0.85rem,2vw,1.05rem)', color: '#666680', letterSpacing: '0.08em', marginBottom: 32, textTransform: 'uppercase', fontWeight: 500 }}
         >
-          Drummer, producer, and software engineer.
+          Drummer · Producer · Software Engineer
         </motion.p>
-
-        {/* Featured on badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.5 }}
-          className="glass"
-          style={{ display: 'inline-flex', alignItems: 'center', gap: 12, padding: '8px 20px', borderRadius: 6, marginBottom: 24 }}
-        >
-          <Tv size={14} style={{ color: '#ffd93d' }} />
-          <span style={{ fontSize: 10, fontWeight: 700, color: '#ffd93d', letterSpacing: '0.14em' }}>FEATURED ON</span>
-          <span style={{ color: '#8888aa', fontSize: 12 }}>NBC · SHOWTIME · 101+ Songs</span>
-        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -756,10 +737,9 @@ export default function Home() {
         style={{ padding: '80px 24px', maxWidth: 1152, margin: '0 auto', position: 'relative', zIndex: 1 }}
       >
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: 'center', marginBottom: 48 }}>
-          <div style={{ display: 'inline-block', width: 32, height: 4, background: '#ff6b9d', borderRadius: 2, marginBottom: 16 }} />
           <h2 style={{ fontSize: 'clamp(2rem,5vw,3.5rem)', fontWeight: 800, color: '#fff', margin: '0 0 12px' }}>Music</h2>
-          <p style={{ color: '#9090b8', maxWidth: 560, margin: '0 auto' }}>
-          Over a decade of professional work across genres, from jazz performance to television production and electronic composition.
+          <p style={{ color: '#555570', maxWidth: 560, margin: '0 auto', fontSize: 15 }}>
+            Over a decade of professional work across genres — jazz, electronic, TV & film, and live performance.
           </p>
         </motion.div>
 
@@ -772,11 +752,11 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="rounded-xl"
-              style={{ padding: 24, textAlign: 'center', background: `${color}14`, border: `1px solid ${color}40`, borderTop: `3px solid ${color}` }}
+              className="glass rounded-xl"
+              style={{ padding: '20px 24px', textAlign: 'center', borderTop: `2px solid ${color}` }}
             >
-              <div style={{ fontSize: 34, fontWeight: 800, marginBottom: 4, color }}>{value}</div>
-              <div style={{ color: '#9090b8', fontSize: 12, fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{label}</div>
+              <div style={{ fontSize: 36, fontWeight: 800, lineHeight: 1, color, marginBottom: 6 }}>{value}</div>
+              <div style={{ color: '#555570', fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>{label}</div>
             </motion.div>
           ))}
         </div>
@@ -790,19 +770,24 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="glass rounded-2xl hover-lift"
-              style={{ padding: 32 }}
+              className="glass rounded-xl hover-lift"
+              style={{ padding: 28, borderLeft: `3px solid ${card.accent}` }}
             >
-              <span className="chip" style={{ background: card.accent, marginBottom: 12 }}>{card.tag}</span>
-              <div style={{ color: card.accent, marginBottom: 8 }}>{card.icon}</div>
+              <div style={{ fontSize: 10, color: card.accent, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 10 }}>{card.tag}</div>
               <h3 style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginBottom: 12 }}>{card.title}</h3>
               {card.body && <p style={{ color: '#9090b8', lineHeight: 1.7, fontSize: 14 }}>{card.body}</p>}
               {card.tours && (
-                <ul style={{ color: '#9090b8', lineHeight: 2, fontSize: 14 }}>
-                  {card.tours.map(([name, year]) => (
-                    <li key={name} style={{ display: 'flex', justifyContent: 'space-between' }}>
-                      <span>{name}</span>
-                      <span style={{ color: card.accent }}>{year}</span>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                  {card.tours.map(({ name, year, href }) => (
+                    <li key={name} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '7px 0', borderBottom: '1px solid rgba(255,255,255,0.05)', fontSize: 13 }}>
+                      {href ? (
+                        <a href={href} target="_blank" rel="noopener noreferrer" style={{ color: '#ccc', display: 'flex', alignItems: 'center', gap: 5 }}>
+                          {name} <ExternalLink size={11} style={{ opacity: 0.5 }} />
+                        </a>
+                      ) : (
+                        <span style={{ color: '#ccc' }}>{name}</span>
+                      )}
+                      <span style={{ color: card.accent, fontSize: 12, fontWeight: 600 }}>{year}</span>
                     </li>
                   ))}
                 </ul>
@@ -858,9 +843,8 @@ export default function Home() {
         style={{ padding: '80px 24px', maxWidth: 1152, margin: '0 auto', position: 'relative', zIndex: 1 }}
       >
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: 'center', marginBottom: 48 }}>
-          <div style={{ display: 'inline-block', width: 32, height: 4, background: '#ffd93d', borderRadius: 2, marginBottom: 16 }} />
           <h2 style={{ fontSize: 'clamp(2rem,5vw,3.5rem)', fontWeight: 800, color: '#fff', margin: '0 0 12px' }}>Expertise</h2>
-          <p style={{ color: '#9090b8', maxWidth: 560, margin: '0 auto' }}>
+          <p style={{ color: '#555570', maxWidth: 560, margin: '0 auto', fontSize: 15 }}>
             Building software systems for over a decade while maintaining an active career as a musician. Currently at Discord on ads and creator tools.
           </p>
         </motion.div>
@@ -922,9 +906,9 @@ export default function Home() {
                 <span
                   key={name}
                   style={{
-                    padding: '4px 10px', borderRadius: 4, fontSize: 11,
-                    fontWeight: 700, letterSpacing: '0.08em',
-                    background: `${color}18`, border: `1px solid ${color}50`, color,
+                    padding: '5px 12px', borderRadius: 4, fontSize: 12,
+                    fontWeight: 500, border: `1px solid ${color}35`, color,
+                    background: `${color}0a`,
                   }}
                 >
                   {name}
@@ -955,9 +939,8 @@ export default function Home() {
         style={{ padding: '80px 24px', maxWidth: 1152, margin: '0 auto', position: 'relative', zIndex: 1 }}
       >
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: 'center', marginBottom: 48 }}>
-          <div style={{ display: 'inline-block', width: 32, height: 4, background: '#c7a8ff', borderRadius: 2, marginBottom: 16 }} />
           <h2 style={{ fontSize: 'clamp(2rem,5vw,3.5rem)', fontWeight: 800, color: '#fff', margin: '0 0 12px' }}>Contact</h2>
-          <p style={{ color: '#9090b8', maxWidth: 560, margin: '0 auto' }}>
+          <p style={{ color: '#555570', maxWidth: 560, margin: '0 auto', fontSize: 15 }}>
             Whether you want to collaborate on music, work on something technical, or just say hi — I&#39;d love to hear from you!
           </p>
         </motion.div>
