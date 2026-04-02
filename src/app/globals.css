@@ -2,28 +2,24 @@
 
 @theme {
   --color-bg-primary: #0a0a1a;
-  --color-bg-secondary: #131328;
-  --color-bg-tertiary: #1e1e40;
   --color-text-primary: #ffffff;
-  --color-text-secondary: #e0e0ff;
   --color-text-muted: #8888aa;
-  --color-accent-primary: #ff6b9d;
-  --color-accent-secondary: #4ecdc4;
-  --color-accent-tertiary: #a8e6cf;
-  --color-accent-quaternary: #ffd93d;
-  --color-accent-pink: #ff8fab;
-  --color-accent-purple: #c7a8ff;
-  --color-border-subtle: rgba(255,255,255,0.08);
-  --color-border-medium: rgba(255,255,255,0.14);
+  --color-pink: #ff6b9d;
+  --color-teal: #4ecdc4;
+  --color-yellow: #ffd93d;
+  --color-purple: #c7a8ff;
+  --color-mint: #a8e6cf;
 }
 
 html { scroll-behavior: smooth; }
-body, html { background: var(--color-bg-primary); }
+body, html { background: #0a0a1a; }
 body {
-  color: var(--color-text-primary);
+  color: #fff;
   margin: 0; padding: 0;
-  font-family: var(--font-space-grotesk), 'Space Grotesk', system-ui, -apple-system, sans-serif;
-  font-weight: 400; line-height: 1.6; overflow-x: hidden;
+  font-family: var(--font-syne), 'Syne', system-ui, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   letter-spacing: -0.01em;
 }
@@ -33,79 +29,90 @@ h1, h2, h3, h4 {
   font-weight: 700;
 }
 
+/* ── Cards ────────────────────────────── */
 .glass {
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255,255,255,0.08);
-  position: relative; overflow: hidden;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.06);
-  background: rgba(18,18,38,0.6) !important;
-  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  background: rgba(255,255,255,0.04) !important;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: border-color 0.2s, background 0.2s;
 }
-.glass::before {
-  content: "";
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
-  width: 100%; height: 100%; transition: left 0.5s;
-  position: absolute; top: 0; left: -100%; pointer-events: none;
-}
-.glass:hover::before { left: 100%; }
 .glass:hover {
-  border-color: rgba(255,107,157,0.25);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,107,157,0.08);
+  background: rgba(255,255,255,0.06) !important;
+  border-color: rgba(255,255,255,0.18);
 }
 
 .glass-strong {
-  backdrop-filter: blur(24px);
-  border: 1px solid rgba(255,255,255,0.1);
-  box-shadow: 0 8px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
-  background: rgba(18,18,38,0.85) !important;
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(255,255,255,0.12);
 }
 
-.gradient-text {
-  background: linear-gradient(135deg, #ff6b9d 0%, #c7a8ff 30%, #4ecdc4 60%, #ffd93d 100%);
+/* ── Section heading ──────────────────── */
+.section-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 3px;
+  margin-bottom: 12px;
+  color: #0a0a1a;
+}
+
+/* ── Color chip tags ──────────────────── */
+.chip {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 3px;
+  color: #0a0a1a;
+}
+
+/* ── Gradient heading (hero only) ──────── */
+.hero-name {
+  background: linear-gradient(90deg, #ff6b9d, #c7a8ff, #4ecdc4);
   -webkit-text-fill-color: transparent;
-  background-size: 300% 300%;
   background-clip: text;
-  animation: gradientShift 6s ease infinite;
-}
-@keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
 }
 
-.hover-lift { transition: transform 0.25s, box-shadow 0.25s; }
-.hover-lift:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,0.4); }
-
+/* ── Buttons ──────────────────────────── */
 .btn-primary {
-  color: #fff !important;
-  background: linear-gradient(135deg, #d1477a, #3ba49a) !important;
+  display: inline-block;
+  color: #0a0a1a !important;
+  background: #ff6b9d !important;
   border: none !important;
-  font-weight: 600 !important;
-  letter-spacing: -0.01em !important;
-  transition: all 0.2s !important;
-  box-shadow: 0 4px 16px rgba(209,71,122,0.35) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  transition: background 0.15s, transform 0.15s !important;
   cursor: pointer;
 }
 .btn-primary:hover {
-  background: linear-gradient(135deg, #c0406f, #2f9088) !important;
-  transform: translateY(-2px) !important;
-  box-shadow: 0 6px 24px rgba(209,71,122,0.5) !important;
+  background: #ff8ab5 !important;
+  transform: translateY(-1px) !important;
 }
 
 .btn-secondary {
-  backdrop-filter: blur(10px) !important;
-  background: rgba(255,255,255,0.04) !important;
-  border: 1px solid rgba(255,255,255,0.12) !important;
-  transition: all 0.2s !important; cursor: pointer;
-  color: #e0e0ff !important;
-  font-weight: 500 !important;
-  letter-spacing: -0.01em !important;
+  display: inline-block;
+  background: transparent !important;
+  border: 1px solid rgba(255,255,255,0.25) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  transition: border-color 0.15s, background 0.15s, transform 0.15s !important;
+  cursor: pointer;
 }
 .btn-secondary:hover {
-  border-color: rgba(255,107,157,0.5) !important;
-  background: rgba(255,107,157,0.07) !important;
-  transform: translateY(-2px) !important;
+  border-color: #4ecdc4 !important;
+  color: #4ecdc4 !important;
+  transform: translateY(-1px) !important;
 }
 
+/* ── Hover lift (minimal) ─────────────── */
+.hover-lift { transition: transform 0.2s; }
+.hover-lift:hover { transform: translateY(-2px); }
+
+/* ── Loading dots ─────────────────────── */
 .loading-dot {
   background: #ff6b9d; border-radius: 50%;
   width: 6px; height: 6px;
@@ -118,10 +125,10 @@ h1, h2, h3, h4 {
   40% { opacity: 1; transform: scale(1); }
 }
 
+/* ── Scrollbar ────────────────────────── */
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: #0a0a1a; }
-::-webkit-scrollbar-thumb { background: rgba(255,107,157,0.5); border-radius: 2px; }
-::-webkit-scrollbar-thumb:hover { background: #ff6b9d; }
+::-webkit-scrollbar-thumb { background: #ff6b9d; border-radius: 2px; }
 
 a { text-decoration: none; color: inherit; }
 button { font: inherit; cursor: pointer; background: none; border: none; color: inherit; }

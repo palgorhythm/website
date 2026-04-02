@@ -305,7 +305,7 @@ function GigsSection() {
 
   const GigCard = ({ ev }: { ev: GigEvent }) => (
     <div className="glass rounded-xl p-5 flex-shrink-0" style={{ width: 260 }}>
-      <div style={{ fontSize: 11, color: '#ff6b9d', fontWeight: 700, letterSpacing: '0.08em', marginBottom: 4 }}>
+      <div style={{ display: 'inline-block', fontSize: 10, color: '#0a0a1a', background: '#ff6b9d', fontWeight: 700, letterSpacing: '0.1em', padding: '2px 6px', borderRadius: 3, marginBottom: 8 }}>
         {formatDate(ev)}
       </div>
       <div style={{ fontWeight: 700, color: '#fff', fontSize: 15, marginBottom: 4, lineHeight: 1.3 }}>
@@ -330,10 +330,11 @@ function GigsSection() {
       style={{ padding: '80px 0', position: 'relative', zIndex: 1 }}
     >
       <div style={{ maxWidth: 1152, margin: '0 auto', padding: '0 24px' }}>
-        <h2 className="gradient-text" style={{ fontSize: 'clamp(2rem,5vw,3rem)', fontWeight: 700, textAlign: 'center', marginBottom: 8 }}>
-          Shows &amp; Gigs
-        </h2>
-        <p style={{ textAlign: 'center', color: '#9090b8', marginBottom: 48 }}>Live performances, tours, and appearances</p>
+        <div style={{ textAlign: 'center', marginBottom: 48 }}>
+          <div style={{ display: 'inline-block', width: 32, height: 4, background: '#4ecdc4', borderRadius: 2, marginBottom: 16 }} />
+          <h2 style={{ fontSize: 'clamp(2rem,5vw,3rem)', fontWeight: 800, color: '#fff', margin: '0 0 8px' }}>Shows &amp; Gigs</h2>
+          <p style={{ color: '#9090b8' }}>Live performances, tours, and appearances</p>
+        </div>
 
         {loading && (
           <div style={{ display: 'flex', justifyContent: 'center', gap: 8, padding: 40 }}>
@@ -357,7 +358,10 @@ function GigsSection() {
 
         {!loading && !error && upcoming.length > 0 && (
           <div style={{ marginBottom: 40 }}>
-            <h3 style={{ color: '#4ecdc4', fontWeight: 700, marginBottom: 16, fontSize: 16 }}>Upcoming Shows</h3>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+              <span style={{ display: 'inline-block', width: 12, height: 12, background: '#4ecdc4', borderRadius: 2 }} />
+              <h3 style={{ color: '#fff', fontWeight: 700, fontSize: 14, letterSpacing: '0.04em', textTransform: 'uppercase', margin: 0 }}>Upcoming Shows</h3>
+            </div>
             <div style={{ display: 'flex', gap: 16, overflowX: 'auto', paddingBottom: 12 }}>
               {upcoming.map(ev => <GigCard key={ev.id} ev={ev} />)}
             </div>
@@ -366,7 +370,10 @@ function GigsSection() {
 
         {!loading && !error && past.length > 0 && (
           <div>
-            <h3 style={{ color: '#9090b8', fontWeight: 700, marginBottom: 16, fontSize: 16 }}>Past Shows</h3>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+              <span style={{ display: 'inline-block', width: 12, height: 12, background: '#9090b8', borderRadius: 2 }} />
+              <h3 style={{ color: '#9090b8', fontWeight: 700, fontSize: 14, letterSpacing: '0.04em', textTransform: 'uppercase', margin: 0 }}>Past Shows</h3>
+            </div>
             <div style={{ display: 'flex', gap: 16, overflowX: 'auto', paddingBottom: 12 }}>
               {past.map(ev => <GigCard key={ev.id} ev={ev} />)}
             </div>
@@ -387,10 +394,10 @@ const NAV_LINKS = [
 ]
 
 const STATS = [
-  { value: '101+', label: 'Songs Recorded' },
-  { value: '4', label: 'TV & Film Credits' },
-  { value: '5', label: 'Major Tours' },
-  { value: '10+', label: 'Years Active' },
+  { value: '101+', label: 'Songs Recorded', color: '#ff6b9d' },
+  { value: '4', label: 'TV & Film Credits', color: '#4ecdc4' },
+  { value: '5', label: 'Major Tours', color: '#ffd93d' },
+  { value: '10+', label: 'Years Active', color: '#c7a8ff' },
 ]
 
 const MUSIC_CARDS = [
@@ -444,7 +451,16 @@ const EDUCATION = [
   { degree: "Bachelor's", institution: 'UC Berkeley', field: 'Applied Mathematics & Music', dates: 'Summa Cum Laude', color: '#ffd93d' },
 ]
 
-const SKILLS = ['TypeScript', 'Python', 'React', 'Node.js', 'AWS', 'Unity', 'Pro Tools', 'Ableton']
+const SKILLS = [
+  { name: 'TypeScript', color: '#4ecdc4' },
+  { name: 'Python', color: '#ffd93d' },
+  { name: 'React', color: '#ff6b9d' },
+  { name: 'Node.js', color: '#a8e6cf' },
+  { name: 'AWS', color: '#ffd93d' },
+  { name: 'Unity', color: '#c7a8ff' },
+  { name: 'Pro Tools', color: '#ff6b9d' },
+  { name: 'Ableton', color: '#4ecdc4' },
+]
 
 const SOCIALS = [
   { label: 'LinkedIn', sub: '6,130+ connections', href: 'https://www.linkedin.com/in/palgorhythm/', color: '#4ecdc4', Icon: Link },
@@ -536,7 +552,7 @@ export default function Home() {
           transition: 'background 0.3s',
         }}
       >
-        <a href="#top" className="gradient-text" style={{ fontSize: 20, fontWeight: 700 }}>
+        <a href="#top" style={{ fontSize: 18, fontWeight: 800, color: '#fff', letterSpacing: '-0.03em' }}>
           Jacob Porter
         </a>
 
@@ -661,9 +677,9 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
-          <h1 style={{ fontSize: 'clamp(3rem,10vw,7rem)', fontWeight: 700, lineHeight: 1.05, margin: '0 0 16px' }}>
+          <h1 style={{ fontSize: 'clamp(3rem,10vw,7rem)', fontWeight: 800, lineHeight: 1.0, margin: '0 0 16px', letterSpacing: '-0.04em' }}>
             <span style={{ color: '#fff' }}>Jacob </span>
-            <span className="gradient-text">Porter</span>
+            <span className="hero-name">Porter</span>
           </h1>
         </motion.div>
 
@@ -739,33 +755,28 @@ export default function Home() {
         transition={{ duration: 0.6 }}
         style={{ padding: '80px 24px', maxWidth: 1152, margin: '0 auto', position: 'relative', zIndex: 1 }}
       >
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="gradient-text"
-          style={{ fontSize: 'clamp(2rem,5vw,3.5rem)', fontWeight: 700, textAlign: 'center', marginBottom: 8 }}
-        >
-          Music
-        </motion.h2>
-        <p style={{ textAlign: 'center', color: '#9090b8', marginBottom: 48, maxWidth: 560, margin: '0 auto 48px' }}>
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: 'center', marginBottom: 48 }}>
+          <div style={{ display: 'inline-block', width: 32, height: 4, background: '#ff6b9d', borderRadius: 2, marginBottom: 16 }} />
+          <h2 style={{ fontSize: 'clamp(2rem,5vw,3.5rem)', fontWeight: 800, color: '#fff', margin: '0 0 12px' }}>Music</h2>
+          <p style={{ color: '#9090b8', maxWidth: 560, margin: '0 auto' }}>
           Over a decade of professional work across genres, from jazz performance to television production and electronic composition.
-        </p>
+          </p>
+        </motion.div>
 
         {/* Stats */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: 16, marginBottom: 48 }}>
-          {STATS.map(({ value, label }, i) => (
+          {STATS.map(({ value, label, color }, i) => (
             <motion.div
               key={label}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="glass rounded-2xl"
-              style={{ padding: 24, textAlign: 'center' }}
+              className="rounded-xl"
+              style={{ padding: 24, textAlign: 'center', background: `${color}14`, border: `1px solid ${color}40`, borderTop: `3px solid ${color}` }}
             >
-              <div className="gradient-text" style={{ fontSize: 32, fontWeight: 700, marginBottom: 4 }}>{value}</div>
-              <div style={{ color: '#9090b8', fontSize: 13 }}>{label}</div>
+              <div style={{ fontSize: 34, fontWeight: 800, marginBottom: 4, color }}>{value}</div>
+              <div style={{ color: '#9090b8', fontSize: 12, fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{label}</div>
             </motion.div>
           ))}
         </div>
@@ -782,10 +793,8 @@ export default function Home() {
               className="glass rounded-2xl hover-lift"
               style={{ padding: 32 }}
             >
+              <span className="chip" style={{ background: card.accent, marginBottom: 12 }}>{card.tag}</span>
               <div style={{ color: card.accent, marginBottom: 8 }}>{card.icon}</div>
-              <div style={{ fontSize: 10, color: card.accent, fontWeight: 700, letterSpacing: '0.14em', marginBottom: 8, textTransform: 'uppercase' as const }}>
-                {card.tag}
-              </div>
               <h3 style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginBottom: 12 }}>{card.title}</h3>
               {card.body && <p style={{ color: '#9090b8', lineHeight: 1.7, fontSize: 14 }}>{card.body}</p>}
               {card.tours && (
@@ -848,18 +857,13 @@ export default function Home() {
         transition={{ duration: 0.6 }}
         style={{ padding: '80px 24px', maxWidth: 1152, margin: '0 auto', position: 'relative', zIndex: 1 }}
       >
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="gradient-text"
-          style={{ fontSize: 'clamp(2rem,5vw,3.5rem)', fontWeight: 700, textAlign: 'center', marginBottom: 8 }}
-        >
-          Expertise
-        </motion.h2>
-        <p style={{ textAlign: 'center', color: '#9090b8', marginBottom: 48, maxWidth: 560, margin: '0 auto 48px' }}>
-          Building software systems for over a decade while maintaining an active career as a musician. Currently at Discord on ads and creator tools.
-        </p>
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: 'center', marginBottom: 48 }}>
+          <div style={{ display: 'inline-block', width: 32, height: 4, background: '#ffd93d', borderRadius: 2, marginBottom: 16 }} />
+          <h2 style={{ fontSize: 'clamp(2rem,5vw,3.5rem)', fontWeight: 800, color: '#fff', margin: '0 0 12px' }}>Expertise</h2>
+          <p style={{ color: '#9090b8', maxWidth: 560, margin: '0 auto' }}>
+            Building software systems for over a decade while maintaining an active career as a musician. Currently at Discord on ads and creator tools.
+          </p>
+        </motion.div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 32 }}>
           {/* Experience */}
@@ -870,9 +874,9 @@ export default function Home() {
             className="glass rounded-2xl"
             style={{ padding: 32 }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 24 }}>
-              <Briefcase size={18} style={{ color: '#ff6b9d' }} />
-              <h3 style={{ fontSize: 18, fontWeight: 700, color: '#ff6b9d' }}>Experience</h3>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 24 }}>
+              <span style={{ display: 'inline-block', width: 4, height: 20, background: '#ff6b9d', borderRadius: 2 }} />
+              <h3 style={{ fontSize: 16, fontWeight: 700, color: '#fff', letterSpacing: '0.04em', textTransform: 'uppercase', margin: 0 }}>Experience</h3>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
               {EXPERIENCE.map(({ role, org, focus, dates, color }) => (
@@ -894,9 +898,9 @@ export default function Home() {
             className="glass rounded-2xl"
             style={{ padding: 32 }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 24 }}>
-              <GraduationCap size={18} style={{ color: '#4ecdc4' }} />
-              <h3 style={{ fontSize: 18, fontWeight: 700, color: '#4ecdc4' }}>Education</h3>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 24 }}>
+              <span style={{ display: 'inline-block', width: 4, height: 20, background: '#4ecdc4', borderRadius: 2 }} />
+              <h3 style={{ fontSize: 16, fontWeight: 700, color: '#fff', letterSpacing: '0.04em', textTransform: 'uppercase', margin: 0 }}>Education</h3>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginBottom: 32 }}>
               {EDUCATION.map(({ degree, institution, field, dates, color }) => (
@@ -909,28 +913,28 @@ export default function Home() {
               ))}
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
-              <Code2 size={18} style={{ color: '#ffd93d' }} />
-              <h3 style={{ fontSize: 18, fontWeight: 700, color: '#ffd93d' }}>Technical Skills</h3>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+              <span style={{ display: 'inline-block', width: 4, height: 20, background: '#ffd93d', borderRadius: 2 }} />
+              <h3 style={{ fontSize: 16, fontWeight: 700, color: '#fff', letterSpacing: '0.04em', textTransform: 'uppercase', margin: 0 }}>Technical Skills</h3>
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 32 }}>
-              {SKILLS.map(skill => (
+              {SKILLS.map(({ name, color }) => (
                 <span
-                  key={skill}
+                  key={name}
                   style={{
-                    padding: '4px 12px', borderRadius: 20, fontSize: 12,
-                    border: '1px solid rgba(255,255,255,0.1)',
-                    background: 'rgba(255,255,255,0.05)', color: '#e0e0ff',
+                    padding: '4px 10px', borderRadius: 4, fontSize: 11,
+                    fontWeight: 700, letterSpacing: '0.08em',
+                    background: `${color}18`, border: `1px solid ${color}50`, color,
                   }}
                 >
-                  {skill}
+                  {name}
                 </span>
               ))}
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
-              <Award size={18} style={{ color: '#c7a8ff' }} />
-              <h3 style={{ fontSize: 18, fontWeight: 700, color: '#c7a8ff' }}>Recognition</h3>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+              <span style={{ display: 'inline-block', width: 4, height: 20, background: '#c7a8ff', borderRadius: 2 }} />
+              <h3 style={{ fontSize: 16, fontWeight: 700, color: '#fff', letterSpacing: '0.04em', textTransform: 'uppercase', margin: 0 }}>Recognition</h3>
             </div>
             <ul style={{ color: '#9090b8', fontSize: 13, lineHeight: 2 }}>
               <li>Patent Filed — Financial platform tooling</li>
@@ -950,18 +954,13 @@ export default function Home() {
         transition={{ duration: 0.6 }}
         style={{ padding: '80px 24px', maxWidth: 1152, margin: '0 auto', position: 'relative', zIndex: 1 }}
       >
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="gradient-text"
-          style={{ fontSize: 'clamp(2rem,5vw,3.5rem)', fontWeight: 700, textAlign: 'center', marginBottom: 8 }}
-        >
-          Contact
-        </motion.h2>
-        <p style={{ textAlign: 'center', color: '#9090b8', marginBottom: 48, maxWidth: 560, margin: '0 auto 48px' }}>
-          Whether you want to collaborate on music, work on something technical, or just say hi — I&#39;d love to hear from you!
-        </p>
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: 'center', marginBottom: 48 }}>
+          <div style={{ display: 'inline-block', width: 32, height: 4, background: '#c7a8ff', borderRadius: 2, marginBottom: 16 }} />
+          <h2 style={{ fontSize: 'clamp(2rem,5vw,3.5rem)', fontWeight: 800, color: '#fff', margin: '0 0 12px' }}>Contact</h2>
+          <p style={{ color: '#9090b8', maxWidth: 560, margin: '0 auto' }}>
+            Whether you want to collaborate on music, work on something technical, or just say hi — I&#39;d love to hear from you!
+          </p>
+        </motion.div>
 
         {/* Contact cards */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 20, marginBottom: 32 }}>
