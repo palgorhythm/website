@@ -28,7 +28,7 @@ function ParticleCanvas() {
   const particles = useRef<Particle[]>([])
   const animRef = useRef<number>(0)
 
-  const COLORS = ['#ff6b9d', '#4ecdc4', '#a8e6cf', '#ffd93d', '#ff8fab', '#c7a8ff']
+  const COLORS = ['#ff9fb2', '#96f2da', '#a8e6cf', '#ffe566', '#ffd6a5', '#c8b8ff']
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -181,9 +181,9 @@ function MusicPlayer() {
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
           <Music2 size={16} style={{ color: '#ff6b9d' }} />
-          <span style={{ fontSize: 12, fontWeight: 700, color: '#ff6b9d', letterSpacing: '0.1em' }}>BATTERY</span>
+          <span style={{ fontSize: 12, fontWeight: 700, color: '#ff9fb2', letterSpacing: '0.05em' }}>battery</span>
         </div>
-        <button onClick={() => setExpanded(e => !e)} style={{ color: '#9090b8', padding: 4 }}>
+        <button onClick={() => setExpanded(e => !e)} style={{ color: '#55556a', padding: 4 }}>
           {expanded ? <ChevronRight size={14} /> : <Music size={14} />}
         </button>
       </div>
@@ -193,12 +193,12 @@ function MusicPlayer() {
         <div style={{ fontWeight: 700, color: '#fff', fontSize: 14, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
           {track.title}
         </div>
-        <div style={{ fontSize: 11, color: '#9090b8' }}>Track {trackIdx + 1} of {TRACKS.length}</div>
+        <div style={{ fontSize: 11, color: '#55556a' }}>Track {trackIdx + 1} of {TRACKS.length}</div>
       </div>
 
       {/* Controls */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16, marginBottom: expanded ? 12 : 0 }}>
-        <button onClick={prev} style={{ color: '#9090b8' }}><SkipBack size={18} /></button>
+        <button onClick={prev} style={{ color: '#55556a' }}><SkipBack size={18} /></button>
         <button
           onClick={() => setPlaying(p => !p)}
           style={{
@@ -209,11 +209,11 @@ function MusicPlayer() {
         >
           {playing ? <Pause size={18} /> : <Play size={18} />}
         </button>
-        <button onClick={next} style={{ color: '#9090b8' }}><SkipForward size={18} /></button>
+        <button onClick={next} style={{ color: '#55556a' }}><SkipForward size={18} /></button>
         <a
           href={`https://youtube.com/watch?v=${track.ytId}`}
           target="_blank" rel="noopener noreferrer"
-          style={{ color: '#9090b8', marginLeft: 4 }}
+          style={{ color: '#55556a', marginLeft: 4 }}
         >
           <ExternalLink size={14} />
         </a>
@@ -312,7 +312,7 @@ function GigsSection() {
         {ev.title}
       </div>
       {ev.location && (
-        <div style={{ display: 'flex', alignItems: 'center', gap: 4, color: '#9090b8', fontSize: 12 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 4, color: '#55556a', fontSize: 12 }}>
           <MapPin size={11} />
           {ev.location}
         </div>
@@ -331,8 +331,8 @@ function GigsSection() {
     >
       <div style={{ maxWidth: 1152, margin: '0 auto', padding: '0 24px' }}>
         <div style={{ textAlign: 'center', marginBottom: 48 }}>
-          <h2 style={{ fontSize: 'clamp(2rem,5vw,3rem)', fontWeight: 800, color: '#fff', margin: '0 0 8px' }}>Shows &amp; Gigs</h2>
-          <p style={{ color: '#555570', fontSize: 15 }}>Live performances, tours, and appearances</p>
+          <h2 style={{ fontSize: 'clamp(2rem,5vw,3rem)', fontWeight: 700, color: '#fff', margin: '0 0 8px' }}>shows & gigs</h2>
+          <p style={{ color: '#55556a', fontSize: 15 }}>Live performances, tours, and appearances</p>
         </div>
 
         {loading && (
@@ -342,14 +342,14 @@ function GigsSection() {
         )}
 
         {error && (
-          <div className="glass rounded-2xl" style={{ padding: 32, textAlign: 'center', color: '#9090b8' }}>
+          <div className="glass rounded-2xl" style={{ padding: 32, textAlign: 'center', color: '#55556a' }}>
             <Calendar size={32} style={{ margin: '0 auto 12px', color: '#ff6b9d', display: 'block' }} />
             <p>No upcoming shows listed. Check Instagram <a href="https://www.instagram.com/_battery/" target="_blank" rel="noopener noreferrer" style={{ color: '#ff6b9d' }}>@_battery</a> for updates.</p>
           </div>
         )}
 
         {!loading && !error && upcoming.length === 0 && past.length === 0 && (
-          <div className="glass rounded-2xl" style={{ padding: 32, textAlign: 'center', color: '#9090b8' }}>
+          <div className="glass rounded-2xl" style={{ padding: 32, textAlign: 'center', color: '#55556a' }}>
             <Calendar size={32} style={{ margin: '0 auto 12px', color: '#ff6b9d', display: 'block' }} />
             <p>No shows found. Check back soon!</p>
           </div>
@@ -387,39 +387,39 @@ const NAV_LINKS = [
 ]
 
 const STATS = [
-  { value: '101+', label: 'Songs Recorded', color: '#ff6b9d' },
-  { value: '4', label: 'TV & Film Credits', color: '#4ecdc4' },
-  { value: '5', label: 'Major Tours', color: '#ffd93d' },
-  { value: '10+', label: 'Years Active', color: '#c7a8ff' },
+  { value: '101+', label: 'songs recorded', color: '#ff9fb2', dark: '#1a0008' },
+  { value: '4', label: 'tv & film credits', color: '#96f2da', dark: '#001a12' },
+  { value: '5', label: 'major tours', color: '#ffe566', dark: '#1a1600' },
+  { value: '10+', label: 'years active', color: '#c8b8ff', dark: '#0e0018' },
 ]
 
 const MUSIC_CARDS = [
   {
-    accent: '#ff6b9d',
-    tag: 'Jazz & Contemporary Music',
-    title: 'Artist Collaborations',
+    accent: '#ff9fb2',
+    tag: 'jazz & contemporary music',
+    title: 'artist collaborations',
     body: 'Performances with Oliver Tree, SPELLLING, David Binney, Steve Lehman, Myra Melford, Drew Gress, and Tia Fuller across jazz, electronic, pop, and experimental music.',
     icon: <Music2 size={20} />,
   },
   {
-    accent: '#4ecdc4',
-    tag: 'Solo Electronic Project',
-    title: 'BATTERY',
+    accent: '#96f2da',
+    tag: 'solo electronic project',
+    title: 'battery',
     body: 'Drums and electronics combining jazz, electronic music, and West African percussion. Features improvised drum & bass, 8-bit jazz standards, and complex polyrhythms.',
     link: { href: 'https://batterydrums.bandcamp.com/', label: 'Explore Project' },
     icon: <Headphones size={20} />,
   },
   {
-    accent: '#ffd93d',
-    tag: 'NBC, Showtime & HBO Max',
-    title: 'TV & Film',
+    accent: '#ffe566',
+    tag: 'nbc, showtime & hbo max',
+    title: 'tv & film',
     body: "Drum performances for Emmy-nominated productions including New Amsterdam, Yellowjackets, Zoey's Extraordinary Christmas, and Harley Quinn.",
     icon: <Tv size={20} />,
   },
   {
-    accent: '#c7a8ff',
-    tag: 'National & International',
-    title: 'Tours',
+    accent: '#c8b8ff',
+    tag: 'national & international',
+    title: 'tours',
     tours: [
       { name: 'Button Masher US + Canada', year: '2023', href: 'https://buttonmashermusic.com/' },
       { name: 'Angelica Garcia US', year: '2021', href: 'https://www.setlist.fm/setlists/angelica-garcia-43c11f63.html' },
@@ -433,43 +433,43 @@ const MUSIC_CARDS = [
 ]
 
 const EXPERIENCE = [
-  { role: 'Adjunct Professor', org: 'Westminster University', focus: 'Music Department', dates: '2024–Present', color: '#c7a8ff' },
-  { role: 'Senior Software Engineer', org: 'Discord', focus: 'Ads Platform & Self-Expression Tools', dates: '2022–Present', color: '#4ecdc4' },
-  { role: 'Staff Software Engineer', org: 'Mothership', focus: 'Freight Logistics Platform', dates: '2021–2022', color: '#ff6b9d' },
-  { role: 'Software Engineer', org: 'Bird', focus: 'Mobility Platform', dates: '2019–2020', color: '#ffd93d' },
+  { role: 'adjunct professor', org: 'Westminster University', focus: 'music department', dates: '2024–present', color: '#c8b8ff' },
+  { role: 'senior software engineer', org: 'Discord', focus: 'ads platform & self-expression tools', dates: '2022–present', color: '#96f2da' },
+  { role: 'staff software engineer', org: 'Mothership', focus: 'freight logistics platform', dates: '2021–2022', color: '#ff9fb2' },
+  { role: 'software engineer', org: 'Bird', focus: 'mobility platform', dates: '2019–2020', color: '#ffe566' },
 ]
 
 const EDUCATION = [
-  { degree: 'MFA', institution: 'CalArts', field: 'Music', dates: '2016–2017', color: '#ff6b9d' },
-  { degree: 'Graduate Studies', institution: 'New England Conservatory', field: 'Jazz & Contemporary Music', dates: '2015–2016', color: '#4ecdc4' },
-  { degree: "Bachelor's", institution: 'UC Berkeley', field: 'Applied Mathematics & Music', dates: 'Summa Cum Laude', color: '#ffd93d' },
+  { degree: 'mfa', institution: 'CalArts', field: 'music', dates: '2016–2017', color: '#ff9fb2' },
+  { degree: 'graduate studies', institution: 'New England Conservatory', field: 'jazz & contemporary music', dates: '2015–2016', color: '#96f2da' },
+  { degree: "bachelor's", institution: 'UC Berkeley', field: 'applied mathematics & music', dates: 'summa cum laude', color: '#ffe566' },
 ]
 
 const SKILLS = [
-  { name: 'TypeScript', color: '#4ecdc4' },
-  { name: 'Python', color: '#ffd93d' },
-  { name: 'React', color: '#ff6b9d' },
-  { name: 'Node.js', color: '#a8e6cf' },
-  { name: 'AWS', color: '#ffd93d' },
-  { name: 'Unity', color: '#c7a8ff' },
-  { name: 'Pro Tools', color: '#ff6b9d' },
-  { name: 'Ableton', color: '#4ecdc4' },
+  { name: 'TypeScript', color: '#96f2da', dark: '#001a12' },
+  { name: 'Python', color: '#ffe566', dark: '#1a1600' },
+  { name: 'React', color: '#ff9fb2', dark: '#1a0008' },
+  { name: 'Node.js', color: '#c8b8ff', dark: '#0e0018' },
+  { name: 'AWS', color: '#ffd6a5', dark: '#1a0e00' },
+  { name: 'Unity', color: '#a8e6cf', dark: '#001a0e' },
+  { name: 'Pro Tools', color: '#ff9fb2', dark: '#1a0008' },
+  { name: 'Ableton', color: '#96f2da', dark: '#001a12' },
 ]
 
 const SOCIALS = [
-  { label: 'LinkedIn', sub: '6,130+ connections', href: 'https://www.linkedin.com/in/palgorhythm/', color: '#4ecdc4', Icon: Link },
-  { label: 'GitHub', sub: 'Open source projects', href: 'https://github.com/palgorhythm', color: '#c7a8ff', Icon: GitBranch },
-  { label: 'Instagram', sub: '@_battery updates', href: 'https://www.instagram.com/_battery/', color: '#ff6b9d', Icon: AtSign },
-  { label: 'YouTube', sub: 'Music videos', href: 'https://www.youtube.com/channel/UCO6KYK2RJU7ARxsLhutzeng', color: '#ffd93d', Icon: Video },
-  { label: 'Bandcamp', sub: 'BATTERY releases', href: 'https://batterydrums.bandcamp.com/', color: '#a8e6cf', Icon: Music },
-  { label: 'Spotify', sub: 'Full discography', href: 'https://open.spotify.com/playlist/0IeUXYZUUB9vz172ouSQ0p?si=7702f61a363f4a69', color: '#ff8fab', Icon: Disc },
+  { label: 'linkedin', sub: '6,130+ connections', href: 'https://www.linkedin.com/in/palgorhythm/', color: '#96f2da', Icon: Link },
+  { label: 'github', sub: 'open source projects', href: 'https://github.com/palgorhythm', color: '#c8b8ff', Icon: GitBranch },
+  { label: 'instagram', sub: '@_battery', href: 'https://www.instagram.com/_battery/', color: '#ff9fb2', Icon: AtSign },
+  { label: 'youtube', sub: 'music videos', href: 'https://www.youtube.com/channel/UCO6KYK2RJU7ARxsLhutzeng', color: '#ffe566', Icon: Video },
+  { label: 'bandcamp', sub: 'battery releases', href: 'https://batterydrums.bandcamp.com/', color: '#a8e6cf', Icon: Music },
+  { label: 'spotify', sub: 'full discography', href: 'https://open.spotify.com/playlist/0IeUXYZUUB9vz172ouSQ0p?si=7702f61a363f4a69', color: '#ffd6a5', Icon: Disc },
 ]
 
 const CONTACT_CARDS = [
-  { label: 'Email', desc: 'Direct contact for all inquiries and collaborations', href: 'mailto:jacob.porter@example.com', linkText: 'Send me an email', color: '#ff6b9d', Icon: Mail },
-  { label: 'Music', desc: 'Recording, live shows, collaborations, BATTERY bookings', href: 'https://www.instagram.com/_battery/', linkText: 'Follow @_battery', color: '#4ecdc4', Icon: AtSign },
-  { label: 'Work', desc: 'Software engineering, teaching, technical consulting', href: 'https://www.linkedin.com/in/palgorhythm/', linkText: 'Connect on LinkedIn', color: '#ffd93d', Icon: Link },
-  { label: 'Press', desc: 'Media inquiries, interviews, and collaboration requests', href: 'mailto:jacob.porter@example.com', linkText: 'Get in touch', color: '#c7a8ff', Icon: Globe },
+  { label: 'email', desc: 'direct contact for all inquiries and collaborations', href: 'mailto:jacob.porter@example.com', linkText: 'send me an email', color: '#ff9fb2', Icon: Mail },
+  { label: 'music', desc: 'recording, live shows, collaborations, battery bookings', href: 'https://www.instagram.com/_battery/', linkText: 'follow @_battery', color: '#96f2da', Icon: AtSign },
+  { label: 'work', desc: 'software engineering, teaching, technical consulting', href: 'https://www.linkedin.com/in/palgorhythm/', linkText: 'connect on linkedin', color: '#ffe566', Icon: Link },
+  { label: 'press', desc: 'media inquiries, interviews, and collaboration requests', href: 'mailto:jacob.porter@example.com', linkText: 'get in touch', color: '#c8b8ff', Icon: Globe },
 ]
 
 export default function Home() {
@@ -546,8 +546,8 @@ export default function Home() {
           transition: 'background 0.3s',
         }}
       >
-        <a href="#top" style={{ fontSize: 18, fontWeight: 800, color: '#fff', letterSpacing: '-0.03em' }}>
-          Jacob Porter
+        <a href="#top" style={{ fontSize: 16, fontWeight: 600, color: '#fff', letterSpacing: '-0.02em' }}>
+          jacob porter
         </a>
 
         {/* Desktop links */}
@@ -586,11 +586,11 @@ export default function Home() {
             rel="noopener noreferrer"
             style={{
               padding: '8px 18px', borderRadius: 6, fontSize: 12, fontWeight: 700,
-              color: '#fff', background: 'linear-gradient(135deg, #ff6b9d, #4ecdc4)',
-              letterSpacing: '0.04em',
+              color: '#1a0008', background: '#ff9fb2',
+              letterSpacing: '0.01em',
             }}
           >
-            BATTERY
+            battery
           </a>
         </div>
 
@@ -636,13 +636,13 @@ export default function Home() {
                 rel="noopener noreferrer"
                 style={{
                   display: 'inline-block', padding: '10px 20px', borderRadius: 6,
-                  fontSize: 13, fontWeight: 700, color: '#fff',
-                  background: 'linear-gradient(135deg, #ff6b9d, #4ecdc4)',
-                  letterSpacing: '0.04em',
+                  fontSize: 13, fontWeight: 700, color: '#1a0008',
+                  background: '#ff9fb2',
+                  letterSpacing: '0.01em',
                   textAlign: 'center',
                 }}
               >
-                BATTERY
+                battery
               </a>
             </div>
           </motion.div>
@@ -671,9 +671,9 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
-          <h1 style={{ fontSize: 'clamp(3rem,10vw,7rem)', fontWeight: 800, lineHeight: 1.0, margin: '0 0 16px', letterSpacing: '-0.04em' }}>
-            <span style={{ color: '#fff' }}>Jacob </span>
-            <span className="hero-name">Porter</span>
+          <h1 style={{ fontSize: 'clamp(3rem,10vw,7rem)', fontWeight: 700, lineHeight: 1.0, margin: '0 0 16px', letterSpacing: '-0.035em' }}>
+            <span style={{ color: '#fff' }}>jacob </span>
+            <span style={{ color: '#ff9fb2' }}>porter</span>
           </h1>
         </motion.div>
 
@@ -697,7 +697,7 @@ export default function Home() {
             className="btn-primary"
             style={{ padding: '13px 28px', borderRadius: 8, fontSize: 14, display: 'inline-block' }}
           >
-            Explore My Music
+            explore my music
           </a>
           <a
             href="https://open.spotify.com/playlist/0IeUXYZUUB9vz172ouSQ0p?si=7702f61a363f4a69"
@@ -706,7 +706,7 @@ export default function Home() {
             className="btn-secondary"
             style={{ padding: '13px 28px', borderRadius: 8, fontSize: 14, display: 'inline-block' }}
           >
-            101 Track Discography
+            101 track discography
           </a>
         </motion.div>
 
@@ -715,7 +715,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
-          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, color: '#9090b8' }}
+          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, color: '#55556a' }}
         >
           <span style={{ fontSize: 11, letterSpacing: '0.2em' }}>SCROLL</span>
           <motion.div
@@ -737,26 +737,26 @@ export default function Home() {
         style={{ padding: '80px 24px', maxWidth: 1152, margin: '0 auto', position: 'relative', zIndex: 1 }}
       >
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: 'center', marginBottom: 48 }}>
-          <h2 style={{ fontSize: 'clamp(2rem,5vw,3.5rem)', fontWeight: 800, color: '#fff', margin: '0 0 12px' }}>Music</h2>
-          <p style={{ color: '#555570', maxWidth: 560, margin: '0 auto', fontSize: 15 }}>
+          <h2 style={{ fontSize: 'clamp(2rem,5vw,3.5rem)', fontWeight: 700, color: '#fff', margin: '0 0 12px' }}>music</h2>
+          <p style={{ color: '#55556a', maxWidth: 560, margin: '0 auto', fontSize: 15 }}>
             Over a decade of professional work across genres — jazz, electronic, TV & film, and live performance.
           </p>
         </motion.div>
 
         {/* Stats */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: 16, marginBottom: 48 }}>
-          {STATS.map(({ value, label, color }, i) => (
+          {STATS.map(({ value, label, color, dark }, i) => (
             <motion.div
               key={label}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="glass rounded-xl"
-              style={{ padding: '20px 24px', textAlign: 'center', borderTop: `2px solid ${color}` }}
+              className="rounded-xl"
+              style={{ padding: '22px 24px', textAlign: 'center', background: color }}
             >
-              <div style={{ fontSize: 36, fontWeight: 800, lineHeight: 1, color, marginBottom: 6 }}>{value}</div>
-              <div style={{ color: '#555570', fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>{label}</div>
+              <div style={{ fontSize: 38, fontWeight: 700, lineHeight: 1, color: dark, marginBottom: 5 }}>{value}</div>
+              <div style={{ color: dark, fontSize: 11, fontWeight: 600, letterSpacing: '0.07em', opacity: 0.7 }}>{label}</div>
             </motion.div>
           ))}
         </div>
@@ -775,7 +775,7 @@ export default function Home() {
             >
               <div style={{ fontSize: 10, color: card.accent, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 10 }}>{card.tag}</div>
               <h3 style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginBottom: 12 }}>{card.title}</h3>
-              {card.body && <p style={{ color: '#9090b8', lineHeight: 1.7, fontSize: 14 }}>{card.body}</p>}
+              {card.body && <p style={{ color: '#55556a', lineHeight: 1.7, fontSize: 14 }}>{card.body}</p>}
               {card.tours && (
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                   {card.tours.map(({ name, year, href }) => (
@@ -816,8 +816,8 @@ export default function Home() {
           style={{ padding: 40, textAlign: 'center', marginTop: 32 }}
         >
           <Music size={32} style={{ color: '#ff6b9d', margin: '0 auto 12px', display: 'block' }} />
-          <h3 style={{ fontSize: 22, fontWeight: 700, color: '#fff', marginBottom: 8 }}>Complete Discography</h3>
-          <p style={{ color: '#9090b8', marginBottom: 24 }}>From electronic experiments to jazz collaborations — all 101+ tracks available on Spotify.</p>
+          <h3 style={{ fontSize: 22, fontWeight: 700, color: '#fff', marginBottom: 8 }}>complete discography</h3>
+          <p style={{ color: '#55556a', marginBottom: 24 }}>From electronic experiments to jazz collaborations — all 101+ tracks on Spotify.</p>
           <a
             href="https://open.spotify.com/playlist/0IeUXYZUUB9vz172ouSQ0p?si=7702f61a363f4a69"
             target="_blank"
@@ -825,7 +825,7 @@ export default function Home() {
             className="btn-primary"
             style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '11px 28px', borderRadius: 8, fontSize: 14 }}
           >
-            Open Discography <ExternalLink size={15} />
+            open discography <ExternalLink size={15} />
           </a>
         </motion.div>
       </motion.section>
@@ -843,8 +843,8 @@ export default function Home() {
         style={{ padding: '80px 24px', maxWidth: 1152, margin: '0 auto', position: 'relative', zIndex: 1 }}
       >
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: 'center', marginBottom: 48 }}>
-          <h2 style={{ fontSize: 'clamp(2rem,5vw,3.5rem)', fontWeight: 800, color: '#fff', margin: '0 0 12px' }}>Expertise</h2>
-          <p style={{ color: '#555570', maxWidth: 560, margin: '0 auto', fontSize: 15 }}>
+          <h2 style={{ fontSize: 'clamp(2rem,5vw,3.5rem)', fontWeight: 700, color: '#fff', margin: '0 0 12px' }}>expertise</h2>
+          <p style={{ color: '#55556a', maxWidth: 560, margin: '0 auto', fontSize: 15 }}>
             Building software systems for over a decade while maintaining an active career as a musician. Currently at Discord on ads and creator tools.
           </p>
         </motion.div>
@@ -859,16 +859,16 @@ export default function Home() {
             style={{ padding: 32 }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 24 }}>
-              <span style={{ display: 'inline-block', width: 4, height: 20, background: '#ff6b9d', borderRadius: 2 }} />
-              <h3 style={{ fontSize: 16, fontWeight: 700, color: '#fff', letterSpacing: '0.04em', textTransform: 'uppercase', margin: 0 }}>Experience</h3>
+              <span style={{ display: 'inline-block', width: 4, height: 20, background: '#ff9fb2', borderRadius: 2 }} />
+              <h3 style={{ fontSize: 14, fontWeight: 600, color: '#fff', letterSpacing: '0.02em', margin: 0 }}>experience</h3>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
               {EXPERIENCE.map(({ role, org, focus, dates, color }) => (
                 <div key={org} style={{ borderLeft: `2px solid ${color}`, paddingLeft: 16 }}>
                   <div style={{ fontWeight: 700, color: '#fff', fontSize: 15 }}>{role}</div>
                   <div style={{ fontWeight: 700, color, fontSize: 13 }}>{org}</div>
-                  <div style={{ color: '#9090b8', fontSize: 13 }}>{focus}</div>
-                  <div style={{ color: '#9090b8', fontSize: 11, marginTop: 2 }}>{dates}</div>
+                  <div style={{ color: '#55556a', fontSize: 13 }}>{focus}</div>
+                  <div style={{ color: '#55556a', fontSize: 11, marginTop: 2 }}>{dates}</div>
                 </div>
               ))}
             </div>
@@ -883,32 +883,31 @@ export default function Home() {
             style={{ padding: 32 }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 24 }}>
-              <span style={{ display: 'inline-block', width: 4, height: 20, background: '#4ecdc4', borderRadius: 2 }} />
-              <h3 style={{ fontSize: 16, fontWeight: 700, color: '#fff', letterSpacing: '0.04em', textTransform: 'uppercase', margin: 0 }}>Education</h3>
+              <span style={{ display: 'inline-block', width: 4, height: 20, background: '#96f2da', borderRadius: 2 }} />
+              <h3 style={{ fontSize: 14, fontWeight: 600, color: '#fff', letterSpacing: '0.02em', margin: 0 }}>education</h3>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginBottom: 32 }}>
               {EDUCATION.map(({ degree, institution, field, dates, color }) => (
                 <div key={institution} style={{ borderLeft: `2px solid ${color}`, paddingLeft: 16 }}>
                   <div style={{ fontWeight: 700, color: '#fff', fontSize: 15 }}>{degree}</div>
                   <div style={{ fontWeight: 700, color, fontSize: 13 }}>{institution}</div>
-                  <div style={{ color: '#9090b8', fontSize: 13 }}>{field}</div>
-                  <div style={{ color: '#9090b8', fontSize: 11, marginTop: 2 }}>{dates}</div>
+                  <div style={{ color: '#55556a', fontSize: 13 }}>{field}</div>
+                  <div style={{ color: '#55556a', fontSize: 11, marginTop: 2 }}>{dates}</div>
                 </div>
               ))}
             </div>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-              <span style={{ display: 'inline-block', width: 4, height: 20, background: '#ffd93d', borderRadius: 2 }} />
-              <h3 style={{ fontSize: 16, fontWeight: 700, color: '#fff', letterSpacing: '0.04em', textTransform: 'uppercase', margin: 0 }}>Technical Skills</h3>
+              <span style={{ display: 'inline-block', width: 4, height: 20, background: '#ffe566', borderRadius: 2 }} />
+              <h3 style={{ fontSize: 14, fontWeight: 600, color: '#fff', letterSpacing: '0.02em', margin: 0 }}>technical skills</h3>
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 32 }}>
-              {SKILLS.map(({ name, color }) => (
+              {SKILLS.map(({ name, color, dark }) => (
                 <span
                   key={name}
                   style={{
                     padding: '5px 12px', borderRadius: 4, fontSize: 12,
-                    fontWeight: 500, border: `1px solid ${color}35`, color,
-                    background: `${color}0a`,
+                    fontWeight: 600, background: color, color: dark,
                   }}
                 >
                   {name}
@@ -917,10 +916,10 @@ export default function Home() {
             </div>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-              <span style={{ display: 'inline-block', width: 4, height: 20, background: '#c7a8ff', borderRadius: 2 }} />
-              <h3 style={{ fontSize: 16, fontWeight: 700, color: '#fff', letterSpacing: '0.04em', textTransform: 'uppercase', margin: 0 }}>Recognition</h3>
+              <span style={{ display: 'inline-block', width: 4, height: 20, background: '#c8b8ff', borderRadius: 2 }} />
+              <h3 style={{ fontSize: 14, fontWeight: 600, color: '#fff', letterSpacing: '0.02em', margin: 0 }}>recognition</h3>
             </div>
-            <ul style={{ color: '#9090b8', fontSize: 13, lineHeight: 2 }}>
+            <ul style={{ color: '#55556a', fontSize: 13, lineHeight: 2 }}>
               <li>Patent Filed — Financial platform tooling</li>
               <li>6,130+ LinkedIn connections</li>
               <li>8.5k+ Instagram followers (@_battery)</li>
@@ -939,8 +938,8 @@ export default function Home() {
         style={{ padding: '80px 24px', maxWidth: 1152, margin: '0 auto', position: 'relative', zIndex: 1 }}
       >
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: 'center', marginBottom: 48 }}>
-          <h2 style={{ fontSize: 'clamp(2rem,5vw,3.5rem)', fontWeight: 800, color: '#fff', margin: '0 0 12px' }}>Contact</h2>
-          <p style={{ color: '#555570', maxWidth: 560, margin: '0 auto', fontSize: 15 }}>
+          <h2 style={{ fontSize: 'clamp(2rem,5vw,3.5rem)', fontWeight: 700, color: '#fff', margin: '0 0 12px' }}>contact</h2>
+          <p style={{ color: '#55556a', maxWidth: 560, margin: '0 auto', fontSize: 15 }}>
             Whether you want to collaborate on music, work on something technical, or just say hi — I&#39;d love to hear from you!
           </p>
         </motion.div>
@@ -959,7 +958,7 @@ export default function Home() {
             >
               <Icon size={28} style={{ color, margin: '0 auto 12px', display: 'block' }} />
               <h3 style={{ fontSize: 18, fontWeight: 700, color, marginBottom: 8 }}>{label}</h3>
-              <p style={{ color: '#9090b8', fontSize: 13, marginBottom: 16, lineHeight: 1.6 }}>{desc}</p>
+              <p style={{ color: '#55556a', fontSize: 13, marginBottom: 16, lineHeight: 1.6 }}>{desc}</p>
               <a
                 href={href}
                 target={href.startsWith('mailto') ? undefined : '_blank'}
@@ -980,7 +979,7 @@ export default function Home() {
           className="glass rounded-2xl"
           style={{ padding: 32 }}
         >
-          <h3 style={{ fontSize: 20, fontWeight: 700, color: '#fff', textAlign: 'center', marginBottom: 24 }}>Find Me Online</h3>
+          <h3 style={{ fontSize: 18, fontWeight: 600, color: '#fff', textAlign: 'center', marginBottom: 24 }}>find me online</h3>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 16 }}>
             {SOCIALS.map(({ label, sub, href, color, Icon }) => (
               <a
@@ -1022,14 +1021,14 @@ export default function Home() {
           className="glass-strong rounded-2xl"
           style={{ padding: 32, textAlign: 'center', marginTop: 32 }}
         >
-          <p className="gradient-text" style={{ fontSize: 18, fontWeight: 700, marginBottom: 8 }}>Jacob Porter</p>
-          <p style={{ color: '#9090b8', fontSize: 13, marginBottom: 4 }}>Available for gigs, collaborations, and interesting projects</p>
-          <p style={{ color: '#9090b8', fontSize: 12 }}>© {new Date().getFullYear()} Jacob Porter. Making music and code.</p>
+          <p style={{ fontSize: 18, fontWeight: 700, marginBottom: 8, color: '#ff9fb2' }}>jacob porter</p>
+          <p style={{ color: '#444458', fontSize: 13, marginBottom: 4 }}>available for gigs, collaborations, and interesting projects</p>
+          <p style={{ color: '#444458', fontSize: 12 }}>© {new Date().getFullYear()} jacob porter</p>
           <a
             href="#top"
-            style={{ display: 'inline-block', marginTop: 16, color: '#ff6b9d', fontSize: 13, fontWeight: 600 }}
+            style={{ display: 'inline-block', marginTop: 16, color: '#96f2da', fontSize: 13, fontWeight: 500 }}
           >
-            Back to Top ↑
+            back to top ↑
           </a>
         </motion.div>
       </motion.section>
