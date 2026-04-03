@@ -142,16 +142,16 @@ function ParticleCanvas() {
 // ─── Music Player ────────────────────────────────────────────────────────────
 
 const TRACKS = [
-  { title: 'Dial Up', ytId: 'ab7NSlilCjY' },
+  { title: 'dial up', ytId: 'ab7NSlilCjY' },
   { title: 'fish beat', ytId: '6NepMDywEVQ' },
-  { title: 'GBA startup', ytId: 'Cilry5yHBeI' },
+  { title: 'gba startup', ytId: 'Cilry5yHBeI' },
   { title: 'saturn', ytId: '1V-4hy1ySyk' },
-  { title: 'Big Blues', ytId: '0Iu---0yzso' },
+  { title: 'big blues', ytId: '0Iu---0yzso' },
   { title: 'green mother', ytId: 'Bws0xrQndeo' },
   { title: 'roseparade', ytId: '7EMVzXaNrE8' },
   { title: 'LAZER', ytId: 'yFFJ5nqSV38' },
   { title: 'A view through the window', ytId: 'czrDzvjRqG8' },
-  { title: 'Fabrica', ytId: 'Nh80wN7ep0M' },
+  { title: 'fabrica', ytId: 'Nh80wN7ep0M' },
   { title: 'Do u have Wifi', ytId: 'QNWXW5aPstU' },
 ]
 
@@ -193,7 +193,7 @@ function MusicPlayer() {
         <div style={{ fontWeight: 700, color: '#fff', fontSize: 14, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
           {track.title}
         </div>
-        <div style={{ fontSize: 11, color: '#55556a' }}>Track {trackIdx + 1} of {TRACKS.length}</div>
+        <div style={{ fontSize: 11, color: '#55556a' }}>track {trackIdx + 1} of {TRACKS.length}</div>
       </div>
 
       {/* Controls */}
@@ -293,7 +293,7 @@ function GigsSection() {
         setLoading(false)
       })
       .catch(() => {
-        setError('Could not load calendar')
+        setError('could not load calendar')
         setLoading(false)
       })
   }, [])
@@ -344,20 +344,20 @@ function GigsSection() {
         {error && (
           <div className="glass rounded-2xl" style={{ padding: 32, textAlign: 'center', color: '#55556a' }}>
             <Calendar size={32} style={{ margin: '0 auto 12px', color: '#ff6b9d', display: 'block' }} />
-            <p>No upcoming shows listed. Check Instagram <a href="https://www.instagram.com/_battery/" target="_blank" rel="noopener noreferrer" style={{ color: '#ff6b9d' }}>@_battery</a> for updates.</p>
+            <p>no upcoming shows listed. check instagram <a href="https://www.instagram.com/_battery/" target="_blank" rel="noopener noreferrer" style={{ color: '#ff9fb2' }}>@_battery</a> for updates.</p>
           </div>
         )}
 
         {!loading && !error && upcoming.length === 0 && past.length === 0 && (
           <div className="glass rounded-2xl" style={{ padding: 32, textAlign: 'center', color: '#55556a' }}>
             <Calendar size={32} style={{ margin: '0 auto 12px', color: '#ff6b9d', display: 'block' }} />
-            <p>No shows found. Check back soon!</p>
+            <p>no shows found. check back soon!</p>
           </div>
         )}
 
         {!loading && !error && upcoming.length > 0 && (
           <div style={{ marginBottom: 40 }}>
-            <h3 style={{ color: '#4ecdc4', fontWeight: 600, fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 16 }}>Upcoming</h3>
+            <h3 style={{ color: '#96f2da', fontWeight: 600, fontSize: 11, letterSpacing: '0.08em', marginBottom: 16 }}>upcoming</h3>
             <div style={{ display: 'flex', gap: 16, overflowX: 'auto', paddingBottom: 12 }}>
               {upcoming.map(ev => <GigCard key={ev.id} ev={ev} />)}
             </div>
@@ -366,7 +366,7 @@ function GigsSection() {
 
         {!loading && !error && past.length > 0 && (
           <div>
-            <h3 style={{ color: '#444460', fontWeight: 600, fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 16 }}>Past</h3>
+            <h3 style={{ color: '#444460', fontWeight: 600, fontSize: 11, letterSpacing: '0.08em', marginBottom: 16 }}>past</h3>
             <div style={{ display: 'flex', gap: 16, overflowX: 'auto', paddingBottom: 12 }}>
               {past.map(ev => <GigCard key={ev.id} ev={ev} />)}
             </div>
@@ -398,22 +398,22 @@ const MUSIC_CARDS = [
     accent: '#ff9fb2',
     tag: 'jazz & contemporary music',
     title: 'artist collaborations',
-    body: 'Performances with Oliver Tree, SPELLLING, David Binney, Steve Lehman, Myra Melford, Drew Gress, and Tia Fuller across jazz, electronic, pop, and experimental music.',
+    body: 'performances with Oliver Tree, SPELLLING, David Binney, Steve Lehman, Myra Melford, Drew Gress, and Tia Fuller across jazz, electronic, pop, and experimental music.',
     icon: <Music2 size={20} />,
   },
   {
     accent: '#96f2da',
     tag: 'solo electronic project',
     title: 'battery',
-    body: 'Drums and electronics combining jazz, electronic music, and West African percussion. Features improvised drum & bass, 8-bit jazz standards, and complex polyrhythms.',
-    link: { href: 'https://batterydrums.bandcamp.com/', label: 'Explore Project' },
+    body: 'drums and electronics combining jazz, electronic music, and West African percussion. features improvised drum & bass, 8-bit jazz standards, and complex polyrhythms.',
+    link: { href: 'https://batterydrums.bandcamp.com/', label: 'explore project' },
     icon: <Headphones size={20} />,
   },
   {
     accent: '#ffe566',
     tag: 'nbc, showtime & hbo max',
     title: 'tv & film',
-    body: "Drum performances for Emmy-nominated productions including New Amsterdam, Yellowjackets, Zoey's Extraordinary Christmas, and Harley Quinn.",
+    body: "drum performances for Emmy-nominated productions including New Amsterdam, Yellowjackets, Zoey's Extraordinary Christmas, and Harley Quinn.",
     icon: <Tv size={20} />,
   },
   {
@@ -683,7 +683,7 @@ export default function Home() {
           transition={{ delay: 0.35, duration: 0.6 }}
           style={{ fontSize: 'clamp(0.85rem,2vw,1.05rem)', color: '#666680', letterSpacing: '0.08em', marginBottom: 32, textTransform: 'uppercase', fontWeight: 500 }}
         >
-          Drummer · Producer · Software Engineer
+          drummer · producer · software engineer
         </motion.p>
 
         <motion.div
@@ -717,7 +717,7 @@ export default function Home() {
           transition={{ delay: 1 }}
           style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, color: '#55556a' }}
         >
-          <span style={{ fontSize: 11, letterSpacing: '0.2em' }}>SCROLL</span>
+          <span style={{ fontSize: 11, letterSpacing: '0.2em' }}>scroll</span>
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
@@ -739,7 +739,7 @@ export default function Home() {
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: 'center', marginBottom: 48 }}>
           <h2 style={{ fontSize: 'clamp(2rem,5vw,3.5rem)', fontWeight: 700, color: '#fff', margin: '0 0 12px' }}>music</h2>
           <p style={{ color: '#55556a', maxWidth: 560, margin: '0 auto', fontSize: 15 }}>
-            Over a decade of professional work across genres — jazz, electronic, TV & film, and live performance.
+            over a decade of professional work across genres — jazz, electronic, tv & film, and live performance.
           </p>
         </motion.div>
 
@@ -817,7 +817,7 @@ export default function Home() {
         >
           <Music size={32} style={{ color: '#ff6b9d', margin: '0 auto 12px', display: 'block' }} />
           <h3 style={{ fontSize: 22, fontWeight: 700, color: '#fff', marginBottom: 8 }}>complete discography</h3>
-          <p style={{ color: '#55556a', marginBottom: 24 }}>From electronic experiments to jazz collaborations — all 101+ tracks on Spotify.</p>
+          <p style={{ color: '#55556a', marginBottom: 24 }}>from electronic experiments to jazz collaborations — all 101+ tracks on Spotify.</p>
           <a
             href="https://open.spotify.com/playlist/0IeUXYZUUB9vz172ouSQ0p?si=7702f61a363f4a69"
             target="_blank"
@@ -845,7 +845,7 @@ export default function Home() {
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: 'center', marginBottom: 48 }}>
           <h2 style={{ fontSize: 'clamp(2rem,5vw,3.5rem)', fontWeight: 700, color: '#fff', margin: '0 0 12px' }}>expertise</h2>
           <p style={{ color: '#55556a', maxWidth: 560, margin: '0 auto', fontSize: 15 }}>
-            Building software systems for over a decade while maintaining an active career as a musician. Currently at Discord on ads and creator tools.
+            building software systems for over a decade while maintaining an active career as a musician. currently at Discord on ads and creator tools.
           </p>
         </motion.div>
 
@@ -920,9 +920,9 @@ export default function Home() {
               <h3 style={{ fontSize: 14, fontWeight: 600, color: '#fff', letterSpacing: '0.02em', margin: 0 }}>recognition</h3>
             </div>
             <ul style={{ color: '#55556a', fontSize: 13, lineHeight: 2 }}>
-              <li>Patent Filed — Financial platform tooling</li>
-              <li>6,130+ LinkedIn connections</li>
-              <li>8.5k+ Instagram followers (@_battery)</li>
+              <li>patent filed — financial platform tooling</li>
+              <li>6,130+ linkedin connections</li>
+              <li>8.5k+ instagram followers (@_battery)</li>
             </ul>
           </motion.div>
         </div>
@@ -940,7 +940,7 @@ export default function Home() {
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: 'center', marginBottom: 48 }}>
           <h2 style={{ fontSize: 'clamp(2rem,5vw,3.5rem)', fontWeight: 700, color: '#fff', margin: '0 0 12px' }}>contact</h2>
           <p style={{ color: '#55556a', maxWidth: 560, margin: '0 auto', fontSize: 15 }}>
-            Whether you want to collaborate on music, work on something technical, or just say hi — I&#39;d love to hear from you!
+            whether you want to collaborate on music, work on something technical, or just say hi — i'd love to hear from you!
           </p>
         </motion.div>
 
