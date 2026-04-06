@@ -383,7 +383,7 @@ function GigsSection() {
 
   const formatDate = (ev: GigEvent) => {
     if (!ev.date) return ''
-    return new Date(ev.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    return new Date(ev.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).toLowerCase()
   }
 
   const GigCard = ({ ev }: { ev: GigEvent }) => (
@@ -481,7 +481,7 @@ const MUSIC_CARDS = [
     accent: '#ff9fb2',
     tag: 'jazz & contemporary music',
     title: 'artist collaborations',
-    body: 'performances with Oliver Tree, SPELLLING, David Binney, Steve Lehman, Myra Melford, Drew Gress, and Tia Fuller across jazz, electronic, pop, and experimental music.',
+    body: 'performances with oliver tree, spellling, david binney, steve lehman, myra melford, drew gress, and tia fuller across jazz, electronic, pop, and experimental music.',
     icon: <Music2 size={20} />,
   },
   {
@@ -496,7 +496,7 @@ const MUSIC_CARDS = [
     accent: '#ffe566',
     tag: 'nbc, showtime & hbo max',
     title: 'tv & film',
-    body: "drum performances for Emmy-nominated productions including New Amsterdam, Yellowjackets, Zoey's Extraordinary Christmas, and Harley Quinn.",
+    body: "drum performances for emmy-nominated productions including new amsterdam, yellowjackets, zoey's extraordinary christmas, and harley quinn.",
     icon: <Tv size={20} />,
   },
   {
@@ -504,39 +504,39 @@ const MUSIC_CARDS = [
     tag: 'national & international',
     title: 'tours',
     tours: [
-      { name: 'Button Masher US + Canada', year: '2023', href: 'https://buttonmashermusic.com/' },
-      { name: 'Angelica Garcia US', year: '2021', href: 'https://www.setlist.fm/setlists/angelica-garcia-43c11f63.html' },
-      { name: 'Oliver Tree US', year: '2018', href: 'https://www.setlist.fm/stats/average-setlist/oliver-tree-2bcfc89e.html?tour=6bdcdef6' },
-      { name: 'Standards US', year: '2018', href: '' },
-      { name: 'Sélébéyone EU', year: '2017', href: 'https://stevelehman.bandcamp.com/album/s-l-b-yone' },
-      { name: 'BATTERY US', year: '2016', href: 'https://batterydrums.bandcamp.com/' },
+      { name: 'button masher US + canada', year: '2023', href: 'https://buttonmashermusic.com/' },
+      { name: 'angelica garcia US', year: '2021', href: 'https://www.setlist.fm/setlists/angelica-garcia-43c11f63.html' },
+      { name: 'oliver tree US', year: '2018', href: 'https://www.setlist.fm/stats/average-setlist/oliver-tree-2bcfc89e.html?tour=6bdcdef6' },
+      { name: 'standards US', year: '2018', href: '' },
+      { name: 'sélébéyone EU', year: '2017', href: 'https://stevelehman.bandcamp.com/album/s-l-b-yone' },
+      { name: 'battery US', year: '2016', href: 'https://batterydrums.bandcamp.com/' },
     ],
     icon: <Globe size={20} />,
   },
 ]
 
 const EXPERIENCE = [
-  { role: 'adjunct professor', org: 'Westminster University', focus: 'music department', dates: '2024–present', color: '#c8b8ff' },
-  { role: 'senior software engineer', org: 'Discord', focus: 'ads platform & self-expression tools', dates: '2022–present', color: '#96f2da' },
-  { role: 'staff software engineer', org: 'Mothership', focus: 'freight logistics platform', dates: '2021–2022', color: '#ff9fb2' },
-  { role: 'software engineer', org: 'Bird', focus: 'mobility platform', dates: '2019–2020', color: '#ffe566' },
+  { role: 'adjunct professor', org: 'westminster university', focus: 'music department', dates: '2024–present', color: '#c8b8ff' },
+  { role: 'senior software engineer', org: 'discord', focus: 'ads platform & self-expression tools', dates: '2022–present', color: '#96f2da' },
+  { role: 'staff software engineer', org: 'mothership', focus: 'freight logistics platform', dates: '2021–2022', color: '#ff9fb2' },
+  { role: 'software engineer', org: 'bird', focus: 'mobility platform', dates: '2019–2020', color: '#ffe566' },
 ]
 
 const EDUCATION = [
-  { degree: 'mfa', institution: 'CalArts', field: 'music', dates: '2016–2017', color: '#ff9fb2' },
-  { degree: 'graduate studies', institution: 'New England Conservatory', field: 'jazz & contemporary music', dates: '2015–2016', color: '#96f2da' },
-  { degree: "bachelor's", institution: 'UC Berkeley', field: 'applied mathematics & music', dates: 'summa cum laude', color: '#ffe566' },
+  { degree: 'mfa', institution: 'calarts', field: 'music', dates: '2016–2017', color: '#ff9fb2' },
+  { degree: 'graduate studies', institution: 'new england conservatory', field: 'jazz & contemporary music', dates: '2015–2016', color: '#96f2da' },
+  { degree: "bachelor's", institution: 'uc berkeley', field: 'applied mathematics & music', dates: 'summa cum laude', color: '#ffe566' },
 ]
 
 const SKILLS = [
-  { name: 'TypeScript', color: '#96f2da', dark: '#001a12' },
-  { name: 'Python', color: '#ffe566', dark: '#1a1600' },
-  { name: 'React', color: '#ff9fb2', dark: '#1a0008' },
-  { name: 'Node.js', color: '#c8b8ff', dark: '#0e0018' },
-  { name: 'AWS', color: '#ffd6a5', dark: '#1a0e00' },
-  { name: 'Unity', color: '#a8e6cf', dark: '#001a0e' },
-  { name: 'Pro Tools', color: '#ff9fb2', dark: '#1a0008' },
-  { name: 'Ableton', color: '#96f2da', dark: '#001a12' },
+  { name: 'typescript', color: '#96f2da', dark: '#001a12' },
+  { name: 'python', color: '#ffe566', dark: '#1a1600' },
+  { name: 'react', color: '#ff9fb2', dark: '#1a0008' },
+  { name: 'node.js', color: '#c8b8ff', dark: '#0e0018' },
+  { name: 'aws', color: '#ffd6a5', dark: '#1a0e00' },
+  { name: 'unity', color: '#a8e6cf', dark: '#001a0e' },
+  { name: 'pro tools', color: '#ff9fb2', dark: '#1a0008' },
+  { name: 'ableton', color: '#96f2da', dark: '#001a12' },
 ]
 
 const SOCIALS = [
