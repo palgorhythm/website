@@ -392,12 +392,12 @@ function GigsSection() {
         {formatDate(ev)}
       </div>
       <div style={{ fontWeight: 700, color: '#fff', fontSize: 15, marginBottom: 4, lineHeight: 1.3 }}>
-        {ev.title}
+        {ev.title.toLowerCase()}
       </div>
       {ev.location && (
         <div style={{ display: 'flex', alignItems: 'center', gap: 4, color: '#55556a', fontSize: 12 }}>
           <MapPin size={11} />
-          {ev.location}
+          {ev.location.toLowerCase()}
         </div>
       )}
     </div>
@@ -488,7 +488,7 @@ const MUSIC_CARDS = [
     accent: '#96f2da',
     tag: 'solo electronic project',
     title: 'battery',
-    body: 'drums and electronics combining jazz, electronic music, and West African percussion. features improvised drum & bass, 8-bit jazz standards, and complex polyrhythms.',
+    body: 'drums and electronics combining jazz, electronic music, and west african percussion. features improvised drum & bass, 8-bit jazz standards, and complex polyrhythms.',
     link: { href: 'https://batterydrums.bandcamp.com/', label: 'explore project' },
     icon: <Headphones size={20} />,
   },
@@ -900,7 +900,7 @@ export default function Home() {
         >
           <Music size={32} style={{ color: '#ff6b9d', margin: '0 auto 12px', display: 'block' }} />
           <h3 style={{ fontSize: 22, fontWeight: 700, color: '#fff', marginBottom: 8 }}>complete discography</h3>
-          <p style={{ color: '#55556a', marginBottom: 24 }}>from electronic experiments to jazz collaborations — all 101+ tracks on Spotify.</p>
+          <p style={{ color: '#55556a', marginBottom: 24 }}>from electronic experiments to jazz collaborations — all 101+ tracks on spotify.</p>
           <a
             href="https://open.spotify.com/playlist/0IeUXYZUUB9vz172ouSQ0p?si=7702f61a363f4a69"
             target="_blank"
