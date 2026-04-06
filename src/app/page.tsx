@@ -149,10 +149,10 @@ const TRACKS = [
   { title: 'big blues', ytId: '0Iu---0yzso' },
   { title: 'green mother', ytId: 'Bws0xrQndeo' },
   { title: 'roseparade', ytId: '7EMVzXaNrE8' },
-  { title: 'LAZER', ytId: 'yFFJ5nqSV38' },
-  { title: 'A view through the window', ytId: 'czrDzvjRqG8' },
+  { title: 'lazer', ytId: 'yFFJ5nqSV38' },
+  { title: 'a view through the window', ytId: 'czrDzvjRqG8' },
   { title: 'fabrica', ytId: 'Nh80wN7ep0M' },
-  { title: 'Do u have Wifi', ytId: 'QNWXW5aPstU' },
+  { title: 'do u have wifi', ytId: 'QNWXW5aPstU' },
 ]
 
 function MusicPlayer() {
@@ -332,7 +332,7 @@ function GigsSection() {
       <div style={{ maxWidth: 1152, margin: '0 auto', padding: '0 24px' }}>
         <div style={{ textAlign: 'center', marginBottom: 48 }}>
           <h2 style={{ fontSize: 'clamp(2rem,5vw,3rem)', fontWeight: 700, color: '#fff', margin: '0 0 8px' }}>shows & gigs</h2>
-          <p style={{ color: '#55556a', fontSize: 15 }}>Live performances, tours, and appearances</p>
+          <p style={{ color: '#55556a', fontSize: 15 }}>live performances, tours, and appearances</p>
         </div>
 
         {loading && (
@@ -380,10 +380,10 @@ function GigsSection() {
 // ─── Home ────────────────────────────────────────────────────────────────────
 
 const NAV_LINKS = [
-  { href: '#music', label: 'Music' },
-  { href: '#gigs', label: 'Gigs' },
-  { href: '#about', label: 'Expertise' },
-  { href: '#contact', label: 'Contact' },
+  { href: '#music', label: 'music' },
+  { href: '#gigs', label: 'gigs' },
+  { href: '#about', label: 'expertise' },
+  { href: '#contact', label: 'contact' },
 ]
 
 const STATS = [
@@ -662,7 +662,7 @@ export default function Home() {
             border: '4px solid rgba(255,107,157,0.3)',
             boxShadow: '0 0 60px rgba(255,107,157,0.25), 0 0 120px rgba(78,205,196,0.1)',
           }}>
-            <img src="/inEurope.jpeg" alt="Jacob Porter" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <img src="/inEurope.jpeg" alt="jacob porter" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
         </motion.div>
 
