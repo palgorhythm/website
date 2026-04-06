@@ -159,12 +159,95 @@ function MusicPlayer() {
   const [expanded, setExpanded] = useState(false)
   const [playing, setPlaying] = useState(false)
   const [trackIdx, setTrackIdx] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
 
   const track = TRACKS[trackIdx]
-
   const prev = () => setTrackIdx(i => (i - 1 + TRACKS.length) % TRACKS.length)
   const next = () => setTrackIdx(i => (i + 1) % TRACKS.length)
 
+  // ── Mobile: full-width bottom bar ──────────────────────────────────────────
+  if (isMobile) {
+    return (
+      <motion.div
+        initial={{ y: 80, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 1.2, type: 'spring', stiffness: 200 }}
+        style={{
+          position: 'fixed', bottom: 0, left: 0, right: 0,
+          zIndex: 200, paddingBottom: 'env(safe-area-inset-bottom)',
+        }}
+        className="glass-strong shadow-2xl"
+      >
+        {/* Expanded track list */}
+        <AnimatePresence>
+          {expanded && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              style={{ overflow: 'hidden', borderTop: '1px solid rgba(255,255,255,0.07)' }}
+            >
+              <div style={{ maxHeight: 200, overflowY: 'auto', padding: '8px 0' }}>
+                {TRACKS.map((t, i) => (
+                  <button
+                    key={t.ytId}
+                    onClick={() => { setTrackIdx(i); setPlaying(true); setExpanded(false) }}
+                    style={{
+                      display: 'block', width: '100%', textAlign: 'left',
+                      padding: '8px 16px', fontSize: 13,
+                      color: i === trackIdx ? '#ff9fb2' : '#b0b0d0',
+                      background: i === trackIdx ? 'rgba(255,159,178,0.08)' : 'transparent',
+                      fontWeight: i === trackIdx ? 700 : 400,
+                    }}
+                  >
+                    {t.title}
+                  </button>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Main bar */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 16px' }}>
+          <Music2 size={16} style={{ color: '#ff9fb2', flexShrink: 0 }} />
+          <button onClick={() => setExpanded(e => !e)} style={{ flex: 1, textAlign: 'left', minWidth: 0 }}>
+            <div style={{ fontWeight: 700, color: '#fff', fontSize: 13, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              {track.title}
+            </div>
+            <div style={{ fontSize: 10, color: '#55556a' }}>track {trackIdx + 1} of {TRACKS.length}</div>
+          </button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+            <button onClick={prev} style={{ color: '#55556a' }}><SkipBack size={18} /></button>
+            <button
+              onClick={() => setPlaying(p => !p)}
+              style={{
+                width: 36, height: 36, borderRadius: '50%',
+                background: '#ff9fb2',
+                display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#1a0008',
+              }}
+            >
+              {playing ? <Pause size={16} /> : <Play size={16} />}
+            </button>
+            <button onClick={next} style={{ color: '#55556a' }}><SkipForward size={18} /></button>
+            <a href={`https://youtube.com/watch?v=${track.ytId}`} target="_blank" rel="noopener noreferrer" style={{ color: '#55556a' }}>
+              <ExternalLink size={14} />
+            </a>
+          </div>
+        </div>
+      </motion.div>
+    )
+  }
+
+  // ── Desktop: floating card ─────────────────────────────────────────────────
   return (
     <motion.div
       initial={{ x: 120, opacity: 0 }}
@@ -203,8 +286,8 @@ function MusicPlayer() {
           onClick={() => setPlaying(p => !p)}
           style={{
             width: 40, height: 40, borderRadius: '50%',
-            background: 'linear-gradient(135deg, #ff6b9d, #4ecdc4)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff',
+            background: '#ff9fb2',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#1a0008',
           }}
         >
           {playing ? <Pause size={18} /> : <Play size={18} />}
@@ -219,7 +302,7 @@ function MusicPlayer() {
         </a>
       </div>
 
-      {/* YouTube embed when expanded + playing */}
+      {/* YouTube embed when expanded */}
       <AnimatePresence>
         {expanded && (
           <motion.div
@@ -253,8 +336,8 @@ function MusicPlayer() {
               style={{
                 display: 'block', width: '100%', textAlign: 'left',
                 padding: '6px 8px', borderRadius: 8, fontSize: 12,
-                color: i === trackIdx ? '#ff6b9d' : '#b0b0d0',
-                background: i === trackIdx ? 'rgba(255,107,157,0.1)' : 'transparent',
+                color: i === trackIdx ? '#ff9fb2' : '#b0b0d0',
+                background: i === trackIdx ? 'rgba(255,159,178,0.1)' : 'transparent',
                 fontWeight: i === trackIdx ? 700 : 400,
               }}
             >
@@ -491,7 +574,7 @@ export default function Home() {
     : 'rgba(10,10,26,0.5)'
 
   return (
-    <div style={{ minHeight: '100vh', background: '#080810', overflowX: 'hidden' }}>
+    <div style={{ minHeight: '100vh', background: '#080810', overflowX: 'hidden' }} className="pb-20 sm:pb-0">
       {/* Particle canvas */}
       <ParticleCanvas />
 
@@ -521,9 +604,9 @@ export default function Home() {
             style={{
               position: 'fixed', bottom: 24, left: 24, zIndex: 200,
               width: 44, height: 44, borderRadius: '50%',
-              background: 'linear-gradient(135deg, #ff6b9d, #4ecdc4)',
+              background: '#ff9fb2',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              color: '#fff', boxShadow: '0 4px 16px rgba(255,107,157,0.4)',
+              color: '#1a0008', boxShadow: '0 4px 16px rgba(255,159,178,0.35)',
             }}
           >
             <ArrowDown size={18} style={{ transform: 'rotate(180deg)' }} />
@@ -681,7 +764,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35, duration: 0.6 }}
-          style={{ fontSize: 'clamp(0.85rem,2vw,1.05rem)', color: '#666680', letterSpacing: '0.08em', marginBottom: 32, textTransform: 'uppercase', fontWeight: 500 }}
+          style={{ fontSize: 'clamp(0.85rem,2vw,1.05rem)', color: '#666680', letterSpacing: '0.06em', marginBottom: 32, fontWeight: 500 }}
         >
           drummer · producer · software engineer
         </motion.p>
@@ -762,7 +845,7 @@ export default function Home() {
         </div>
 
         {/* Music cards */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 24 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))', gap: 24 }}>
           {MUSIC_CARDS.map((card, i) => (
             <motion.div
               key={card.title}
@@ -773,7 +856,7 @@ export default function Home() {
               className="glass rounded-xl hover-lift"
               style={{ padding: 28, borderLeft: `3px solid ${card.accent}` }}
             >
-              <div style={{ fontSize: 10, color: card.accent, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 10 }}>{card.tag}</div>
+              <div style={{ fontSize: 10, color: card.accent, fontWeight: 700, letterSpacing: '0.12em', marginBottom: 10 }}>{card.tag}</div>
               <h3 style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginBottom: 12 }}>{card.title}</h3>
               {card.body && <p style={{ color: '#55556a', lineHeight: 1.7, fontSize: 14 }}>{card.body}</p>}
               {card.tours && (
@@ -849,7 +932,7 @@ export default function Home() {
           </p>
         </motion.div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 32 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(320px, 100%), 1fr))', gap: 32 }}>
           {/* Experience */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
