@@ -89,3 +89,13 @@ h1, h2, h3, h4 {
 
 a { text-decoration: none; color: inherit; }
 button { font: inherit; cursor: pointer; background: none; border: none; color: inherit; }
+
+/* ── Mobile responsive ──────── */
+@media (max-width: 639px) {
+  .section-pad { padding-top: 48px !important; padding-bottom: 48px !important; padding-left: 16px !important; padding-right: 16px !important; }
+  .section-pad-outer { padding-top: 48px !important; padding-bottom: 48px !important; }
+  .section-pad-inner { padding-left: 16px !important; padding-right: 16px !important; }
+  .nav-pad { padding-left: 16px !important; padding-right: 16px !important; }
+  .hero-section { padding-top: 100px !important; padding-bottom: 40px !important; min-height: auto !important; }
+  .contact-card { text-align: left !important; }
+}

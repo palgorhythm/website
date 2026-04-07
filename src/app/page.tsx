@@ -410,9 +410,10 @@ function GigsSection() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
+      className="section-pad-outer"
       style={{ padding: '80px 0', position: 'relative', zIndex: 1 }}
     >
-      <div style={{ maxWidth: 1152, margin: '0 auto', padding: '0 24px' }}>
+      <div className="section-pad-inner" style={{ maxWidth: 1152, margin: '0 auto', padding: '0 24px' }}>
         <div style={{ textAlign: 'center', marginBottom: 48 }}>
           <h2 style={{ fontSize: 'clamp(2rem,5vw,3rem)', fontWeight: 700, color: '#fff', margin: '0 0 8px' }}>shows & gigs</h2>
           <p style={{ color: '#55556a', fontSize: 15 }}>live performances, tours, and appearances</p>
@@ -619,6 +620,7 @@ export default function Home() {
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, type: 'spring', stiffness: 200 }}
+        className="nav-pad"
         style={{
           position: 'fixed', top: 0, left: 0, right: 0, zIndex: 150,
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
@@ -629,12 +631,12 @@ export default function Home() {
           transition: 'background 0.3s',
         }}
       >
-        <a href="#top" style={{ fontSize: 16, fontWeight: 600, color: '#fff', letterSpacing: '-0.02em' }}>
+        <a href="#top" style={{ fontSize: 16, fontWeight: 600, color: '#fff', letterSpacing: '-0.02em', whiteSpace: 'nowrap' }}>
           jacob porter
         </a>
 
         {/* Desktop links */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 32 }} className="hidden md:flex">
+        <div style={{ alignItems: 'center', gap: 32 }} className="hidden md:flex">
           {NAV_LINKS.map(({ href, label }) => (
             <a
               key={href}
@@ -733,7 +735,7 @@ export default function Home() {
       </AnimatePresence>
 
       {/* HERO */}
-      <section id="top" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '120px 24px 80px', position: 'relative', zIndex: 1 }}>
+      <section id="top" className="hero-section" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '120px 24px 80px', position: 'relative', zIndex: 1 }}>
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -817,6 +819,7 @@ export default function Home() {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
+        className="section-pad"
         style={{ padding: '80px 24px', maxWidth: 1152, margin: '0 auto', position: 'relative', zIndex: 1 }}
       >
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: 'center', marginBottom: 48 }}>
@@ -923,6 +926,7 @@ export default function Home() {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
+        className="section-pad"
         style={{ padding: '80px 24px', maxWidth: 1152, margin: '0 auto', position: 'relative', zIndex: 1 }}
       >
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: 'center', marginBottom: 48 }}>
@@ -1018,6 +1022,7 @@ export default function Home() {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
+        className="section-pad"
         style={{ padding: '80px 24px', maxWidth: 1152, margin: '0 auto', position: 'relative', zIndex: 1 }}
       >
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: 'center', marginBottom: 48 }}>
@@ -1036,7 +1041,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="glass rounded-2xl hover-lift"
+              className="glass rounded-2xl hover-lift contact-card"
               style={{ padding: 28, textAlign: 'center' }}
             >
               <Icon size={28} style={{ color, margin: '0 auto 12px', display: 'block' }} />
