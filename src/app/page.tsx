@@ -172,78 +172,133 @@ function MusicPlayer() {
   const prev = () => setTrackIdx(i => (i - 1 + TRACKS.length) % TRACKS.length)
   const next = () => setTrackIdx(i => (i + 1) % TRACKS.length)
 
-  // ── Mobile: full-width bottom bar ──────────────────────────────────────────
+  // ── Mobile: collapsed pill + expandable drawer ────────────────────────────
   if (isMobile) {
     return (
-      <motion.div
-        initial={{ y: 80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 1.2, type: 'spring', stiffness: 200 }}
-        style={{
-          position: 'fixed', bottom: 0, left: 0, right: 0,
-          zIndex: 200, paddingBottom: 'env(safe-area-inset-bottom)',
-        }}
-        className="glass-strong shadow-2xl"
-      >
-        {/* Expanded track list */}
+      <>
+        {/* Collapsed pill — always visible, doesn't block content */}
         <AnimatePresence>
-          {expanded && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              style={{ overflow: 'hidden', borderTop: '1px solid rgba(255,255,255,0.07)' }}
+          {!expanded && (
+            <motion.button
+              initial={{ y: 80, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 80, opacity: 0 }}
+              transition={{ type: 'spring', stiffness: 260, damping: 22 }}
+              onClick={() => setExpanded(true)}
+              style={{
+                position: 'fixed', bottom: 20, right: 16, zIndex: 200,
+                display: 'flex', alignItems: 'center', gap: 10,
+                padding: '10px 16px', borderRadius: 999,
+                background: 'rgba(18,18,32,0.95)',
+                border: '1px solid rgba(255,159,178,0.25)',
+                boxShadow: '0 4px 24px rgba(0,0,0,0.5)',
+                maxWidth: 220,
+              }}
             >
-              <div style={{ maxHeight: 200, overflowY: 'auto', padding: '8px 0' }}>
-                {TRACKS.map((t, i) => (
-                  <button
-                    key={t.ytId}
-                    onClick={() => { setTrackIdx(i); setPlaying(true); setExpanded(false) }}
-                    style={{
-                      display: 'block', width: '100%', textAlign: 'left',
-                      padding: '8px 16px', fontSize: 13,
-                      color: i === trackIdx ? '#ff9fb2' : '#b0b0d0',
-                      background: i === trackIdx ? 'rgba(255,159,178,0.08)' : 'transparent',
-                      fontWeight: i === trackIdx ? 700 : 400,
-                    }}
-                  >
-                    {t.title}
-                  </button>
-                ))}
+              <div style={{
+                width: 30, height: 30, borderRadius: '50%', background: '#ff9fb2',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                flexShrink: 0,
+              }}>
+                {playing ? <Pause size={13} style={{ color: '#1a0008' }} /> : <Play size={13} style={{ color: '#1a0008' }} />}
               </div>
-            </motion.div>
+              <div style={{ minWidth: 0, textAlign: 'left' }}>
+                <div style={{ fontSize: 12, fontWeight: 700, color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                  {track.title}
+                </div>
+                <div style={{ fontSize: 10, color: '#ff9fb2', fontWeight: 600 }}>battery</div>
+              </div>
+            </motion.button>
           )}
         </AnimatePresence>
 
-        {/* Main bar */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 16px' }}>
-          <Music2 size={16} style={{ color: '#ff9fb2', flexShrink: 0 }} />
-          <button onClick={() => setExpanded(e => !e)} style={{ flex: 1, textAlign: 'left', minWidth: 0 }}>
-            <div style={{ fontWeight: 700, color: '#fff', fontSize: 13, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-              {track.title}
-            </div>
-            <div style={{ fontSize: 10, color: '#55556a' }}>track {trackIdx + 1} of {TRACKS.length}</div>
-          </button>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
-            <button onClick={prev} style={{ color: '#55556a' }}><SkipBack size={18} /></button>
-            <button
-              onClick={() => setPlaying(p => !p)}
-              style={{
-                width: 36, height: 36, borderRadius: '50%',
-                background: '#ff9fb2',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#1a0008',
-              }}
-            >
-              {playing ? <Pause size={16} /> : <Play size={16} />}
-            </button>
-            <button onClick={next} style={{ color: '#55556a' }}><SkipForward size={18} /></button>
-            <a href={`https://youtube.com/watch?v=${track.ytId}`} target="_blank" rel="noopener noreferrer" style={{ color: '#55556a' }}>
-              <ExternalLink size={14} />
-            </a>
-          </div>
-        </div>
-      </motion.div>
+        {/* Expanded drawer — slides up from bottom */}
+        <AnimatePresence>
+          {expanded && (
+            <>
+              {/* Backdrop */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setExpanded(false)}
+                style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 201 }}
+              />
+              {/* Drawer */}
+              <motion.div
+                initial={{ y: '100%' }}
+                animate={{ y: 0 }}
+                exit={{ y: '100%' }}
+                transition={{ type: 'spring', stiffness: 320, damping: 32 }}
+                style={{
+                  position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 202,
+                  background: 'rgba(14,14,26,0.98)',
+                  borderTop: '1px solid rgba(255,159,178,0.2)',
+                  borderRadius: '20px 20px 0 0',
+                  paddingBottom: 'env(safe-area-inset-bottom)',
+                }}
+              >
+                {/* Drag handle + close */}
+                <div style={{ display: 'flex', justifyContent: 'center', padding: '12px 0 4px' }}>
+                  <div style={{ width: 36, height: 4, borderRadius: 2, background: 'rgba(255,255,255,0.15)' }} />
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '4px 20px 12px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <Music2 size={15} style={{ color: '#ff9fb2' }} />
+                    <span style={{ fontSize: 13, fontWeight: 700, color: '#ff9fb2' }}>battery</span>
+                  </div>
+                  <button onClick={() => setExpanded(false)} style={{ color: '#55556a', padding: 4 }}>
+                    <X size={18} />
+                  </button>
+                </div>
+
+                {/* Current track + controls */}
+                <div style={{ padding: '0 20px 20px' }}>
+                  <div style={{ fontWeight: 700, color: '#fff', fontSize: 16, marginBottom: 4 }}>{track.title}</div>
+                  <div style={{ fontSize: 11, color: '#55556a', marginBottom: 20 }}>track {trackIdx + 1} of {TRACKS.length}</div>
+
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 24, marginBottom: 24 }}>
+                    <button onClick={prev} style={{ color: '#666680' }}><SkipBack size={22} /></button>
+                    <button
+                      onClick={() => setPlaying(p => !p)}
+                      style={{
+                        width: 52, height: 52, borderRadius: '50%', background: '#ff9fb2',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#1a0008',
+                      }}
+                    >
+                      {playing ? <Pause size={22} /> : <Play size={22} />}
+                    </button>
+                    <button onClick={next} style={{ color: '#666680' }}><SkipForward size={22} /></button>
+                    <a href={`https://youtube.com/watch?v=${track.ytId}`} target="_blank" rel="noopener noreferrer" style={{ color: '#666680' }}>
+                      <ExternalLink size={18} />
+                    </a>
+                  </div>
+
+                  {/* Track list */}
+                  <div style={{ maxHeight: 220, overflowY: 'auto', borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: 12 }}>
+                    {TRACKS.map((t, i) => (
+                      <button
+                        key={t.ytId}
+                        onClick={() => { setTrackIdx(i); setPlaying(true) }}
+                        style={{
+                          display: 'flex', alignItems: 'center', gap: 12, width: '100%',
+                          textAlign: 'left', padding: '8px 0', fontSize: 13,
+                          color: i === trackIdx ? '#ff9fb2' : '#888899',
+                          fontWeight: i === trackIdx ? 700 : 400,
+                          borderBottom: '1px solid rgba(255,255,255,0.04)',
+                        }}
+                      >
+                        <span style={{ width: 18, textAlign: 'right', fontSize: 11, color: '#444458', flexShrink: 0 }}>{i + 1}</span>
+                        {t.title}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
+      </>
     )
   }
 
@@ -575,7 +630,7 @@ export default function Home() {
     : 'rgba(10,10,26,0.5)'
 
   return (
-    <div style={{ minHeight: '100vh', background: '#080810', overflowX: 'hidden' }} className="pb-20 sm:pb-0">
+    <div style={{ minHeight: '100vh', background: '#080810', overflowX: 'hidden' }}>
       {/* Particle canvas */}
       <ParticleCanvas />
 
